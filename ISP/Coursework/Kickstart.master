@@ -1,0 +1,80 @@
+<%@ Master Language="C#" Inherits="Kickstart.Kickstart" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="headPlaceholder" runat="server"></asp:ContentPlaceHolder>
+    <style type="text/css">
+        .FooterButtons
+        {
+            border-right-style: solid;
+            border-left-style: solid;
+            border-width: 1px;
+            border-color: #000000;
+            padding-right: 10px;
+            padding-left: 10px;
+            float: left;
+            clear: none;
+        }
+        .NavigationButtons
+        {
+            margin-right: 5px;
+            margin-left: 5px;
+            float: right;
+            clear: none;
+        }
+    </style>
+</head>
+<body>
+<form runat="server">
+    <div id="TopNavigationBar" style="background-color: #eeeeee; height: 100px; width: 90%;
+        padding-left: 5%; padding-right: 5%">
+        <div id="AccountInfoTopBar" style="border-width: 1px; border-color: #C0C0C0; text-align: right;
+            float: none; margin-bottom: 10px; border-bottom-style: solid;">
+            <asp:Label ID="AccountLabel" runat="server" Text="AccountInfo"></asp:Label>
+            <asp:Button ID="LogOutButton" runat="server" Text="Log Out"/>
+        </div>
+        <div id="NavigationPannel">
+            <asp:ImageButton ID="Logo" ImageUrl="/Resources/Logo.png" runat="server"
+                ImageAlign="Left" />
+            <asp:MultiView ID="NavigationBarView" runat="server" ActiveViewIndex="0">
+	            <asp:View ID="DeveloperView" runat="server">
+	                <asp:Button ID="HomeButton" runat="server" Text="Home" CssClass="NavigationButtons"  />
+	                <asp:Button ID="SearchJobsButton" runat="server" Text="Vacancies" CssClass="NavigationButtons"/>
+	                <asp:Button ID="MyProfileButton" runat="server" Text="Profile" CssClass="NavigationButtons"/>
+	            </asp:View>
+	            <asp:View ID="AdminView" runat="server">
+	                <asp:Button ID="Accounts" runat="server" Text="Accounts" CssClass="NavigationButtons"/>
+	                <asp:Button ID="Companies" runat="server" Text="Companies" CssClass="NavigationButtons"/>
+	                <asp:Button ID="CVs" runat="server" Text="CVs" CssClass="NavigationButtons"/>
+	                <asp:Button ID="Educations" runat="server" Text="Educations" CssClass="NavigationButtons"  />
+	                <asp:Button ID="Experiences" runat="server" Text="Experiences" CssClass="NavigationButtons"/>
+	                <asp:Button ID="Locations" runat="server" Text="Locations" CssClass="NavigationButtons"/>
+	                <asp:Button ID="Roles" runat="server" Text="Roles" CssClass="NavigationButtons"/>
+	                <asp:Button ID="Technologies" runat="server" Text="Technologies" CssClass="NavigationButtons"/>
+	                <asp:Button ID="Vacancies" runat="server" Text="Vacancies" CssClass="NavigationButtons"/>
+	            </asp:View>
+	        </asp:MultiView>
+        </div>
+    </div>
+    <div id="ContentPlane" style="border: thin solid #999999; width: 90%; margin-left: 5%;
+        margin-right: 5%">
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+    <div id="FooterBar" style="background-color: #666666; color: #FFFFFF; border-style: solid none none none;
+        border-width: medium; border-color: #333333; width: 90%; height: 50px; padding-left: 5%;
+        padding-right: 5%; padding-bottom: 1px; bottom: 0px; position: absolute;">
+        <div>
+            <asp:LinkButton ID="AboutButton" runat="server" CssClass="FooterButtons">About</asp:LinkButton>
+            <asp:LinkButton ID="BlogButton" runat="server" CssClass="FooterButtons">Blog</asp:LinkButton>
+            <asp:LinkButton ID="ContactUsButton" runat="server" CssClass="FooterButtons">Contact Us</asp:LinkButton>
+            <asp:LinkButton ID="FollowUsButton" runat="server" CssClass="FooterButtons">Follow Us</asp:LinkButton>
+        </div>
+        <div>
+            <asp:Label ID="Copyright" runat="server" Text="Alexander Degtyarev. xdegtyarev@gmail.com"></asp:Label>
+        </div>
+    </div>
+    </form>
+</body>
+</html>
