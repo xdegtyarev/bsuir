@@ -7,6 +7,8 @@
 //
 
 #include "XFS.h"
+#include "XFSDirectory.h"
+
 const char* XFS::GetDriverName(){
 	return "XFS file system";
 }
@@ -36,4 +38,8 @@ void XFS::Unmount(IMountablePoint *mountablePoint) {
 
 std::vector<IMountablePoint*> *XFS::GetMountedPoints() {
 	return &mounted;
+}
+
+XFS::XFS() {
+	root = new XFSDirectory((char *) "~", nullptr);
 }

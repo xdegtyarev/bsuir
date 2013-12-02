@@ -9,9 +9,11 @@
 #ifndef __Lab2__XFS__
 #define __Lab2__XFS__
 #include "IVFS.h"
+#include "XFSFactory.h"
 #include <iostream>
 class XFS: public IVFS{
 public:
+	XFS();
 	static XFS& GetInstance();
 	virtual IDirectory* GetRoot();
 	virtual const char* GetDriverName();
@@ -20,7 +22,6 @@ public:
 	virtual void Unmount(IMountablePoint *mountablePoint);
 	virtual std::vector<IMountablePoint*> *GetMountedPoints();
 private:
-	static XFS* instance;
 	IDirectory* root;
 	IDirectory* mountRoot;
 	std::vector<IMountablePoint*> mounted;

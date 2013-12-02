@@ -9,6 +9,18 @@
 /* Begin PBXBuildFile section */
 		E24B8E4D184D149A000861B1 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E24B8E4C184D149A000861B1 /* main.cpp */; };
 		E24B8E4F184D149A000861B1 /* ipw2.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = E24B8E4E184D149A000861B1 /* ipw2.1 */; };
+		E272F59C184D41FC0067DA28 /* NTFS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E272F582184D41FC0067DA28 /* NTFS.cpp */; };
+		E272F59D184D41FC0067DA28 /* NTFSDirectory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E272F584184D41FC0067DA28 /* NTFSDirectory.cpp */; };
+		E272F59E184D41FC0067DA28 /* NTFSFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E272F586184D41FC0067DA28 /* NTFSFactory.cpp */; };
+		E272F59F184D41FC0067DA28 /* NTFSFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E272F588184D41FC0067DA28 /* NTFSFile.cpp */; };
+		E272F5A0184D41FC0067DA28 /* UFS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E272F58B184D41FC0067DA28 /* UFS.cpp */; };
+		E272F5A1184D41FC0067DA28 /* UFSDirectory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E272F58D184D41FC0067DA28 /* UFSDirectory.cpp */; };
+		E272F5A2184D41FC0067DA28 /* UFSFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E272F58F184D41FC0067DA28 /* UFSFactory.cpp */; };
+		E272F5A3184D41FC0067DA28 /* UFSFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E272F591184D41FC0067DA28 /* UFSFile.cpp */; };
+		E272F5A4184D41FC0067DA28 /* XFS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E272F594184D41FC0067DA28 /* XFS.cpp */; };
+		E272F5A5184D41FC0067DA28 /* XFSDirectory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E272F596184D41FC0067DA28 /* XFSDirectory.cpp */; };
+		E272F5A6184D41FC0067DA28 /* XFSFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E272F598184D41FC0067DA28 /* XFSFactory.cpp */; };
+		E272F5A7184D41FC0067DA28 /* XFSFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E272F59A184D41FC0067DA28 /* XFSFile.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,29 +40,36 @@
 		E24B8E49184D149A000861B1 /* ipw2 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ipw2; sourceTree = BUILT_PRODUCTS_DIR; };
 		E24B8E4C184D149A000861B1 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		E24B8E4E184D149A000861B1 /* ipw2.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = ipw2.1; sourceTree = "<group>"; };
-		E24B8E57184D176F000861B1 /* IDirectory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IDirectory.h; sourceTree = "<group>"; };
-		E24B8E58184D176F000861B1 /* IFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IFile.h; sourceTree = "<group>"; };
-		E24B8E59184D176F000861B1 /* IMountablePoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMountablePoint.h; sourceTree = "<group>"; };
-		E24B8E5A184D176F000861B1 /* IVFS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IVFS.h; sourceTree = "<group>"; };
-		E24B8E5B184D176F000861B1 /* IVFSObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IVFSObject.h; sourceTree = "<group>"; };
-		E24B8E5D184D176F000861B1 /* NTFS.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NTFS.cpp; sourceTree = "<group>"; };
-		E24B8E5E184D176F000861B1 /* NTFS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NTFS.h; sourceTree = "<group>"; };
-		E24B8E5F184D176F000861B1 /* NTFSDirectory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NTFSDirectory.cpp; sourceTree = "<group>"; };
-		E24B8E60184D176F000861B1 /* NTFSDirectory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NTFSDirectory.h; sourceTree = "<group>"; };
-		E24B8E61184D176F000861B1 /* NTFSFile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NTFSFile.cpp; sourceTree = "<group>"; };
-		E24B8E62184D176F000861B1 /* NTFSFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NTFSFile.h; sourceTree = "<group>"; };
-		E24B8E64184D176F000861B1 /* UFS.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UFS.cpp; sourceTree = "<group>"; };
-		E24B8E65184D176F000861B1 /* UFS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UFS.h; sourceTree = "<group>"; };
-		E24B8E66184D176F000861B1 /* UFSDirectory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UFSDirectory.cpp; sourceTree = "<group>"; };
-		E24B8E67184D176F000861B1 /* UFSDirectory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UFSDirectory.h; sourceTree = "<group>"; };
-		E24B8E68184D176F000861B1 /* UFSFile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UFSFile.cpp; sourceTree = "<group>"; };
-		E24B8E69184D176F000861B1 /* UFSFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UFSFile.h; sourceTree = "<group>"; };
-		E24B8E6B184D176F000861B1 /* XFS.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = XFS.cpp; sourceTree = "<group>"; };
-		E24B8E6C184D176F000861B1 /* XFS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XFS.h; sourceTree = "<group>"; };
-		E24B8E6D184D176F000861B1 /* XFSDirectory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = XFSDirectory.cpp; sourceTree = "<group>"; };
-		E24B8E6E184D176F000861B1 /* XFSDirectory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XFSDirectory.h; sourceTree = "<group>"; };
-		E24B8E6F184D176F000861B1 /* XFSFile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = XFSFile.cpp; sourceTree = "<group>"; };
-		E24B8E70184D176F000861B1 /* XFSFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XFSFile.h; sourceTree = "<group>"; };
+		E272F57B184D41FC0067DA28 /* IDirectory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDirectory.h; sourceTree = "<group>"; };
+		E272F57C184D41FC0067DA28 /* IFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFile.h; sourceTree = "<group>"; };
+		E272F57D184D41FC0067DA28 /* IMountablePoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMountablePoint.h; sourceTree = "<group>"; };
+		E272F57E184D41FC0067DA28 /* IVFS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IVFS.h; sourceTree = "<group>"; };
+		E272F57F184D41FC0067DA28 /* IVFSFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IVFSFactory.h; sourceTree = "<group>"; };
+		E272F580184D41FC0067DA28 /* IVFSObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IVFSObject.h; sourceTree = "<group>"; };
+		E272F582184D41FC0067DA28 /* NTFS.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NTFS.cpp; sourceTree = "<group>"; };
+		E272F583184D41FC0067DA28 /* NTFS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTFS.h; sourceTree = "<group>"; };
+		E272F584184D41FC0067DA28 /* NTFSDirectory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NTFSDirectory.cpp; sourceTree = "<group>"; };
+		E272F585184D41FC0067DA28 /* NTFSDirectory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTFSDirectory.h; sourceTree = "<group>"; };
+		E272F586184D41FC0067DA28 /* NTFSFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NTFSFactory.cpp; sourceTree = "<group>"; };
+		E272F587184D41FC0067DA28 /* NTFSFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTFSFactory.h; sourceTree = "<group>"; };
+		E272F588184D41FC0067DA28 /* NTFSFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NTFSFile.cpp; sourceTree = "<group>"; };
+		E272F589184D41FC0067DA28 /* NTFSFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTFSFile.h; sourceTree = "<group>"; };
+		E272F58B184D41FC0067DA28 /* UFS.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UFS.cpp; sourceTree = "<group>"; };
+		E272F58C184D41FC0067DA28 /* UFS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UFS.h; sourceTree = "<group>"; };
+		E272F58D184D41FC0067DA28 /* UFSDirectory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UFSDirectory.cpp; sourceTree = "<group>"; };
+		E272F58E184D41FC0067DA28 /* UFSDirectory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UFSDirectory.h; sourceTree = "<group>"; };
+		E272F58F184D41FC0067DA28 /* UFSFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UFSFactory.cpp; sourceTree = "<group>"; };
+		E272F590184D41FC0067DA28 /* UFSFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UFSFactory.h; sourceTree = "<group>"; };
+		E272F591184D41FC0067DA28 /* UFSFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UFSFile.cpp; sourceTree = "<group>"; };
+		E272F592184D41FC0067DA28 /* UFSFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UFSFile.h; sourceTree = "<group>"; };
+		E272F594184D41FC0067DA28 /* XFS.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XFS.cpp; sourceTree = "<group>"; };
+		E272F595184D41FC0067DA28 /* XFS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XFS.h; sourceTree = "<group>"; };
+		E272F596184D41FC0067DA28 /* XFSDirectory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XFSDirectory.cpp; sourceTree = "<group>"; };
+		E272F597184D41FC0067DA28 /* XFSDirectory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XFSDirectory.h; sourceTree = "<group>"; };
+		E272F598184D41FC0067DA28 /* XFSFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XFSFactory.cpp; sourceTree = "<group>"; };
+		E272F599184D41FC0067DA28 /* XFSFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XFSFactory.h; sourceTree = "<group>"; };
+		E272F59A184D41FC0067DA28 /* XFSFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XFSFile.cpp; sourceTree = "<group>"; };
+		E272F59B184D41FC0067DA28 /* XFSFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XFSFile.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +88,7 @@
 			children = (
 				E24B8E4B184D149A000861B1 /* ipw2 */,
 				E24B8E4A184D149A000861B1 /* Products */,
-				E24B8E55184D176F000861B1 /* Source */,
+				E272F579184D41FC0067DA28 /* Source */,
 			);
 			sourceTree = "<group>";
 		};
@@ -90,64 +109,71 @@
 			path = ipw2;
 			sourceTree = "<group>";
 		};
-		E24B8E55184D176F000861B1 /* Source */ = {
+		E272F579184D41FC0067DA28 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				E24B8E56184D176F000861B1 /* Abstract */,
-				E24B8E5C184D176F000861B1 /* NTFS */,
-				E24B8E63184D176F000861B1 /* UFS */,
-				E24B8E6A184D176F000861B1 /* XFS */,
+				E272F57A184D41FC0067DA28 /* Abstract */,
+				E272F581184D41FC0067DA28 /* NTFS */,
+				E272F58A184D41FC0067DA28 /* UFS */,
+				E272F593184D41FC0067DA28 /* XFS */,
 			);
 			path = Source;
 			sourceTree = "<group>";
 		};
-		E24B8E56184D176F000861B1 /* Abstract */ = {
+		E272F57A184D41FC0067DA28 /* Abstract */ = {
 			isa = PBXGroup;
 			children = (
-				E24B8E57184D176F000861B1 /* IDirectory.h */,
-				E24B8E58184D176F000861B1 /* IFile.h */,
-				E24B8E59184D176F000861B1 /* IMountablePoint.h */,
-				E24B8E5A184D176F000861B1 /* IVFS.h */,
-				E24B8E5B184D176F000861B1 /* IVFSObject.h */,
+				E272F57B184D41FC0067DA28 /* IDirectory.h */,
+				E272F57C184D41FC0067DA28 /* IFile.h */,
+				E272F57D184D41FC0067DA28 /* IMountablePoint.h */,
+				E272F57E184D41FC0067DA28 /* IVFS.h */,
+				E272F57F184D41FC0067DA28 /* IVFSFactory.h */,
+				E272F580184D41FC0067DA28 /* IVFSObject.h */,
 			);
 			path = Abstract;
 			sourceTree = "<group>";
 		};
-		E24B8E5C184D176F000861B1 /* NTFS */ = {
+		E272F581184D41FC0067DA28 /* NTFS */ = {
 			isa = PBXGroup;
 			children = (
-				E24B8E5D184D176F000861B1 /* NTFS.cpp */,
-				E24B8E5E184D176F000861B1 /* NTFS.h */,
-				E24B8E5F184D176F000861B1 /* NTFSDirectory.cpp */,
-				E24B8E60184D176F000861B1 /* NTFSDirectory.h */,
-				E24B8E61184D176F000861B1 /* NTFSFile.cpp */,
-				E24B8E62184D176F000861B1 /* NTFSFile.h */,
+				E272F582184D41FC0067DA28 /* NTFS.cpp */,
+				E272F583184D41FC0067DA28 /* NTFS.h */,
+				E272F584184D41FC0067DA28 /* NTFSDirectory.cpp */,
+				E272F585184D41FC0067DA28 /* NTFSDirectory.h */,
+				E272F586184D41FC0067DA28 /* NTFSFactory.cpp */,
+				E272F587184D41FC0067DA28 /* NTFSFactory.h */,
+				E272F588184D41FC0067DA28 /* NTFSFile.cpp */,
+				E272F589184D41FC0067DA28 /* NTFSFile.h */,
 			);
 			path = NTFS;
 			sourceTree = "<group>";
 		};
-		E24B8E63184D176F000861B1 /* UFS */ = {
+		E272F58A184D41FC0067DA28 /* UFS */ = {
 			isa = PBXGroup;
 			children = (
-				E24B8E64184D176F000861B1 /* UFS.cpp */,
-				E24B8E65184D176F000861B1 /* UFS.h */,
-				E24B8E66184D176F000861B1 /* UFSDirectory.cpp */,
-				E24B8E67184D176F000861B1 /* UFSDirectory.h */,
-				E24B8E68184D176F000861B1 /* UFSFile.cpp */,
-				E24B8E69184D176F000861B1 /* UFSFile.h */,
+				E272F58B184D41FC0067DA28 /* UFS.cpp */,
+				E272F58C184D41FC0067DA28 /* UFS.h */,
+				E272F58D184D41FC0067DA28 /* UFSDirectory.cpp */,
+				E272F58E184D41FC0067DA28 /* UFSDirectory.h */,
+				E272F58F184D41FC0067DA28 /* UFSFactory.cpp */,
+				E272F590184D41FC0067DA28 /* UFSFactory.h */,
+				E272F591184D41FC0067DA28 /* UFSFile.cpp */,
+				E272F592184D41FC0067DA28 /* UFSFile.h */,
 			);
 			path = UFS;
 			sourceTree = "<group>";
 		};
-		E24B8E6A184D176F000861B1 /* XFS */ = {
+		E272F593184D41FC0067DA28 /* XFS */ = {
 			isa = PBXGroup;
 			children = (
-				E24B8E6B184D176F000861B1 /* XFS.cpp */,
-				E24B8E6C184D176F000861B1 /* XFS.h */,
-				E24B8E6D184D176F000861B1 /* XFSDirectory.cpp */,
-				E24B8E6E184D176F000861B1 /* XFSDirectory.h */,
-				E24B8E6F184D176F000861B1 /* XFSFile.cpp */,
-				E24B8E70184D176F000861B1 /* XFSFile.h */,
+				E272F594184D41FC0067DA28 /* XFS.cpp */,
+				E272F595184D41FC0067DA28 /* XFS.h */,
+				E272F596184D41FC0067DA28 /* XFSDirectory.cpp */,
+				E272F597184D41FC0067DA28 /* XFSDirectory.h */,
+				E272F598184D41FC0067DA28 /* XFSFactory.cpp */,
+				E272F599184D41FC0067DA28 /* XFSFactory.h */,
+				E272F59A184D41FC0067DA28 /* XFSFile.cpp */,
+				E272F59B184D41FC0067DA28 /* XFSFile.h */,
 			);
 			path = XFS;
 			sourceTree = "<group>";
@@ -203,7 +229,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E272F5A0184D41FC0067DA28 /* UFS.cpp in Sources */,
+				E272F59C184D41FC0067DA28 /* NTFS.cpp in Sources */,
+				E272F59D184D41FC0067DA28 /* NTFSDirectory.cpp in Sources */,
+				E272F59F184D41FC0067DA28 /* NTFSFile.cpp in Sources */,
+				E272F5A7184D41FC0067DA28 /* XFSFile.cpp in Sources */,
 				E24B8E4D184D149A000861B1 /* main.cpp in Sources */,
+				E272F5A5184D41FC0067DA28 /* XFSDirectory.cpp in Sources */,
+				E272F5A4184D41FC0067DA28 /* XFS.cpp in Sources */,
+				E272F5A2184D41FC0067DA28 /* UFSFactory.cpp in Sources */,
+				E272F5A6184D41FC0067DA28 /* XFSFactory.cpp in Sources */,
+				E272F5A3184D41FC0067DA28 /* UFSFile.cpp in Sources */,
+				E272F5A1184D41FC0067DA28 /* UFSDirectory.cpp in Sources */,
+				E272F59E184D41FC0067DA28 /* NTFSFactory.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,6 +349,7 @@
 				E24B8E54184D149A000861B1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -4,6 +4,7 @@
 
 
 #include "NTFS.h"
+#include "NTFSDirectory.h"
 
 const char* NTFS::GetDriverName(){
 	return "NTFS file system";
@@ -34,4 +35,8 @@ void NTFS::Unmount(IMountablePoint *mountablePoint) {
 
 std::vector<IMountablePoint*> *NTFS::GetMountedPoints() {
 	return &mounted;
+}
+
+NTFS::NTFS() {
+	root = new NTFSDirectory((char *) "C:", nullptr);
 }

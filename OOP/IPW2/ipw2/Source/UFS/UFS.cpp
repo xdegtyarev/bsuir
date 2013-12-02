@@ -37,3 +37,7 @@ void UFS::Unmount(IMountablePoint *mountablePoint) {
 std::vector<IMountablePoint*> *UFS::GetMountedPoints() {
 	return &mounted;
 }
+
+UFS::UFS() {
+	root = new UFSDirectory((char *) "~", nullptr);
+}

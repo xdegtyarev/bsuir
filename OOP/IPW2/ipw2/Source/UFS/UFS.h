@@ -15,7 +15,8 @@
 #include "UFSDirectory.h"
 class UFS: public IVFS{
 public:
-    static UFS& GetInstance();
+	UFS();
+	static UFS& GetInstance();
 	virtual IDirectory* GetRoot();
 	virtual const char* GetDriverName();
     virtual const char* GetFileNameEncodingInfo();
@@ -23,7 +24,6 @@ public:
 	virtual void Unmount(IMountablePoint *mountablePoint);
 	virtual std::vector<IMountablePoint*> *GetMountedPoints();
 private:
-	static UFS* instance;
 	IDirectory* root;
 	IDirectory* mountRoot;
 	std::vector<IMountablePoint*> mounted;

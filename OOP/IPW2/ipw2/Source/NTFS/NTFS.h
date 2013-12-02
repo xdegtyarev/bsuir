@@ -14,6 +14,7 @@
 class NTFS: public IVFS{
 public:
 	static NTFS& GetInstance();
+	NTFS();
 	virtual IDirectory* GetRoot();
 	virtual const char* GetDriverName();
 	virtual const char* GetFileNameEncodingInfo();
@@ -21,12 +22,9 @@ public:
 	virtual void Unmount(IMountablePoint *mountablePoint);
 	virtual std::vector<IMountablePoint*> *GetMountedPoints();
 private:
-	static NTFS* instance;
 	IDirectory* root;
 	IDirectory* mountRoot;
 	std::vector<IMountablePoint*> mounted;
-public:
-
 };
 
 
