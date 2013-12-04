@@ -5,8 +5,20 @@
 
 #include "XFSFactory.h"
 #include "XFS.h"
+#include "XFSDirectory.h"
+#include "XFSFile.h"
+
 IVFS *XFSFactory::CreateVFS() {
-	return nullptr;
+	return &XFS::GetInstance();
+}
+
+
+IDirectory *XFSFactory::CreateDir() {
+	return new XFSDirectory();
+}
+
+IFile *XFSFactory::CreateFile() {
+	return new XFSFile();
 }
 
 #include "XFS.h"

@@ -9,7 +9,18 @@
 #include "NTFSFactory.h"
 #include "IVFS.h"
 #include "NTFS.h"
+#include "NTFSDirectory.h"
+#include "NTFSFile.h"
 
 IVFS *NTFSFactory::CreateVFS() {
-	return nullptr;
+	return &NTFS::GetInstance();
+}
+
+
+IDirectory* NTFSFactory::CreateDir() {
+	return new NTFSDirectory();
+}
+
+IFile* NTFSFactory::CreateFile() {
+	return new NTFSFile();
 }

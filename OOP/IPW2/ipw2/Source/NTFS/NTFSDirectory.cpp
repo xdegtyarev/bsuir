@@ -75,3 +75,11 @@ time_t NTFSDirectory::GetModificationDate() {
 bool NTFSDirectory::IsMounted() {
 	return isMounted;
 }
+
+
+void NTFSDirectory::ListContentToConsole() {
+	std::cout << "Contents of: " << GetObjectName() << std::endl;
+	for(std::vector<IVFSObject*>::iterator i = contents.begin();i<contents.end();++i){
+		std::cout << (*i)->GetObjectName() << std::endl;
+	}
+}

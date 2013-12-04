@@ -77,3 +77,11 @@ time_t XFSDirectory::GetModificationDate() {
 bool XFSDirectory::IsMounted() {
 	return isMounted;
 }
+
+
+void XFSDirectory::ListContentToConsole() {
+	std::cout << "Contents of: " << GetObjectName() << std::endl;
+	for(std::vector<IVFSObject*>::iterator i = contents.begin();i<contents.end();++i){
+		std::cout << (*i)->GetObjectName() << std::endl;
+	}
+}

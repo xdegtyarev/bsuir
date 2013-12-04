@@ -7,5 +7,13 @@
 #include "UFS.h"
 
 IVFS *UFSFactory::CreateVFS() {
-	return nullptr;
+	return &UFS::GetInstance();
+}
+
+IDirectory *UFSFactory::CreateDir() {
+	return new UFSDirectory();
+}
+
+IFile *UFSFactory::CreateFile() {
+	return new UFSFile();
 }

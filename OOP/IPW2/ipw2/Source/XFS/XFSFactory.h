@@ -6,15 +6,19 @@
 
 #include "IVFSFactory.h"
 
-#ifndef __UFSFactory_H_
-#define __UFSFactory_H_
+#ifndef __XFSFactory_H_
+#define __XFSFactory_H_
 
 
 class XFSFactory: public IVFSFactory {
 
 public:
 	virtual IVFS *CreateVFS();
+
+	virtual IDirectory *CreateDir();
+
+	virtual IFile *CreateFile();
 };
 
 
-#endif //__UFSFactory_H_
+#endif //__XFSFactory_H_

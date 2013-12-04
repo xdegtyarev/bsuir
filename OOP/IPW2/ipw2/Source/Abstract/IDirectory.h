@@ -15,5 +15,6 @@ public:
     virtual std::vector<IVFSObject*> GetDirectoryContent()=0;
     virtual void AddChild(IVFSObject* child)=0;
 	virtual void RemoveChild(IVFSObject* child)=0;
+	virtual void ListContentToConsole()=0;
 };
 #endif /* defined(__Lab2__IDirectory__) */

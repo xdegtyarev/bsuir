@@ -74,3 +74,10 @@ time_t UFSDirectory::GetModificationDate() {
 bool UFSDirectory::IsMounted() {
 	return isMounted;
 }
+
+void UFSDirectory::ListContentToConsole() {
+	std::cout << "Contents of: " << GetObjectName() << std::endl;
+	for(std::vector<IVFSObject*>::iterator i = contents.begin();i<contents.end();++i){
+		std::cout << (*i)->GetObjectName() << std::endl;
+	}
+}

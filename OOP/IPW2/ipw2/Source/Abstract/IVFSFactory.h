@@ -13,6 +13,8 @@
 class IVFSFactory{
 public:
 	virtual IVFS* CreateVFS() = 0;
+	virtual IDirectory* CreateDir()=0;
+	virtual IFile* CreateFile()=0;
 };
 
 

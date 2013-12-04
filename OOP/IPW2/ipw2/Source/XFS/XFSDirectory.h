@@ -37,5 +37,8 @@ private:
 	time_t creationDate;
    
 	void RemoveChild(IVFSObject *child);
+
+public:
+	virtual void ListContentToConsole();
 };
 #endif /* defined(__Lab2__XFSDirectory__) */
