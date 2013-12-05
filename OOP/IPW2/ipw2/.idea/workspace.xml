@@ -26,10 +26,8 @@
       <file leaf-file-name="NTFSFactory.cpp" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Source/NTFS/NTFSFactory.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="42" selection-start="528" selection-end="528" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="495">
-              <folding>
-                <element signature="e#151#175#0" expanded="true" />
-              </folding>
+            <state line="24" column="42" selection-start="528" selection-end="528" vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="495">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -37,7 +35,7 @@
       <file leaf-file-name="main.cpp" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ipw2/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="20" selection-start="614" selection-end="614" vertical-scroll-proportion="0.512334" vertical-offset="195" max-vertical-offset="2190">
+            <state line="32" column="16" selection-start="574" selection-end="574" vertical-scroll-proportion="0.0" vertical-offset="480" max-vertical-offset="2205">
               <folding />
             </state>
           </provider>
@@ -46,7 +44,7 @@
       <file leaf-file-name="IVFSFactory.h" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Source/Abstract/IVFSFactory.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="49" selection-start="390" selection-end="390" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="405">
+            <state line="17" column="2" selection-start="390" selection-end="390" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="405">
               <folding />
             </state>
           </provider>
@@ -55,7 +53,7 @@
       <file leaf-file-name="NTFSFactory.h" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Source/NTFS/NTFSFactory.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="44" selection-start="378" selection-end="388" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
+            <state line="16" column="44" selection-start="378" selection-end="388" vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="390">
               <folding />
             </state>
           </provider>
@@ -64,7 +62,7 @@
       <file leaf-file-name="UFSFactory.h" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Source/UFS/UFSFactory.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="40" selection-start="349" selection-end="349" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="480">
+            <state line="19" column="40" selection-start="349" selection-end="349" vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="480">
               <folding />
             </state>
           </provider>
@@ -73,7 +71,7 @@
       <file leaf-file-name="UFSFactory.cpp" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Source/UFS/UFSFactory.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="74" selection-start="446" selection-end="446" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
+            <state line="17" column="74" selection-start="446" selection-end="446" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="375">
               <folding />
             </state>
           </provider>
@@ -82,7 +80,7 @@
       <file leaf-file-name="XFSFactory.cpp" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Source/XFS/XFSFactory.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="20" selection-start="399" selection-end="399" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="405">
+            <state line="19" column="20" selection-start="399" selection-end="399" vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="450">
               <folding />
             </state>
           </provider>
@@ -91,7 +89,7 @@
       <file leaf-file-name="XFSDirectory.h" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Source/XFS/XFSDirectory.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="735">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="750">
               <folding />
             </state>
           </provider>
@@ -100,7 +98,7 @@
       <file leaf-file-name="XFSFile.cpp" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Source/XFS/XFSFile.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="990">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1005">
               <folding />
             </state>
           </provider>
@@ -109,7 +107,7 @@
       <file leaf-file-name="XFSFactory.h" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Source/XFS/XFSFactory.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="44" selection-start="308" selection-end="308" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
+            <state line="17" column="44" selection-start="308" selection-end="308" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="450">
               <folding />
             </state>
           </provider>
@@ -337,11 +335,10 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32971016" sideWeight="0.49964714" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24276641" sideWeight="0.6702899" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24276641" sideWeight="0.6702899" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32971016" sideWeight="0.50035286" order="7" side_tool="true" content_ui="tabs" />
@@ -351,6 +348,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32971016" sideWeight="0.49964714" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -370,49 +368,37 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Source/UFS/UFSDirectory.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="78" column="65" selection-start="1814" selection-end="1814" vertical-scroll-proportion="0.0" vertical-offset="808" max-vertical-offset="1335">
-          <folding />
-        </state>
+        <state line="78" column="65" selection-start="1814" selection-end="1814" vertical-scroll-proportion="0.0" vertical-offset="808" max-vertical-offset="1335" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Source/UFS/UFSDirectory.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="298" max-vertical-offset="825">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="298" max-vertical-offset="825" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Source/XFS/XFSDirectory.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="65" selection-start="1877" selection-end="1877" vertical-scroll-proportion="0.0" vertical-offset="853" max-vertical-offset="1380">
-          <folding />
-        </state>
+        <state line="82" column="65" selection-start="1877" selection-end="1877" vertical-scroll-proportion="0.0" vertical-offset="853" max-vertical-offset="1380" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Source/NTFS/NTFSDirectory.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="258" selection-end="258" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1350">
-          <folding />
-        </state>
+        <state line="9" column="0" selection-start="258" selection-end="258" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1350" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Source/XFS/XFS.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="527">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="527" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Source/XFS/XFS.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="735">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="735" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Source/Abstract/IVFSFactory.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="49" selection-start="390" selection-end="390" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="405">
+        <state line="17" column="2" selection-start="390" selection-end="390" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="405">
           <folding />
         </state>
       </provider>
@@ -420,9 +406,7 @@
     <entry file="file://$PROJECT_DIR$/Source/NTFS/NTFSFactory.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="42" selection-start="528" selection-end="528" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="495">
-          <folding>
-            <element signature="e#151#175#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -477,7 +461,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ipw2/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="20" selection-start="614" selection-end="614" vertical-scroll-proportion="0.512334" vertical-offset="195" max-vertical-offset="2190">
+        <state line="32" column="16" selection-start="574" selection-end="574" vertical-scroll-proportion="0.0" vertical-offset="480" max-vertical-offset="2205">
           <folding />
         </state>
       </provider>
