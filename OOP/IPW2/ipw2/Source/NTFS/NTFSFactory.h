@@ -14,9 +14,7 @@
 class NTFSFactory: public IVFSFactory{
 public:
 	virtual IVFS* CreateVFS();
-
-	virtual IDirectory* CreateDir();
-
-	virtual IFile* CreateFile();
+	virtual IDirectory *CreateDir(char *name);
+	virtual IFile *CreateFile(char *name);
 };
 #endif /* defined(__ipw2__NTFSFactory__) */

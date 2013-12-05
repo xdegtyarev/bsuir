@@ -15,6 +15,9 @@ void MainMenu();
 void InitFS();
 void Tree();
 void ItemCreationMenu();
+
+void ClearConsole();
+
 bool active;
 IVFS* currentFS;
 int currentFSIndex;
@@ -30,7 +33,7 @@ int main(int argc, const char * argv[])
 void MainMenu(){
     active = true;
     while (active) {
-        system("cls");
+	    ClearConsole();
         std::cout<<"MENU";
         std::cout<<"\n1.InitFS"<<"\n2.Create Item"<<"\n3.Tree"<<"\n4.Exit"<<std::endl;
         char response;
@@ -66,7 +69,7 @@ void InitFS(){
 
     bool invalidInput = true;
     while(invalidInput){
-        system("cls");
+	    ClearConsole();
         std::cout<<"Creating FS";
         std::cout<<"\n1.NTFS"<<"\n2.UFS"<<"\n3.XFS"<<"\n4.Exit"<<std::endl;
         char response;
@@ -103,18 +106,23 @@ void InitFS(){
 void ItemCreationMenu(){
 	bool invalidInput = true;
 	while(invalidInput){
-		system("cls");
+		ClearConsole();
 		std::cout<<"CreationMenu";
 		std::cout<<"\n1.File"<<"\n2.Folder"<<"\n3.Exit"<<std::endl;
 		char response;
+		char* r;
 		std::cin >> response;
 		switch(response){
 			case '1':
-				currentDirectory->AddChild(factory[currentFSIndex]->CreateDir());
+				std::cout<<"Enter Folder name" << std::endl;
+				std::cin>>r;
+				currentDirectory->AddChild(factory[currentFSIndex]->CreateDir(r));
 		        invalidInput = false;
 		        break;
 			case '2':
-				currentDirectory->AddChild(factory[currentFSIndex]->CreateFile());
+				std::cout<<"Enter File name" << std::endl;
+		        std::cin>>r;
+		        currentDirectory->AddChild(factory[currentFSIndex]->CreateFile(r));
 		        invalidInput = false;
 		        break;
 			case '3':
@@ -127,4 +135,8 @@ void ItemCreationMenu(){
 		}
 	}
 	std::cin;
+}
+
+void ClearConsole(){
+    system("CLR");
 }
