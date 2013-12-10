@@ -9,8 +9,10 @@
 /* Begin PBXBuildFile section */
 		E2540B52185129F400389B70 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E2540B51185129F400389B70 /* main.cpp */; };
 		E2540B54185129F400389B70 /* lab2.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = E2540B53185129F400389B70 /* lab2.1 */; };
-		E2540B5D18512B7900389B70 /* XMLSerializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E2540B5B18512B7900389B70 /* XMLSerializer.cpp */; };
-		E2540B6118512B9A00389B70 /* BinarySerializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E2540B5F18512B9A00389B70 /* BinarySerializer.cpp */; };
+		FBFCF51C7DC7EF2EDAA212A1 /* FB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBFCF7486F63141E8C1BA805 /* FB.cpp */; };
+		FBFCF5ABD3F319725018DE9E /* FBUser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBFCF4AA029FF13D80BB9BC6 /* FBUser.cpp */; };
+		FBFCFCD1689D6846B62EBFDC /* TW.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBFCFB901ACD9079EF46919B /* TW.cpp */; };
+		FBFCFECF038DA1C446E53C97 /* TWUser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBFCF73F7F15DFCAF4D43236 /* TWUser.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,11 +32,16 @@
 		E2540B4E185129F400389B70 /* lab2 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = lab2; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2540B51185129F400389B70 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		E2540B53185129F400389B70 /* lab2.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = lab2.1; sourceTree = "<group>"; };
-		E2540B5A18512AE000389B70 /* ISerializer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ISerializer.h; sourceTree = "<group>"; };
-		E2540B5B18512B7900389B70 /* XMLSerializer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XMLSerializer.cpp; sourceTree = "<group>"; };
-		E2540B5C18512B7900389B70 /* XMLSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLSerializer.h; sourceTree = "<group>"; };
-		E2540B5F18512B9A00389B70 /* BinarySerializer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BinarySerializer.cpp; sourceTree = "<group>"; };
-		E2540B6018512B9A00389B70 /* BinarySerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BinarySerializer.h; sourceTree = "<group>"; };
+		FBFCF0989651A8E993B66F14 /* TW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TW.h; sourceTree = "<group>"; };
+		FBFCF4AA029FF13D80BB9BC6 /* FBUser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FBUser.cpp; sourceTree = "<group>"; };
+		FBFCF5637A1FF9695515CA1B /* IPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPerson.h; sourceTree = "<group>"; };
+		FBFCF73F7F15DFCAF4D43236 /* TWUser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TWUser.cpp; sourceTree = "<group>"; };
+		FBFCF7486F63141E8C1BA805 /* FB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FB.cpp; sourceTree = "<group>"; };
+		FBFCF7B059529A669AA0AE54 /* FBUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBUser.h; sourceTree = "<group>"; };
+		FBFCF84C750BA8FFDCCFAB9E /* ISocialService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISocialService.h; sourceTree = "<group>"; };
+		FBFCFB901ACD9079EF46919B /* TW.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TW.cpp; sourceTree = "<group>"; };
+		FBFCFD14A12859A833D5A0B9 /* TWUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWUser.h; sourceTree = "<group>"; };
+		FBFCFDD668427DFE678742EB /* FB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FB.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,23 +74,20 @@
 		E2540B50185129F400389B70 /* lab2 */ = {
 			isa = PBXGroup;
 			children = (
-				E2540B5E18512B8000389B70 /* Serialization */,
 				E2540B51185129F400389B70 /* main.cpp */,
 				E2540B53185129F400389B70 /* lab2.1 */,
-				E2540B5A18512AE000389B70 /* ISerializer.h */,
+				FBFCF84C750BA8FFDCCFAB9E /* ISocialService.h */,
+				FBFCF7486F63141E8C1BA805 /* FB.cpp */,
+				FBFCFDD668427DFE678742EB /* FB.h */,
+				FBFCF4AA029FF13D80BB9BC6 /* FBUser.cpp */,
+				FBFCF7B059529A669AA0AE54 /* FBUser.h */,
+				FBFCF5637A1FF9695515CA1B /* IPerson.h */,
+				FBFCF73F7F15DFCAF4D43236 /* TWUser.cpp */,
+				FBFCFD14A12859A833D5A0B9 /* TWUser.h */,
+				FBFCFB901ACD9079EF46919B /* TW.cpp */,
+				FBFCF0989651A8E993B66F14 /* TW.h */,
 			);
 			path = lab2;
-			sourceTree = "<group>";
-		};
-		E2540B5E18512B8000389B70 /* Serialization */ = {
-			isa = PBXGroup;
-			children = (
-				E2540B5B18512B7900389B70 /* XMLSerializer.cpp */,
-				E2540B5C18512B7900389B70 /* XMLSerializer.h */,
-				E2540B5F18512B9A00389B70 /* BinarySerializer.cpp */,
-				E2540B6018512B9A00389B70 /* BinarySerializer.h */,
-			);
-			name = Serialization;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,8 +142,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2540B52185129F400389B70 /* main.cpp in Sources */,
-				E2540B6118512B9A00389B70 /* BinarySerializer.cpp in Sources */,
-				E2540B5D18512B7900389B70 /* XMLSerializer.cpp in Sources */,
+				FBFCF51C7DC7EF2EDAA212A1 /* FB.cpp in Sources */,
+				FBFCF5ABD3F319725018DE9E /* FBUser.cpp in Sources */,
+				FBFCFECF038DA1C446E53C97 /* TWUser.cpp in Sources */,
+				FBFCFCD1689D6846B62EBFDC /* TW.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

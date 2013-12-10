@@ -1,0 +1,41 @@
+// Created by Alexander Degtyarev on 12/10/13.
+// Copyright (c) 2013 Alexander Degtyarev. All rights reserved.
+
+
+
+#include <iostream>
+#include "FBUser.h"
+
+std::vector<IPerson *> FBUser::getConnections() {
+	return friends;
+}
+
+char *FBUser::getName() {
+	return name;
+}
+
+void FBUser::AddConnection(IPerson *connection) {
+	friends.push_back(connection);
+}
+
+void FBUser::RemoveConnection(IPerson *connection) {
+	friends.erase(std::find(friends.begin(),friends.end(),connection));
+}
+
+void FBUser::AddContent(char *content) {
+	feed.push_back(content);
+}
+
+void FBUser::DisplayFeed() {
+	std::cout << "Feed" << std::endl;
+	for(auto i = feed.begin();i<feed.end();++i){
+		std::cout << *i << std::endl;
+	}
+	std::cout << "End" << std::endl;
+	std::cin;
+}
+
+FBUser::FBUser(char* n,int i){
+	id = i;
+	name = n;
+}
