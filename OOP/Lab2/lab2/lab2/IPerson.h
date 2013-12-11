@@ -13,10 +13,10 @@
 class IPerson{
 public:
 	virtual std::vector<IPerson*> getConnections()=0;
-	virtual char* getName()=0;
+	virtual std::string getName()=0;
 	virtual void AddConnection(IPerson* connection)=0;
 	virtual void RemoveConnection(IPerson* connection)=0;
-	virtual void AddContent(char* content) = 0;
+	virtual void AddContent(std::string content) = 0;
 	virtual void DisplayFeed()=0;
 };
 

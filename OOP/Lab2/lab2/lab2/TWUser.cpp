@@ -10,7 +10,7 @@ std::vector<IPerson *> TWUser::getConnections() {
 	return following;
 }
 
-char *TWUser::getName() {
+std::string TWUser::getName() {
 	return name;
 }
 
@@ -22,7 +22,7 @@ void TWUser::RemoveConnection(IPerson *connection) {
 	following.erase(std::find(following.begin(),following.end(),connection));
 }
 
-void TWUser::AddContent(char *content) {
+void TWUser::AddContent(std::string content) {
 	tweets.push_back(content);
 }
 
@@ -35,6 +35,6 @@ void TWUser::DisplayFeed() {
 	std::cin;
 }
 
-TWUser::TWUser(char *n){
+TWUser::TWUser(std::string n){
 	name = n;
 }

@@ -10,7 +10,7 @@ std::vector<IPerson *> FBUser::getConnections() {
 	return friends;
 }
 
-char *FBUser::getName() {
+std::string FBUser::getName() {
 	return name;
 }
 
@@ -22,7 +22,7 @@ void FBUser::RemoveConnection(IPerson *connection) {
 	friends.erase(std::find(friends.begin(),friends.end(),connection));
 }
 
-void FBUser::AddContent(char *content) {
+void FBUser::AddContent(std::string content) {
 	feed.push_back(content);
 }
 
@@ -35,7 +35,7 @@ void FBUser::DisplayFeed() {
 	std::cin;
 }
 
-FBUser::FBUser(char* n,int i){
+FBUser::FBUser(std::string n,int i){
 	id = i;
 	name = n;
 }

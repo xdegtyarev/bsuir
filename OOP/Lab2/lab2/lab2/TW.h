@@ -13,12 +13,12 @@
 
 class TW: public ISocialService {
 public:
-	virtual IPerson *CreateUser(char *name);
+	virtual IPerson *CreateUser(std::string name);
 	virtual void RemoveUser(IPerson *person);
 private:
-	std::map<char*,IPerson*> userbase;
+	std::map<std::string,IPerson*> userbase;
 public:
-	virtual IPerson *TryGetUser(char *name);
+	virtual IPerson *TryGetUser(std::string name);
 };
 
 

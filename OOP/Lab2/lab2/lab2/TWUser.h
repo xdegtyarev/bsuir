@@ -13,16 +13,16 @@
 class TWUser: public IPerson{
 public:
 	virtual std::vector<IPerson *> getConnections();
-	virtual char * getName();
+	virtual std::string getName();
 	virtual void AddConnection(IPerson* connection);
 	virtual void RemoveConnection(IPerson* connection);
-	virtual void AddContent(char * content);
+	virtual void AddContent(std::string content);
 	virtual void DisplayFeed();
-	TWUser(char *name);
+	TWUser(std::string name);
 private:
-	char *name;
+	std::string name;
 	std::vector<IPerson*> following;
-	std::vector<char*> tweets;
+	std::vector<std::string> tweets;
 };
 
 

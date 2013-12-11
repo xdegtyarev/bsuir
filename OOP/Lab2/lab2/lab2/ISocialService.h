@@ -8,8 +8,8 @@
 
 class ISocialService {
 public:
-	virtual IPerson* CreateUser(char* name)=0;
+	virtual IPerson* CreateUser(std::string name)=0;
 	virtual void RemoveUser(IPerson* person)=0;
-	virtual IPerson* TryGetUser(char* name)=0;
+	virtual IPerson* TryGetUser(std::string name)=0;
 };
 #endif //__ISocialService_H_

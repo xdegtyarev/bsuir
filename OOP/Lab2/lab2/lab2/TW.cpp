@@ -3,10 +3,11 @@
 
 
 
+#include <string>
 #include "TW.h"
 #include "TWUser.h"
 
-IPerson *TW::CreateUser(char *name) {
+IPerson *TW::CreateUser(std::string name) {
 	TWUser* user = new TWUser(name);
 	userbase[name] = user;
 	return user;
@@ -16,6 +17,6 @@ void TW::RemoveUser(IPerson *person) {
 	userbase.erase(userbase.find(person->getName()));
 }
 
-IPerson *TW::TryGetUser(char *name) {
+IPerson *TW::TryGetUser(std::string name) {
 	return userbase[name];
 }

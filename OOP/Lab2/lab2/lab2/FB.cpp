@@ -7,7 +7,7 @@
 #include "FB.h"
 #include "FBUser.h"
 
-IPerson *FB::CreateUser(char *name) {
+IPerson *FB::CreateUser(std::string name) {
 	currentGUID++;
 	FBUser* user = new FBUser(name,currentGUID);
 	users.push_back(user);
@@ -18,7 +18,7 @@ void FB::RemoveUser(IPerson *person) {
 	users.erase(std::find(users.begin(),users.end(),person));
 }
 
-IPerson *FB::TryGetUser(char *name) {
+IPerson *FB::TryGetUser(std::string name) {
 	IPerson* person = nullptr;
 	for(auto i = users.begin();i<users.end();++i){
 		if((*i)->getName() == name){

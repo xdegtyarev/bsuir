@@ -17,7 +17,7 @@ ISocialService* selectedService;
 IPerson* currentUser;
 
 void SocialNetworkMenu(){
-	bool exiting;
+	bool exiting = false;
 	int response = 0;
 	while(!exiting){
 		std::cout << "SocialServiceMenu" << std::endl;
@@ -30,87 +30,78 @@ void SocialNetworkMenu(){
 		std::cout << "6. Show Feed" << std::endl;
 		std::cout << "7. Back" << std::endl;
 		std::cin >> response;
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		std::string in;
 		switch(response){
 			case 1:
-				char uname[100];
-				std::cout << "Type new username:" << std::endl;
-				std::cin >> uname;
-		        std::cout << "Name is:" << uname << std::endl;
-				currentUser = selectedService->CreateUser(uname);
+		        std::cout << "Type new username:";
+		        std::getline(std::cin >> std::ws,in);
+		        currentUser = selectedService->CreateUser(in);
+		        std::cout << "Name is:" << currentUser->getName() << std::endl;
 				break;
 			case 2:
 				if(currentUser!= nullptr){
 					auto connections = currentUser->getConnections();
-					int j;
+					int j = 0;
 					std::cout << "Friends:" << std::endl;
 					for(auto i = connections.begin();i<connections.end();++i){
-						std::cout << ++j << " " << (*i)->getName() << std::endl;
+						std::cout << j;
+						std::cout << " ";
+						std::cout << std::string((*i)->getName());
+						std::cout << std::endl;
+						j++;
 					}
-					std::cout << "Any key to continue" << std::endl;
-					std::cin;
 				}else{
 					std::cout << "You have no account, create one" << std::endl;
-					std::cin;
 				}
 				break;
 			case 3:
 				if(currentUser!= nullptr){
-					char query[100];
-					std::cout << "Please enter friend name:" << std::endl;
-					std::cin >> query;
-					currentUser->AddConnection(selectedService->TryGetUser(query));
-					std::cout << "Any key to continue" << std::endl;
-					std::cin;
+					std::cout << "Please enter friend name:";
+					std::getline(std::cin >> std::ws,in);
+					currentUser->AddConnection(selectedService->TryGetUser((char*)in.c_str()));
 				}else{
 					std::cout << "You have no account, create one" << std::endl;
-					std::cin;
 				}
 				break;
 			case 4:
 				if(currentUser!= nullptr){
 					auto connections = currentUser->getConnections();
-					int j;
+					int j = 0;
 					std::cout << "Friends:" << std::endl;
 					for(auto i = connections.begin();i<connections.end();++i){
-						std::cout << ++j << " " << (*i)->getName() << std::endl;
+						std::cout << j;
+						std::cout << " ";
+						std::cout << std::string((*i)->getName());
+						std::cout << std::endl;
+						j++;
 					}
 					std::cin >> j;
 					currentUser->RemoveConnection(currentUser->getConnections()[j]);
-					std::cout << "Any key to continue" << std::endl;
-					std::cin;
 				}else{
 					std::cout << "You have no account, create one" << std::endl;
-					std::cin;
 				}
 				break;
 			case 5:
 				if(currentUser!= nullptr){
-					char post[1000];
-					std::cout << "Write post" << std::endl;
-					std::cin >> post;
-			        currentUser->AddContent(post);
-					std::cout << "Any key to continue" << std::endl;
-					std::cin;
+					std::cout << "Write post";
+					std::getline(std::cin >> std::ws,in);
+			        currentUser->AddContent((char*)in.c_str());
 		        }else{
 					std::cout << "You have no account, create one" << std::endl;
-					std::cin;
 				}
 				break;
 			case 6:
 				if(currentUser!= nullptr){
 					currentUser->DisplayFeed();
-					std::cout << "Any key to continue" << std::endl;
-					std::cin;
 				}else{
 					std::cout << "You have no account, create one" << std::endl;
-					std::cin;
 				}
 				break;
 			case 7:
 				return;
 			default:
 				std::cout << "Invalid Input! Any key to continue";
-		        std::cin;
 				break;
 		}
 	}
@@ -118,7 +109,7 @@ void SocialNetworkMenu(){
 
 int main(int argc, const char * argv[])
 {
-	bool exiting;
+	bool exiting = false;
 	int response = 0;
 	while(!exiting){
 		std::cout << "Lab2" << std::endl;
@@ -131,10 +122,12 @@ int main(int argc, const char * argv[])
 		switch(response){
 			case 1:
 				selectedService = &fb;
+				currentUser = nullptr;
 		        SocialNetworkMenu();
 				break;
 			case 2:
 				selectedService = &tw;
+		        currentUser = nullptr;
 		        SocialNetworkMenu();
 				break;
 			case 3:
@@ -142,7 +135,6 @@ int main(int argc, const char * argv[])
 				break;
 			default:
 				std::cout << "Invalid Input! Any key to continue" << response;
-				std::cin;
 				break;
 		}
 	}

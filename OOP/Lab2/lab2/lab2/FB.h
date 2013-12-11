@@ -12,9 +12,9 @@
 
 class FB: public ISocialService {
 public:
-	virtual IPerson *CreateUser(char *name);
+	virtual IPerson *CreateUser(std::string name);
 	virtual void RemoveUser(IPerson *person);
-	virtual IPerson *TryGetUser(char *name);
+	virtual IPerson *TryGetUser(std::string name);
 private:
 	int currentGUID = 0;
 	std::vector<IPerson*> users;

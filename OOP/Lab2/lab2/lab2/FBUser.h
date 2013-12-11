@@ -12,18 +12,18 @@
 
 class FBUser: public IPerson {
 public:
-	FBUser(char *name,int id);
+	FBUser(std::string name,int id);
 	virtual std::vector<IPerson *> getConnections();
-	virtual char *getName();
+	virtual std::string getName();
 	virtual void AddConnection(IPerson *connection);
 	virtual void RemoveConnection(IPerson *connection);
-	virtual void AddContent(char *content);
+	virtual void AddContent(std::string content);
 	virtual void DisplayFeed();
 private:
-	char* name;
+	std::string name;
 	int id;
 	std::vector<IPerson*> friends;
-	std::vector<char*> feed;
+	std::vector<std::string> feed;
 };
 
 
