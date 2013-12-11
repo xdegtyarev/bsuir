@@ -43,6 +43,7 @@ void SocialNetworkMenu(){
 				if(currentUser!= nullptr){
 					auto connections = currentUser->getConnections();
 					int j = 0;
+                    if(connections.size() > 0){
 					std::cout << "Friends:" << std::endl;
 					for(auto i = connections.begin();i<connections.end();++i){
 						std::cout << j;
@@ -51,6 +52,9 @@ void SocialNetworkMenu(){
 						std::cout << std::endl;
 						j++;
 					}
+                    }else{
+					std::cout << "You have no Friends" << std::endl;
+                    }
 				}else{
 					std::cout << "You have no account, create one" << std::endl;
 				}

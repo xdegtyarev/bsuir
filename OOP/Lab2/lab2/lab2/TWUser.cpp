@@ -15,7 +15,9 @@ std::string TWUser::getName() {
 }
 
 void TWUser::AddConnection(IPerson *connection) {
-	following.push_back(connection);
+    if(connection!=nullptr){
+        following.push_back(connection);
+    }
 }
 
 void TWUser::RemoveConnection(IPerson *connection) {
@@ -28,11 +30,10 @@ void TWUser::AddContent(std::string content) {
 
 void TWUser::DisplayFeed() {
 	std::cout << "Tweets" << std::endl;
-	for(auto i = following.begin(); i<following.end();++i){
+	for(auto i = tweets.begin(); i<tweets.end();++i){
 			std::cout << *i << std::endl;
 	}
 	std::cout << "End" << std::endl;
-	std::cin;
 }
 
 TWUser::TWUser(std::string n){

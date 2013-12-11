@@ -15,7 +15,9 @@ std::string FBUser::getName() {
 }
 
 void FBUser::AddConnection(IPerson *connection) {
+    if(connection!=nullptr){
 	friends.push_back(connection);
+    }
 }
 
 void FBUser::RemoveConnection(IPerson *connection) {
