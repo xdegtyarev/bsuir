@@ -8,11 +8,11 @@
 
 #include "XFSDirectory.h"
 #include "XFS.h"
-XFSDirectory::XFSDirectory():XFSDirectory((char *) "New Folder",XFS::GetInstance().GetRoot()){
+XFSDirectory::XFSDirectory():XFSDirectory("New Folder",XFS::GetInstance().GetRoot()){
     
 }
 
-XFSDirectory::XFSDirectory(char *_name, IDirectory *pDirectory, std::vector<IVFSObject*> vector):XFSDirectory(_name,pDirectory){
+XFSDirectory::XFSDirectory(std::string _name, IDirectory *pDirectory, std::vector<IVFSObject*> vector):XFSDirectory(_name,pDirectory){
 	contents = vector;
 }
 
@@ -21,7 +21,7 @@ XFSDirectory::XFSDirectory(const XFSDirectory &copy) {
 	XFSDirectory(copy.name,copy.parentDirectory,copy.contents);
 }
 
-XFSDirectory::XFSDirectory(char *_name, IDirectory* _parent){
+XFSDirectory::XFSDirectory(std::string _name, IDirectory* _parent){
 	name = _name;
 	parentDirectory = _parent;
 	creationDate = time(0);
@@ -53,7 +53,7 @@ void XFSDirectory::RemoveChild(IVFSObject* child){
 	modificationDate = time(0);
 }
 
-char *XFSDirectory::GetObjectName() {
+std::string XFSDirectory::GetObjectName() {
 	return name;
 }
 

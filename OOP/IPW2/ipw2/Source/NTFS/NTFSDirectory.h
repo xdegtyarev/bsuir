@@ -6,16 +6,16 @@
 
 #include "IDirectory.h"
 #include "IMountablePoint.h"
-
+#include <string>
 #ifndef __NTFSDirectory_H_
 #define __NTFSDirectory_H_
 class NTFSDirectory: public IMountablePoint {
 public:
 	NTFSDirectory();
 	NTFSDirectory(const NTFSDirectory& copy);
-	NTFSDirectory(char *_name, IDirectory *parent);
+	NTFSDirectory(std::string _name, IDirectory *parent);
 	//IObj
-	virtual char *GetObjectName();
+	virtual std::string GetObjectName();
 	virtual IVFSObject *GetParent();
 	virtual void SetParent(IVFSObject *object);
 	virtual time_t GetCreationDate();
@@ -28,10 +28,10 @@ private:
 	virtual bool IsMounted();
 
 	bool isMounted;
-	char *name;
+	std::string name;
 	IDirectory *parentDirectory;
 	std::vector<IVFSObject*> contents;
-	NTFSDirectory(char *string, IDirectory *pDirectory, std::vector<IVFSObject*> vector);
+	NTFSDirectory(std::string string, IDirectory *pDirectory, std::vector<IVFSObject*> vector);
 	time_t modificationDate;
 	time_t creationDate;
 

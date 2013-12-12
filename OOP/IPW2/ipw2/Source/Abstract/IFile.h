@@ -11,7 +11,7 @@
 #include "IVFSObject.h"
 class IFile: public IVFSObject{
 public:
-    virtual char* GetExtension()=0;
+    virtual std::string  GetExtension()=0;
 	virtual char* GetData()=0;
 	virtual void SetData(char* data)=0;
 };

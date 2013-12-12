@@ -13,11 +13,11 @@ IVFS *XFSFactory::CreateVFS() {
 }
 
 
-IDirectory *XFSFactory::CreateDir(char *name) {
+IDirectory *XFSFactory::CreateDir(std::string name) {
 	return new XFSDirectory(name,XFS::GetInstance().GetRoot());
 }
 
-IFile *XFSFactory::CreateFile(char *name) {
+IFile *XFSFactory::CreateFile(std::string name) {
 	return new XFSFile(name,".xf",XFS::GetInstance().GetRoot());
 }
 

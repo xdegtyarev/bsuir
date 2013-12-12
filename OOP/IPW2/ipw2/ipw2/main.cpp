@@ -36,29 +36,25 @@ void MainMenu(){
 	    ClearConsole();
         std::cout<<"MENU";
         std::cout<<"\n1.InitFS"<<"\n2.Create Item"<<"\n3.Tree"<<"\n4.Exit"<<std::endl;
-        char response;
+        int response;
         std::cin >> response;
         switch(response){
-            case '1':
+            case 1:
             InitFS();
             break;
-            case '2':
+            case 2:
                 if(currentFS==nullptr){
                     std::cout<<"specify current fs";
-                    std::cin>>response;
-                    InitFS();
                 }
                 ItemCreationMenu();
             break;
-            case '3':
+            case 3:
                 if(currentFS==nullptr){
                     std::cout<<"specify current fs";
-                    std::cin>>response;
-                    InitFS();
                 }
 				currentDirectory->ListContentToConsole();
             break;
-            case '4':
+            case 4:
             active = false;
             break;
         }
@@ -72,25 +68,25 @@ void InitFS(){
 	    ClearConsole();
         std::cout<<"Creating FS";
         std::cout<<"\n1.NTFS"<<"\n2.UFS"<<"\n3.XFS"<<"\n4.Exit"<<std::endl;
-        char response;
+        int response;
         std::cin >> response;
 	    switch(response){
-	        case '1':
+	        case 1:
 		        currentFS = factory[0]->CreateVFS();
 	            currentFSIndex=0;
 				invalidInput = false;
 		    break;
-		    case '2':
+		    case 2:
 			    currentFS = factory[1]->CreateVFS();
 	            currentFSIndex=1;
 	            invalidInput = false;
 	        break;
-		    case '3':
+		    case 3:
 	            currentFS = factory[2]->CreateVFS();
 	            currentFSIndex=2;
 	            invalidInput = false;
 	        break;
-		    case '4':
+		    case 4:
 			    return;
 	        break;
 			default:
@@ -109,23 +105,23 @@ void ItemCreationMenu(){
 		ClearConsole();
 		std::cout<<"CreationMenu";
 		std::cout<<"\n1.File"<<"\n2.Folder"<<"\n3.Exit"<<std::endl;
-		char response;
-		char* r;
+		int response;
+        std::string stringResponse;
 		std::cin >> response;
 		switch(response){
-			case '1':
+			case 1:
 				std::cout<<"Enter Folder name" << std::endl;
-				std::cin>>r;
-				currentDirectory->AddChild(factory[currentFSIndex]->CreateDir(r));
+                std::getline(std::cin >> std::ws,stringResponse);
+				currentDirectory->AddChild(factory[currentFSIndex]->CreateDir(stringResponse));
 		        invalidInput = false;
 		        break;
-			case '2':
+			case 2:
 				std::cout<<"Enter File name" << std::endl;
-		        std::cin>>r;
-		        currentDirectory->AddChild(factory[currentFSIndex]->CreateFile(r));
+                std::getline(std::cin >> std::ws,stringResponse);
+		        currentDirectory->AddChild(factory[currentFSIndex]->CreateFile(stringResponse));
 		        invalidInput = false;
 		        break;
-			case '3':
+			case 3:
 				return;
 		        break;
 			default:
@@ -134,9 +130,7 @@ void ItemCreationMenu(){
 		        break;
 		}
 	}
-	std::cin;
 }
 
 void ClearConsole(){
-    system("CLR");
 }

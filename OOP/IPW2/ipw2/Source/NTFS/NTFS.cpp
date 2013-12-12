@@ -38,5 +38,5 @@ std::vector<IMountablePoint*> *NTFS::GetMountedPoints() {
 }
 
 NTFS::NTFS() {
-	root = new NTFSDirectory((char *) "C:", nullptr);
+	root = new NTFSDirectory("C:", nullptr);
 }

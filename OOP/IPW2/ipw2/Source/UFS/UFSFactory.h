@@ -15,9 +15,9 @@ class UFSFactory: public IVFSFactory {
 public:
 	virtual IVFS *CreateVFS();
 
-	virtual IDirectory *CreateDir(char *name);
+	virtual IDirectory *CreateDir(std::string name);
 
-	virtual IFile *CreateFile(char *name);
+	virtual IFile *CreateFile(std::string name);
 };
 
 

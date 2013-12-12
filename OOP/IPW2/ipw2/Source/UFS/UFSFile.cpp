@@ -4,14 +4,14 @@
 
 
 #include "UFSFile.h"
-UFSFile::UFSFile():UFSFile((char*)"NewFile",(char*)"txt",UFS::GetInstance().GetRoot()){}
+UFSFile::UFSFile():UFSFile("NewFile","txt",UFS::GetInstance().GetRoot()){}
 
 UFSFile::UFSFile(const UFSFile& copy){
 	data = copy.data;
 	extension = copy.extension;
 }
 
-UFSFile::UFSFile(char *_name, char *_extension, IDirectory* _parent){
+UFSFile::UFSFile(std::string _name, std::string _extension, IDirectory* _parent){
 	name = _name;
 	parentDirectory = _parent;
 	creationDate = time(0);
@@ -28,7 +28,7 @@ void UFSFile::SetData(char *_data) {
 	data = _data;
 }
 
-char *UFSFile::GetExtension() {
+std::string UFSFile::GetExtension() {
 	return extension;
 }
 
@@ -36,7 +36,7 @@ long long UFSFile::GetSize() {
 	return sizeof(*data);
 }
 
-char *UFSFile::GetObjectName() {
+std::string UFSFile::GetObjectName() {
 	return name;
 }
 

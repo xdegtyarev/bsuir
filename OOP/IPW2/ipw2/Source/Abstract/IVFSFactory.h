@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Alexander Degtyarev. All rights reserved.
 //
 
+#include <string>
 #include "IVFS.h"
 
 #ifndef ipw2_IVFSFactory_h
@@ -13,8 +14,8 @@
 class IVFSFactory{
 public:
 	virtual IVFS* CreateVFS() = 0;
-	virtual IDirectory* CreateDir(char* name="NewDir")=0;
-	virtual IFile* CreateFile(char* name="NewFile")=0;
+	virtual IDirectory* CreateDir(std::string name="NewDir")=0;
+	virtual IFile* CreateFile(std::string name = "NewFile")=0;
 };
 
 

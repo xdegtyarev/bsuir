@@ -6,11 +6,11 @@
 #include "NTFSDirectory.h"
 #include "NTFS.h"
 
-NTFSDirectory::NTFSDirectory():NTFSDirectory((char *) "New Folder",NTFS::GetInstance().GetRoot()){
+NTFSDirectory::NTFSDirectory():NTFSDirectory("New Folder",NTFS::GetInstance().GetRoot()){
 
 }
 
-NTFSDirectory::NTFSDirectory(char *_name, IDirectory *pDirectory, std::vector<IVFSObject*> vector):NTFSDirectory(_name,pDirectory){
+NTFSDirectory::NTFSDirectory(std::string _name, IDirectory *pDirectory, std::vector<IVFSObject*> vector):NTFSDirectory(_name,pDirectory){
 	contents = vector;
 }
 
@@ -19,7 +19,7 @@ NTFSDirectory::NTFSDirectory(const NTFSDirectory &copy) {
 	NTFSDirectory(copy.name,copy.parentDirectory,copy.contents);
 }
 
-NTFSDirectory::NTFSDirectory(char *_name, IDirectory* _parent){
+NTFSDirectory::NTFSDirectory(std::string _name, IDirectory* _parent){
 	name = _name;
 	parentDirectory = _parent;
 	creationDate = time(0);
@@ -51,7 +51,7 @@ void NTFSDirectory::RemoveChild(IVFSObject* child){
 	modificationDate = time(0);
 }
 
-char *NTFSDirectory::GetObjectName() {
+std::string NTFSDirectory::GetObjectName() {
 	return name;
 }
 

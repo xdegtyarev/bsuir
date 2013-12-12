@@ -10,10 +10,10 @@ IVFS *UFSFactory::CreateVFS() {
 	return &UFS::GetInstance();
 }
 
-IDirectory *UFSFactory::CreateDir(char *name) {
+IDirectory *UFSFactory::CreateDir(std::string name) {
 	return new UFSDirectory(name,UFS::GetInstance().GetRoot());
 }
 
-IFile *UFSFactory::CreateFile(char *name) {
-	return new UFSFile(name, (char *) ".sh",UFS::GetInstance().GetRoot());
+IFile *UFSFactory::CreateFile(std::string name) {
+	return new UFSFile(name,".sh",UFS::GetInstance().GetRoot());
 }

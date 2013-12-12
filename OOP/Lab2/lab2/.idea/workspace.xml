@@ -26,7 +26,7 @@
       <file leaf-file-name="FB.h" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lab2/FB.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="32" selection-start="248" selection-end="248" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="435">
+            <state line="14" column="32" selection-start="248" selection-end="248" vertical-scroll-proportion="0.0" vertical-offset="210" max-vertical-offset="435">
               <folding />
             </state>
           </provider>
@@ -35,7 +35,7 @@
       <file leaf-file-name="IPerson.h" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lab2/IPerson.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="28" selection-start="418" selection-end="418" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
+            <state line="18" column="28" selection-start="418" selection-end="418" vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="450">
               <folding />
             </state>
           </provider>
@@ -44,7 +44,7 @@
       <file leaf-file-name="TWUser.cpp" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lab2/TWUser.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="27" selection-start="806" selection-end="806" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
+            <state line="38" column="27" selection-start="831" selection-end="831" vertical-scroll-proportion="0.0" vertical-offset="570" max-vertical-offset="690">
               <folding />
             </state>
           </provider>
@@ -53,7 +53,7 @@
       <file leaf-file-name="TWUser.h" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lab2/TWUser.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="27" selection-start="591" selection-end="591" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
+            <state line="24" column="27" selection-start="591" selection-end="591" vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="525">
               <folding />
             </state>
           </provider>
@@ -62,10 +62,8 @@
       <file leaf-file-name="main.cpp" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lab2/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="0" selection-start="1172" selection-end="1172" vertical-scroll-proportion="0.1965812" vertical-offset="446" max-vertical-offset="2340">
-              <folding>
-                <element signature="e#144#163#0" expanded="true" />
-              </folding>
+            <state line="46" column="0" selection-start="1322" selection-end="1322" vertical-scroll-proportion="0.24338624" vertical-offset="506" max-vertical-offset="2400">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -73,7 +71,7 @@
       <file leaf-file-name="FBUser.h" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lab2/FBUser.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="25" selection-start="623" selection-end="623" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
+            <state line="27" column="0" selection-start="623" selection-end="623" vertical-scroll-proportion="0.0" vertical-offset="405" max-vertical-offset="540">
               <folding />
             </state>
           </provider>
@@ -82,10 +80,8 @@
       <file leaf-file-name="TW.cpp" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lab2/TW.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="36" selection-start="205" selection-end="205" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
-              <folding>
-                <element signature="e#114#131#0" expanded="true" />
-              </folding>
+            <state line="9" column="36" selection-start="205" selection-end="205" vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="420">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -93,7 +89,7 @@
       <file leaf-file-name="TW.h" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lab2/TW.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="24" selection-start="355" selection-end="355" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
+            <state line="18" column="24" selection-start="355" selection-end="355" vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="465">
               <folding />
             </state>
           </provider>
@@ -102,7 +98,7 @@
       <file leaf-file-name="FBUser.cpp" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lab2/FBUser.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="0" selection-start="257" selection-end="257" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="675">
+            <state line="15" column="0" selection-start="273" selection-end="273" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="720">
               <folding />
             </state>
           </provider>
@@ -129,19 +125,19 @@
         <option value="$PROJECT_DIR$/lab2/FB.h" />
         <option value="$PROJECT_DIR$/lab2/FBUser.cpp" />
         <option value="$PROJECT_DIR$/lab2/FBUser.h" />
-        <option value="$PROJECT_DIR$/lab2/main.cpp" />
         <option value="$PROJECT_DIR$/lab2/TW.cpp" />
         <option value="$PROJECT_DIR$/lab2/TW.h" />
         <option value="$PROJECT_DIR$/lab2/TWUser.cpp" />
         <option value="$PROJECT_DIR$/lab2/TWUser.h" />
+        <option value="$PROJECT_DIR$/lab2/main.cpp" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1440" />
+    <option name="x" value="4" />
     <option name="y" value="22" />
-    <option name="width" value="1920" />
-    <option name="height" value="1058" />
+    <option name="width" value="1436" />
+    <option name="height" value="878" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -262,14 +258,13 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1440" y="22" width="1920" height="1058" extended-state="6" />
+    <frame x="4" y="22" width="1436" height="878" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32780084" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32908162" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.185029" sideWeight="0.6016598" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18471338" sideWeight="0.6016598" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39834026" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32908162" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
@@ -279,6 +274,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32780084" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -300,16 +296,12 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/lab2/ISocialService.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="46" selection-start="513" selection-end="513" vertical-scroll-proportion="0.0" vertical-offset="330" max-vertical-offset="465">
-          <folding />
-        </state>
+        <state line="22" column="46" selection-start="513" selection-end="513" vertical-scroll-proportion="0.0" vertical-offset="330" max-vertical-offset="465" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lab2/ISocialService.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="30" selection-start="275" selection-end="275" vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="465">
-          <folding />
-        </state>
+        <state line="16" column="30" selection-start="275" selection-end="275" vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="465" />
       </provider>
     </entry>
     <entry file="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/c++/v1/algorithm">
@@ -340,7 +332,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lab2/FBUser.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="25" selection-start="623" selection-end="623" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
+        <state line="27" column="0" selection-start="623" selection-end="623" vertical-scroll-proportion="0.0" vertical-offset="405" max-vertical-offset="540">
           <folding />
         </state>
       </provider>
@@ -354,17 +346,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lab2/ISocialService.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="32" selection-start="345" selection-end="345" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315">
-          <folding />
-        </state>
+        <state line="12" column="32" selection-start="345" selection-end="345" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lab2/TW.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="36" selection-start="205" selection-end="205" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
-          <folding>
-            <element signature="e#114#131#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -377,7 +365,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lab2/TWUser.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="27" selection-start="806" selection-end="806" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
+        <state line="38" column="27" selection-start="831" selection-end="831" vertical-scroll-proportion="0.0" vertical-offset="570" max-vertical-offset="690">
           <folding />
         </state>
       </provider>
@@ -391,24 +379,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lab2/FBUser.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="0" selection-start="257" selection-end="257" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="675">
+        <state line="15" column="0" selection-start="273" selection-end="273" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="720">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/c++/v1/ostream">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="304" column="0" selection-start="9317" selection-end="9317" vertical-scroll-proportion="0.33333334" vertical-offset="4301" max-vertical-offset="19305">
-          <folding />
-        </state>
+        <state line="304" column="0" selection-start="9317" selection-end="9317" vertical-scroll-proportion="0.33333334" vertical-offset="4301" max-vertical-offset="19305" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lab2/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="0" selection-start="1172" selection-end="1172" vertical-scroll-proportion="0.1965812" vertical-offset="446" max-vertical-offset="2340">
-          <folding>
-            <element signature="e#144#163#0" expanded="true" />
-          </folding>
+        <state line="46" column="0" selection-start="1322" selection-end="1322" vertical-scroll-proportion="0.24338624" vertical-offset="506" max-vertical-offset="2400">
+          <folding />
         </state>
       </provider>
     </entry>

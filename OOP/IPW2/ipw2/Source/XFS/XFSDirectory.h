@@ -14,9 +14,9 @@ class XFSDirectory: public IMountablePoint{
 public:
 	XFSDirectory();
 	XFSDirectory(const XFSDirectory& copy);
-	XFSDirectory(char *_name, IDirectory *parent);
+	XFSDirectory(std::string _name, IDirectory *parent);
 	//IObj
-	virtual char *GetObjectName();
+	virtual std::string GetObjectName();
 	virtual IVFSObject *GetParent();
 	virtual void SetParent(IVFSObject *object);
 	virtual time_t GetCreationDate();
@@ -29,10 +29,10 @@ private:
 	virtual bool IsMounted();
     
 	bool isMounted;
-	char *name;
+	std::string name;
 	IDirectory *parentDirectory;
 	std::vector<IVFSObject*> contents;
-	XFSDirectory(char *string, IDirectory *pDirectory, std::vector<IVFSObject*> vector);
+	XFSDirectory(std::string string, IDirectory *pDirectory, std::vector<IVFSObject*> vector);
 	time_t modificationDate;
 	time_t creationDate;
    

@@ -6,14 +6,14 @@
 #include "NTFSFile.h"
 #include "NTFS.h"
 
-NTFSFile::NTFSFile():NTFSFile((char*)"NewFile",(char*)"txt",NTFS::GetInstance().GetRoot()){}
+NTFSFile::NTFSFile():NTFSFile("NewFile","txt",NTFS::GetInstance().GetRoot()){}
 
 NTFSFile::NTFSFile(const NTFSFile& copy){
 	data = copy.data;
 	extension = copy.extension;
 }
 
-NTFSFile::NTFSFile(char *_name, char *_extension, IDirectory* _parent){
+NTFSFile::NTFSFile(std::string _name, std::string _extension, IDirectory* _parent){
 	name = _name;
 	parentDirectory = _parent;
 	creationDate = time(0);
@@ -30,7 +30,7 @@ void NTFSFile::SetData(char *_data) {
 	data = _data;
 }
 
-char *NTFSFile::GetExtension() {
+std::string NTFSFile::GetExtension() {
 	return extension;
 }
 
@@ -38,7 +38,7 @@ long long NTFSFile::GetSize() {
 	return sizeof(*data);
 }
 
-char *NTFSFile::GetObjectName() {
+std::string NTFSFile::GetObjectName() {
 	return name;
 }
 

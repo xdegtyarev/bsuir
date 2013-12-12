@@ -17,11 +17,11 @@ IVFS *NTFSFactory::CreateVFS() {
 }
 
 
-IDirectory *NTFSFactory::CreateDir(char *name) {
+IDirectory *NTFSFactory::CreateDir(std::string name) {
 	return new NTFSDirectory(name,NTFS::GetInstance().GetRoot());
 }
 
-IFile *NTFSFactory::CreateFile(char *name) {
+IFile *NTFSFactory::CreateFile(std::string name) {
 	return new NTFSFile(name, (char *) ".bin",NTFS::GetInstance().GetRoot());
 }
 

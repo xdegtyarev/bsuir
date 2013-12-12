@@ -4,6 +4,7 @@
 
 
 
+#include <string>
 #include "IFile.h"
 #include "IDirectory.h"
 
@@ -15,25 +16,25 @@ class NTFSFile: public IFile {
 public:
 	NTFSFile();
 
-	NTFSFile(char* _name,char* _extension,IDirectory* directory);
+	NTFSFile(std::string _name,std::string  _extension,IDirectory* directory);
 	NTFSFile(NTFSFile const &copy);
 	//IFile
-	virtual char* GetExtension();
+	virtual std::string  GetExtension();
 	virtual void SetData(char *data);
 	virtual char* GetData();
 	//IObject
 	virtual long long GetSize();
 protected:
 	char* data;
-	char* extension;
-	char *name;
+	std::string extension;
+	std::string name;
 	IDirectory *parentDirectory;
 	time_t modificationDate;
 	time_t creationDate;
 
 	//IObject
 public:
-	virtual char *GetObjectName();
+	virtual std::string GetObjectName();
 	virtual IVFSObject *GetParent();
 	virtual void SetParent(IVFSObject *object);
 	virtual time_t GetCreationDate();

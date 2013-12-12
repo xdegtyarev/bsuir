@@ -41,5 +41,5 @@ std::vector<IMountablePoint*> *XFS::GetMountedPoints() {
 }
 
 XFS::XFS() {
-	root = new XFSDirectory((char *) "~", nullptr);
+	root = new XFSDirectory("~", nullptr);
 }

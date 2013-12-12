@@ -39,5 +39,5 @@ std::vector<IMountablePoint*> *UFS::GetMountedPoints() {
 }
 
 UFS::UFS() {
-	root = new UFSDirectory((char *) "~", nullptr);
+	root = new UFSDirectory("~", nullptr);
 }

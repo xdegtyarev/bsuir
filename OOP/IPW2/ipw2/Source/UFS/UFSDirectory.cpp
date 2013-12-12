@@ -5,11 +5,11 @@
 
 #include "UFSDirectory.h"
 
-UFSDirectory::UFSDirectory():UFSDirectory((char *) "New Folder",UFS::GetInstance().GetRoot()){
+UFSDirectory::UFSDirectory():UFSDirectory("New Folder",UFS::GetInstance().GetRoot()){
 
 }
 
-UFSDirectory::UFSDirectory(char *_name, IDirectory *pDirectory, std::vector<IVFSObject*> vector):UFSDirectory(_name,pDirectory){
+UFSDirectory::UFSDirectory(std::string _name, IDirectory *pDirectory, std::vector<IVFSObject*> vector):UFSDirectory(_name,pDirectory){
 	contents = vector;
 }
 
@@ -18,7 +18,7 @@ UFSDirectory::UFSDirectory(const UFSDirectory &copy) {
 	UFSDirectory(copy.name,copy.parentDirectory,copy.contents);
 }
 
-UFSDirectory::UFSDirectory(char *_name, IDirectory* _parent){
+UFSDirectory::UFSDirectory(std::string _name, IDirectory* _parent){
 	name = _name;
 	parentDirectory = _parent;
 	creationDate = time(0);
@@ -50,7 +50,7 @@ void UFSDirectory::RemoveChild(IVFSObject* child){
 	modificationDate = time(0);
 }
 
-char *UFSDirectory::GetObjectName() {
+std::string UFSDirectory::GetObjectName() {
 	return name;
 }
 

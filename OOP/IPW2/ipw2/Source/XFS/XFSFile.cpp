@@ -8,14 +8,14 @@
 
 #include "XFSFile.h"
 #include "XFS.h"
-XFSFile::XFSFile():XFSFile((char*)"NewFile",(char*)"txt",XFS::GetInstance().GetRoot()){}
+XFSFile::XFSFile():XFSFile("NewFile","txt",XFS::GetInstance().GetRoot()){}
 
 XFSFile::XFSFile(const XFSFile& copy){
 	data = copy.data;
 	extension = copy.extension;
 }
 
-XFSFile::XFSFile(char *_name, char *_extension, IDirectory* _parent){
+XFSFile::XFSFile(std::string _name, std::string _extension, IDirectory* _parent){
 	name = _name;
 	parentDirectory = _parent;
 	creationDate = time(0);
@@ -32,7 +32,7 @@ void XFSFile::SetData(char *_data) {
 	data = _data;
 }
 
-char *XFSFile::GetExtension() {
+std::string XFSFile::GetExtension() {
 	return extension;
 }
 
@@ -40,7 +40,7 @@ long long XFSFile::GetSize() {
 	return sizeof(*data);
 }
 
-char *XFSFile::GetObjectName() {
+std::string XFSFile::GetObjectName() {
 	return name;
 }
 

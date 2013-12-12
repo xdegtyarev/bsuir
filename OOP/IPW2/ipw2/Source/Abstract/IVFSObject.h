@@ -10,11 +10,12 @@
 #define __Lab2__IVFSObject__
 
 #include <ctime>
+#include <iosfwd>
 #include "IVFSObject.h"
 
 class IVFSObject{
 public:
-    virtual char* GetObjectName()=0;
+    virtual std::string  GetObjectName()=0;
     virtual IVFSObject* GetParent()=0;
 	virtual void SetParent(IVFSObject*)=0;
     virtual time_t GetCreationDate()=0;

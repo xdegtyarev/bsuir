@@ -15,9 +15,9 @@ class UFSDirectory: public IMountablePoint {
 public:
 	UFSDirectory();
 	UFSDirectory(const UFSDirectory& copy);
-	UFSDirectory(char *_name, IDirectory *parent);
+	UFSDirectory(std::string _name, IDirectory *parent);
 	//IObj
-	virtual char *GetObjectName();
+	virtual std::string GetObjectName();
 	virtual IVFSObject *GetParent();
 	virtual void SetParent(IVFSObject *object);
 	virtual time_t GetCreationDate();
@@ -31,10 +31,10 @@ private:
 
 private:
 	bool isMounted;
-	char *name;
+	std::string name;
 	IDirectory *parentDirectory;
 	std::vector<IVFSObject*> contents;
-	UFSDirectory(char *string, IDirectory *pDirectory, std::vector<IVFSObject*> vector);
+	UFSDirectory(std::string string, IDirectory *pDirectory, std::vector<IVFSObject*> vector);
 	time_t modificationDate;
 	time_t creationDate;
 
