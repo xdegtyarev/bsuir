@@ -1,4 +1,3 @@
-bsuir
+bsuir > cspt
 =====
-
-bsuir student projects and lab works
+course works, lab works sources.
