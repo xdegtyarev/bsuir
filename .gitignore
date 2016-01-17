@@ -1,8 +1,8 @@
-
 *.sublime-project
-
 *.sublime-workspace
-
 *.swp
-
 ~$*
+*.ipch
+.vs
+*.opendb
+*.sdf
