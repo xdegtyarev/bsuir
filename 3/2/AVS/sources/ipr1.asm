@@ -1,78 +1,152 @@
-%include 'system.inc'
-
-ipr1
-%define BUFSIZE 2048
-
 section .data
-    four dd 4.0
-    two dd 2.0
-    titlemsg:    db      "a(x*x) + b(x) + c solver", 10, "reading a", 10
-    .len:   equ     $ - titlemsg
+titlemsg: db "a(x^2) + b x + c solver", 10, 0
+reseq: db "Lets solve %f(x^2) + %f(x) + %f = 0",10, 0
+resmsg: db "Roots are %f , %f",10,0
+oneresmsg: db "Single root is %f",10,0
+imagemsg: db "Desc is below 0, imaginary roots",10,0
+statmsg: db "%x",10,0
+amsg: db "A is:",10,0
+bmsg: db "B is:",10,0
+cmsg: db "C is:",10,0
 
+four: dq 4.0
+two: dq 2.0
+
+fmtstr: db "debug %f",0
+flfmt: db "%lf",0
 
 section .bss
-    a: resd 1
-    b: resd 1
-    c: resd 1
-    status: resd 1
-    root1: resd 1
-    root2: resd 1
-    ibuffer resb BUFSIZE
-    obuffer resb BUFSIZE
+a: resq 1
+b: resq 1
+c: resq 1
+status: resd 1
+root1: resq 1
+root2: resq 1
 
 section .text
-    global start
+	global main
+	extern scanf
+	extern printf
 
-start:
-    push    dword titlemsg.len
-    push    dword titlemsg
-    push    dword stdout
-    sys.write
+main:
+push ebp; setting up stackframe
+mov ebp,esp
 
-    ;read coeff A
+;;;;welcome
+push dword titlemsg
+call printf
+add esp, 4; cleaning stack
 
-    ;call solve;
+;;;;Areq
+push dword amsg
+call printf
+add esp, 4; cleaning stack
+push a
+push flfmt; %lf (double)
+call scanf
+add esp, 8
 
-    ;print results
-    push dword 0
-    sys.exit
+;;;;Breq
+push dword bmsg
+call printf
+add esp, 4; cleaning stack
+push b
+push flfmt; %lf (double)
+call scanf
+add esp, 8
 
-solve:
-    finit
-    sys.exit
+;;;;Creq
+push dword cmsg
+call printf
+add esp, 4; cleaning stack
+push c
+push flfmt; %lf (double)
+call scanf
+add esp, 8
 
+;;;Prin EQ
+push dword [c+4]
+push dword [c]
+push dword [b+4]
+push dword [b]
+push dword [a+4]
+push dword [a]
+push reseq
+call printf
+add esp, 24
 
-;fild b; st0 = b
-; FMUL ST0 ;перемножить числа ST(0):=B^2
-; FILD A ;загрузить число в регистр стека, ST(0):=A
-; FMUL FOUR ;умножить число в ST(0) на 4.0, ST(0):=4*A
-; FIMUL C ;умножить число в ST(0) на C, ST(0):=4*A*C
-; FSUBRP ST1,ST0 ;вычитаем обратные целые числа
-; FTST ;проверяем дискриминант на отрицательность
-; FSTSW STATUS;записываем в память управляющий регистр FPU
-; FWAIT; и переводим FPU в режим ожидания
-; MOV AH ,BYTE [STATUS+1];Читаем в AH
-; SAHF; помещаем содержимое регистра AH в регистр флагов
-; JB IMAGINARY;если корни мнимые переходим
-; FSQRT ;извлекаем квадратный корень в ST(0):=SQRT(B^2-4*A*C)
-; FLD ST0 ;загрузить число из ST(0) в ST(1),   ST(1):=ST(0)
-; FCHS ;изменяем знак, ST(0):=-SQRT(D)
-; FIADD B;складываем целые числа ST(0):=B-SQRT(D)
-; FCHS ;изменяем знак ST(0):= -B+SQRT(D)
-; FXCH ST1;обмениваемся данными между ST(0) и ST(1)
-; FIADD B;складываем целые числа ST(0):=B+SQRT(D)
-; FCHS ;изменяем знак, ST(0):= -B-SQRT(D)
-; FIDIV A;делим на целое число ST(0):= -(B+SQRT(D))/A
-; FDIV TWO;еще раз делим на 2, ST(0):=-(B+SQRT(D))/2A
-; FST ROOT1;сохраняем в памяти 1-ый результат из ST(0)
-; FIDIV A;делим на целое число ST(0):=(-B+SQRT(D))/A
-; FDIV TWO ;делим на 2 ST(0):=(-B+SQRT(D))/2A
-; FST ROOT2 ;сохраняем в памяти 2-ой результат
-; JMP END
+;;;; solve
+finit
+	fld qword [a]
+	fmul qword [four]
+	fmul qword [c]
+	fld qword [b]
+	fmul st0
+	fsub st0, st1; b^2 - 4ac
+	
+	ftst; d>0
+	fstsw [status]
+	fwait
+	
+	mov ah, byte [status+1]
+	sahf; store compare result in flags
+
+	jc imaginary
+	
+	fsqrt; st0 = sqrt (b^2-4ac)
+	fld st0; duplicate sqr
+	fchs; change sign
+	fadd qword [b]
+	fchs 
+
+	fxch st1; st0 <-> st1
+	fadd qword [b]
+	fchs
+	;;getting root 1
+	fdiv qword [a]
+	fdiv qword [two]
+	fstp qword [root1]
+
+	jz single;; check if 1 root
+
+	;;getting root 2
+	fdiv qword [a]
+	fdiv qword [two]
+	fst qword [root2]
+
+	push dword [root1+4]
+	push dword [root1]
+	push dword [root2+4]
+	push dword [root2]
+	push resmsg
+	call printf
+	add esp, 20
+	jmp end
+
+single:
+	push dword [root1+4]
+	push dword [root1]
+	push oneresmsg
+	call printf
+	add esp, 12
+	jmp end
+
 
 imaginary:
+	push imagemsg
+	call printf
+	add esp, 4
+	jmp end
 
-    sys.exit
+
+end:
+
+	mov esp, ebp; take down stack frame
+	pop ebp
+
+	mov eax,0; no error ret
+	ret
+
 
 
 
