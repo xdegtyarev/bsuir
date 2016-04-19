@@ -85,8 +85,9 @@ loopx:
 	fninit
 
 	fld qword [x]; st0 x
-	fld qword [two]; 
-	fpatan; st0 - 1/2atanx
+	fld1
+	fpatan; st0 - atanx
+	fdiv qword [two]
 	
 	fld qword [x]; 
 	fadd qword [one]; st0 x+1 st1 1/2atanx
@@ -95,18 +96,20 @@ loopx:
 	fchs ;st0 -x
 	fadd qword [one]; st0 1-x; st1 1+x; st2 1/2atanx
 	fdivp st1; st0 -> 1-x/1+x st1 1.2atanx
-	
+
 	fldln2; st0 ln(2) st1 .. 
 	fxch st1; st0 <-> st1 
 	fyl2x; st0 gets ln(2)*log2(1+x/1-x)
 	fdiv qword [four]; st0 1/4 ln (1+x/1-x); st1 1/2atanx
 
 	faddp; st0 has Y(x)
+
 	fstp qword [yx]
+
 	
 	fldz;
 	fst qword [k]
-	fstp qword [sx]
+	fst qword [sx]
 	
 	;loop s(x) while e not larger than sub
 	loopsx:
@@ -130,16 +133,14 @@ loopx:
 		fdivrp; st0 = 1sx
 
 		;summ up with prev result
-		fld qword [sx]
-		faddp st1
+		fadd qword [sx]
 		fst qword [sx]
 
 		fld qword [yx]; st0 yx st1 sx
+
 		fsubp st1; st0 has sub
 		fabs
 		fld qword [e]; epsilon
-
-		;call debug
 
 		fcomp; compare and pop
 		fstsw [status]
