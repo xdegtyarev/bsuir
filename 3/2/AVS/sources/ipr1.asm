@@ -12,7 +12,6 @@ cmsg: db "C is:",10,0
 four: dq 4.0
 two: dq 2.0
 
-fmtstr: db "debug %f",0
 flfmt: db "%lf",0
 
 section .bss
