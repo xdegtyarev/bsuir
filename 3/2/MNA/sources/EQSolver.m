@@ -6,11 +6,17 @@ function EQSolver()
     e = 0.0001;
     lb = -10;
     ub = 10;
-    f0 = x*x*x + a*x*x + b*x + c;
-    
+%     f0 = x*x*x + a*x*x + b*x + c;
+    a = '1.08'
+    b = '0.06'
+    c = '0.003'
+    d = '1.952'
+    f0 = a*x^3+b*x^2+c*x+d
 %%%% Sturm Method
     disp(SturmMethod(f0,lb,ub));
-%%%%     
+%%%%
+    disp(NewtonMethod(f0,-1.5,-1,0,0.000001))
+    return
     
 %%%% root separation
        for i=-10:0.1:10
@@ -19,6 +25,8 @@ function EQSolver()
         end
        end
 %%%%
+
+    
 
 %%%% division by half method
      disp(BisectionMethod(f0,-10,0,0,e));
@@ -51,11 +59,6 @@ function res = SturmMethod(f0,lb,ub)
     f2 = -r;
     [q,r] = quorem(f1,f2,x);
     f3 = -r;
-    
-%     disp(f0);
-%     disp(f1);
-%     disp(f2);
-%     disp(f3);
        
     if (0 >= double(subs(f0,x,lb))) ~= (0 >= double(subs(f1,x,lb)))
         res = res + 1;
