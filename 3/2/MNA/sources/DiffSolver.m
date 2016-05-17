@@ -41,10 +41,10 @@ function res = AdamsMetod(f0,a,b,h)
     resy = [yk]
     while(xk<b)
         xk = xk+h
-        resx = [resx,xk]
         yn = double(subs(subs(f0,x,xk),y,yk))
         yk = yk+h*(1.5*yn-0.5*yp)
         yp = yn
+        resx = [resx,xk]
         resy = [resy,yk]
     end
     res = struct('x',resx,'y',resy)
@@ -59,12 +59,12 @@ function res = RungeMethod(f0,a,b,h)
     resy = [yk]
     while(xk<b)
         xk = xk+h
-        resx = [resx,xk]
         k1 = h*double(subs(subs(f0,x,xk),y,yk))
         k2 = h*double(subs(subs(f0,x,xk+h*0.5),y,yk+k1/2))
         k3 = h*double(subs(subs(f0,x,xk+h*0.5),y,yk+k2/2))
         k4 = h*double(subs(subs(f0,x,xk+h),y,yk+h*k3))
         yk = yk + (k1+2*k2+2*k3+k4)/6
+        resx = [resx,xk]
         resy = [resy,yk]
     end
     res = struct('x',resx,'y',resy)
@@ -81,8 +81,8 @@ function res = EulerMethod(f0,a,b,h)
     
     while(xk<b)
         xk = xk+h
-        resx = [resx,xk]
         yk = yk+h*double(subs(subs(f0,x,xk),y,yk)) 
+        resx = [resx,xk]
         resy = [resy,yk]
     end
     res = struct('x',resx,'y',resy)

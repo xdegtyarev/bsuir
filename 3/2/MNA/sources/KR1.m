@@ -55,3 +55,23 @@ function res = KR1_26(f0,a,b,h)
     end
     res = summ * h / 3
 end
+
+function KR1_36
+    % 
+    y1 = 3*x^2+6*y
+    lb = 0.0
+    ub = 0.5
+    h = 0.1
+    % 
+    r = RungeMethod(y1,lb,ub,h)
+
+    y2 = 3 + 18*x + 54*x^2 + 109*x^3 + 0.5*327*x^4
+    resy2=[3,double(subs(y2,x,0.1)),
+        double(subs(y2,x,0.2)),
+        double(subs(y2,x,0.3)),
+        double(subs(y2,x,0.4)),
+        double(subs(y2,x,0.5))]
+
+    plot(r.x,r.y,r.x,resy2)
+    return
+end
