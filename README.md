@@ -1,3 +1,2 @@
-bsuir > cspt
+bsuir
 =====
-course works, lab works sources.
