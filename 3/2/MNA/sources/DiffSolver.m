@@ -8,7 +8,7 @@ m = 2
 lb = 0
 ub = 1
 
-h = 0.01
+h = 0.1
 h2 = h/2
 
 y1 = a*(1-y^2)/((1+m)*x*x+y*y+1)
@@ -68,7 +68,6 @@ function res = RungeMethod(f0,a,b,h)
         resy = [resy,yk]
     end
     res = struct('x',resx,'y',resy)
-    plot(resx,resy)
     return
 end
 

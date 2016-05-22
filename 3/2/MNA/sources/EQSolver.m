@@ -6,17 +6,11 @@ function EQSolver()
     e = 0.0001;
     lb = -10;
     ub = 10;
-%     f0 = x*x*x + a*x*x + b*x + c;
-    a = '1.08'
-    b = '0.06'
-    c = '0.003'
-    d = '1.952'
-    f0 = a*x^3+b*x^2+c*x+d
+    f0 = x*x*x + a*x*x + b*x + c;
+
 %%%% Sturm Method
     disp(SturmMethod(f0,lb,ub));
 %%%%
-    disp(NewtonMethod(f0,-1.5,-1,0,0.000001))
-    return
     
 %%%% root separation
        for i=-10:0.1:10
@@ -29,24 +23,30 @@ function EQSolver()
     
 
 %%%% division by half method
+     disp('Bisect1');
      disp(BisectionMethod(f0,-10,0,0,e));
+     disp('Bisect2');
      disp(BisectionMethod(f0,0,10,0,e));
 %%%%
      
 %%%% hordes method
+      disp('Chord1');
       disp(ChordMethod(f0,-10,0,0,e));
+      disp('Chord2');
       disp(ChordMethod(f0,0,10,0,e));
 %%%%
 
 %%%% newton method
+      disp('Newton');
       disp(NewtonMethod(f0,-10,0,0,e));
+      disp('Newton2');
       disp(NewtonMethod(f0,0,10,0,e));   
 %%%%
 
 %%%% plot
-      figure
-      x = lb:0.01:ub
-      plot(x,eval(f0)); 
+%       figure
+%       x = lb:0.01:ub
+%       plot(x,eval(f0)); 
 %%%%
 end
 

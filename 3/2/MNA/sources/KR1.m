@@ -2,7 +2,10 @@ function KR1
 %     KR1_6()
 %     KR1_162()
     syms x
-      KR1_26((x^3+4)^(1/2),2,12,1)
+%     CW1_36((8+x^3)^(1/2),-2,8,0.25)
+    f = 2.812 * x^3.6144;
+    x = 1:1:8
+    plot(x,eval(f))
 end
 
 function KR1_6
@@ -74,4 +77,26 @@ function KR1_36
 
     plot(r.x,r.y,r.x,resy2)
     return
+end
+
+function CW1_36(f0,a,b,h)
+    syms x
+    xn = a
+    i = 0
+    summ = 0
+    while(xn<b)
+        summ = summ + double(subs(f0,x,xn+h*0.5));
+        xn = xn + h
+    end
+    res = summ * h
+end
+
+function CW1_46()
+lb = 0
+ub = 0.5
+h = 0.1
+y1 = 5*x-6*y
+y2 = x
+r1 = RungeMethod(y2,lb,ub,h)
+return 
 end
