@@ -20,13 +20,6 @@ main:
 	jmp end;
 
 
-
-
-
-
-
-
-
 end:
 	mov esp, ebp; take down stack frame
 	pop ebp
