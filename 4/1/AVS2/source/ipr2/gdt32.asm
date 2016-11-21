@@ -1,4 +1,5 @@
-; Descriptor CONFIG
+[bits 32]
+
 gdt32_start:
 
 gdt32_null: 		; Initialization null
@@ -20,6 +21,24 @@ gdt32_ds:
 	db 11011111b
 	db 0x0000
 
+gtd32_task0:
+	dw 0xFFFF    ; Limit
+	dw 0x0000    ; Base
+	db 0x0000	 ; Base 23:16
+	db 10001001b ; [p][dpl][dpl][s][type][type][typeb][type]
+	db 10011111b ; [g][x][0][avl][lim][lim][lim][lim]
+	db 0x0000
+
+gtd32_task1:
+	dw 0xFFFF    ; Limit
+	dw 0x0000    ; Base
+	db 0x0000	 ; Base 23:16
+	db 10001001b ; [p][dpl][dpl][s][type][type][typeb][type]
+	db 10011111b ; [g][x][0][avl][lim][lim][lim][lim]
+	db 0x0000
+
+
+
 gdt32_end:
 
 gdt32_descriptor:
@@ -29,4 +48,6 @@ gdt32_descriptor:
 ; Constants to get address of gdt32
 CODE_SEG_32 equ gdt32_cs - gdt32_start
 DATA_SEG_32 equ gdt32_ds - gdt32_start
+TASK0_SEG_32 equ gtd32_task0 - gdt32_start
+TASK1_SEG_32 equ gtd32_task1 - gdt32_start
 
