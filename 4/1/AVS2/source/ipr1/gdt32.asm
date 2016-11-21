@@ -2,15 +2,14 @@
 gdt32_start:
 
 gdt32_null: 		; Initialization null
-	dd 0x0
-	dd 0x0
+	dq 0x0
 
 gdt32_cs:
 	dw 0xFFFF    ; Limit
 	dw 0x0000    ; Base
 	db 0x0000	 ; Base 23:16
-	db 10011011b
-	db 11011111b
+	db 10011011b ; [p][dpl][][s][type][][][a]
+	db 11011111b ; [g][x][0][avl][lim][][][]
 	db 0x0000
 
 gdt32_ds:
@@ -21,7 +20,7 @@ gdt32_ds:
 	db 11011111b
 	db 0x0000
 
-gdt32_end:         ; Pour avoir la taille du GDT
+gdt32_end:
 
 gdt32_descriptor:
 	dw gdt32_end - gdt32_start - 1 ; GDT size

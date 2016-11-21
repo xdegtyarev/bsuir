@@ -1,8 +1,9 @@
-[bits 16] ; 16-bit Real Mode
 [org 0x7C00] ; BIOS boot origin
+[bits 16] ; 16-bit Real Mode
 
 jmp start ;Jump to start() entry-point
 %include "routines16.asm"
+[bits 16]
 
 start:
   mov si, welcomeMsg
@@ -14,15 +15,10 @@ realMain:
   cli
   mov ax, cs
   mov ds, ax
-  mov ss, ax
   mov es, ax
-  mov fs, ax
-  mov gs, ax
-  mov ebp, 0x90000
-  mov esp, ebp
+  ; mov ax, STACK16
+  ; mov ss, ax
   sti
-
-
 
   mov si, inrealmsg
   call print
@@ -43,7 +39,7 @@ toProtected:
   mov eax, cr0
   or eax, 0x1
   mov cr0, eax
-  jmp CODE_SEG_32:protectedMain
+  jmp dword CODE_SEG_32:protectedMain
 
 ;;;;;;;;;;;;;;
 welcomeMsg db "IPR1-degtyarev. Press any key to start", 0x0
@@ -58,16 +54,9 @@ anykeyMsg db "Press any key to switch cpu mode...", 0x0
 [bits 32]
 
 protectedMain:
-  mov ax, DATA_SEG_32
-  mov ds, ax
-  mov ss, ax
-  mov es, ax
-  mov fs, ax
-  mov gs, ax
-
-  ; Stack
-  mov ebp, 0x90000
-  mov esp, ebp
+  mov eax, DATA_SEG_32
+  mov ds, eax
+  mov es, eax
 
   mov eax, 0x0000; zero line
   mov ebx, inprotectedmsg
@@ -81,11 +70,12 @@ toReal:
   call print32
   ;move
   cli
+
   mov eax, cr0
-  and eax, 0x00FE ; Disable paging bit & enable 16-bit pmode.
+  dec al
   mov cr0, eax
-  sti
-  jmp 0x0000:realMain
+
+  jmp 0x7C00:realMain
 
 end:
   jmp end

@@ -40,8 +40,10 @@ restart:
     dw 0xffff
 
 getKey:
+    pusha
     mov ah, 0x00
     int 0x16
+    popa
     ret
 
 print_hex:
