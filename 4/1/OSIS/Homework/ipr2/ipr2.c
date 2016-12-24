@@ -134,7 +134,7 @@ int main(int argc, char *argv[])
             while(totalBytesWrite < flen){
                 wait_sem(fullsem);// sem_wait(full);
                 totalBytesWrite += fwrite(buffer,1,*bytesRead, wfp);
-                printf("%s %d \n", "w: ", totalBytesWrite);
+                // printf("%s %d \n", "w: ", totalBytesWrite);
                 post_sem(emptysem);// sem_post(empty);
             }
 
@@ -160,7 +160,7 @@ int main(int argc, char *argv[])
                     exit(EXIT_FAILURE);
                 }
                 totalBytesRead += (*bytesRead);
-                printf("%s %d \n", "r: ", totalBytesRead);
+                // printf("%s %d \n", "r: ", totalBytesRead);
                 wait_sem(emptysem);// sem_wait(empty);
                 memcpy(buffer,readbuffer,BUFFER_SIZE);
                 post_sem(fullsem);// sem_post(full);
