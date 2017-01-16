@@ -18,8 +18,8 @@
 #include <string.h>
 #include <semaphore.h>
 #include <sys/stat.h>
-
-#define BUFFER_SIZE 128
+#include <stdbool.h>
+#define BUFFER_SIZE 2048
 #define EXIT_FAILURE 1
 
 void wait_sem(int* sem){
@@ -35,6 +35,8 @@ void post_sem(int* sem){
 
 int main(int argc, char *argv[])
 {
+    bool debug_print;
+    debug_print = argc > 2;
     //check args
     if (argc > 1) {
         key_t key;
@@ -134,7 +136,7 @@ int main(int argc, char *argv[])
             while(totalBytesWrite < flen){
                 wait_sem(fullsem);// sem_wait(full);
                 totalBytesWrite += fwrite(buffer,1,*bytesRead, wfp);
-                // printf("%s %d \n", "w: ", totalBytesWrite);
+                if(debug_print) printf("%s %d \n", "w: ", totalBytesWrite);
                 post_sem(emptysem);// sem_post(empty);
             }
 
@@ -160,7 +162,7 @@ int main(int argc, char *argv[])
                     exit(EXIT_FAILURE);
                 }
                 totalBytesRead += (*bytesRead);
-                // printf("%s %d \n", "r: ", totalBytesRead);
+                if(debug_print) printf("%s %d \n", "r: ", totalBytesRead);
                 wait_sem(emptysem);// sem_wait(empty);
                 memcpy(buffer,readbuffer,BUFFER_SIZE);
                 post_sem(fullsem);// sem_post(full);
