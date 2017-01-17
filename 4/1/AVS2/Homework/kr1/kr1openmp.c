@@ -10,8 +10,10 @@
 #include <time.h>
 #include <stdlib.h>
 #include <omp.h>
+#include <stdbool.h>
 
 int main(int argc, const char * argv[]) {
+    bool debug_info = argc > 1;
     const float TOP_CELL_VAL = 10.0;
     unsigned int rows = 0;
     unsigned int columns = 0;
@@ -45,7 +47,7 @@ int main(int argc, const char * argv[]) {
                     vector[j] = ((float)rand()/(float)(RAND_MAX)) * TOP_CELL_VAL;
                 }
                 matrix[i][j] = ((float)rand()/(float)(RAND_MAX)) * TOP_CELL_VAL;
-                // printf(" %d.%d Thread: %d:%d\n",i,j,omp_get_thread_num(), omp_get_num_threads());
+                if(debug_info) printf(" %d.%d Thread: %d:%d\n",i,j,omp_get_thread_num(), omp_get_num_threads());
             }
         }
     }
@@ -69,7 +71,7 @@ int main(int argc, const char * argv[]) {
         printf(" %3.2f\n",vector[j]);
     }
 
-    // printf("\n -----------------\n");
+    printf("\n -----------------\n");
     //parallel multiplication
     #pragma omp parallel for shared(rows,columns,matrix,vector,result)
         for(int i = 0; i < rows; ++i)
@@ -77,7 +79,7 @@ int main(int argc, const char * argv[]) {
             for (int j = 0; j < columns; ++j)
             {
                 result[i]+=matrix[i][j]*vector[j];
-                // printf("Thread: %d:%d\n",omp_get_thread_num(), omp_get_num_threads());
+                if(debug_info) printf("Thread: %d:%d\n",omp_get_thread_num(), omp_get_num_threads());
             }
         }
 
