@@ -1,13 +1,15 @@
 function mna2
-    kr1();
-%     kr2();
-%     ipr1();
+    ipr1();
+%       kr1();
 %     ipr2();
+%     kr2();
 end
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 function kr1()
     syms x
-    lb = 0;
+    lb = -1;
     ub = 1;
     
     n = 2;
@@ -19,11 +21,11 @@ function kr1()
     c = 1;
     q=-1
     f=-x
-     
-  b = cos(degtorad(26))
-  c = sin(degtorad(26))
-  q=-(1+b*x*x)/c;    
-  f=-1/c;
+    
+    b = cos(degtorad(26))
+    c = sin(degtorad(26))
+    q=-(1+b*x*x)/c;    
+    f=-1/c;
       
      res1 = kr1_form_output(A,n,kr1_colloc_solveSystem(A,baseFunc0,n,p,q,f,lb,ub));
      ezplot(res1,lb,ub);hold on
@@ -148,3 +150,79 @@ function res = kr1_galerkin_solveSystem(A,baseFunc0,n,p,q,f,lb,ub)
     
     res = solve(sys,A);
 end
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+function kr2()
+    
+end
+
+
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+function ipr1()
+    syms x
+    lb = -1;
+    ub = 1;
+    e = 0.001;
+    pn = (ub-lb)/e;
+    n = 40;
+    Y = sym('y',[1,n]);
+    p=0;
+     
+    b = 1;
+    c = 1;
+    q=-1;
+    f=-x;
+    
+    b = cos(degtorad(26));
+    c = sin(degtorad(26));
+    q=-(1+b*x*x)/c;    
+    f=-1/c;
+    
+    ipr1_form_output(Y,n,p,q,f,lb,ub);
+end
+
+function res = ipr1_kfunc(Y,k,n,xk,h,p,q,f)
+    Y0 = -1;%'A';
+    Yn = 0;%'B';
+    qx = subs(q,'x',xk)*Y(k)
+    fx = subs(f,'x',xk)
+    if k == 1
+        'hello'
+        res = (Y(k+1)-2*Y(k)+Y0)/(h*h) + subs(p,'x',xk)*((Y(k+1)-Y(k))/(2*h)) - subs(q,'x',xk)*Y(k) - subs(f,'x',xk);
+    elseif k == n
+        'hello'
+        res = (Yn-2*Y(k)+Y(k-1))/(h*h) + subs(p,'x',xk)*((Yn-Y(k))/(2*h)) - subs(q,'x',xk)*Y(k) - subs(f,'x',xk);
+    else 
+        res = (Y(k+1)-2*Y(k)+Y(k-1))/(h*h) + subs(p,'x',xk)*((Y(k+1)-Y(k))/(2*h)) - subs(q,'x',xk)*Y(k) - subs(f,'x',xk);
+    end
+end
+
+function ipr1_form_output(Y,n,p,q,f,lb,ub)
+    xk = zeros(1,n);
+    sys = sym('f',[1,n-1]);
+    h=((ub-lb)/n);
+    for k = 1:(n-1)
+        xk(k) = lb+k*h;
+        sys(k) = (ipr1_kfunc(Y,k,n,xk(k),h,p,q,f));
+    end
+    sysRes = solve(sys,Y);
+    
+    for i = 1:(n-1)
+        idx{1} = strcat('y', num2str(i));
+        Y(i)=(sysRes.(idx{1}));
+    end
+    xk(n)=1;
+    Y(n)=0;
+    plot(xk,Y); hold on 
+end
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+function ipr2()
+
+end
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
