@@ -1,8 +1,8 @@
 function mna2
-    ipr1();
-%       kr1();
-%     ipr2();
-%     kr2();
+%    ipr1();
+%    kr1();
+%    ipr2();
+     kr2();
 end
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
@@ -154,11 +154,54 @@ end
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 function kr2()
-    
+ syms x y;
+ xlb = 0;
+ xub = 1;
+ ylb = 0;
+ yub = 1;
+ 
+ n0 = 5;
+ 
+ for k = 1:1
+ n = n0*k
+ U = sym('u',[1,n*n])
+
+ fx = exp(-(y-x)^2);
+ gx = 1+0.5*cos(x+y);
+ 
+ xn = zeros(1,n);
+ yn = zeros(1,n);
+ sys = sym('f',[n,n]);
+ dx=((xub-xlb)/n);
+ dy=((yub-ylb)/n);
+ u = gx-fx;
+ for i = 1:n
+    xn(i) = xlb+dx*i;
+    for j = 1:n
+        yn(j) = ylb+dy*j;
+        lidx = i*n+j-n;
+        sys(i,j) = kr2_iteration(u,U(lidx),xn(i),yn(j),dx,dy);
+    end
+ end
+ 
+%  sysRes = solve(sys,U)
+%     for i = 1:(n*n)
+%         idx{1} = strcat('u', num2str(i));
+%         sysRes.(idx{1})
+%         U(i)=(sysRes.(idx{1}))
+%     end
+    mesh(xn,yn,sys);hold on
+ end
 end
 
+function res = kr2_test_g(x,y)
+    %not yet implemented
+end
 
-
+function res = kr2_iteration(u,nu,xi,yj,dx,dy)
+    u = subs(u,'u',nu);
+    res = subs(subs(u,'x',xi+dx),'y',yj) + subs(subs(u,'x',xi-dx),'y',yj) + subs(subs(u,'x',xi),'y',yj+dy) + subs(subs(u,'x',xi),'y',yj-dy) - 4 * subs(subs(u,'x',xi),'y',yj);   
+end
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 function ipr1()
@@ -167,7 +210,7 @@ function ipr1()
     ub = 1;
     e = 0.001;
     pn = (ub-lb)/e;
-    n = 40;
+    n = 30;
     Y = sym('y',[1,n]);
     p=0;
      
@@ -178,22 +221,36 @@ function ipr1()
     
     b = cos(degtorad(26));
     c = sin(degtorad(26));
-    q=-(1+b*x*x)/c;    
+    q=-(1+b*x*x)/c;   
     f=-1/c;
     
     ipr1_form_output(Y,n,p,q,f,lb,ub);
 end
 
-function res = ipr1_kfunc(Y,k,n,xk,h,p,q,f)
-    Y0 = -1;%'A';
-    Yn = 0;%'B';
-    qx = subs(q,'x',xk)*Y(k)
-    fx = subs(f,'x',xk)
+function res = ipr1_kfunc2(Y,k,n,xk,h,p,q,f)
+    fk = subs(f,'x',xk);
+    pk = subs(p,'x',xk);
+    qk = subs(q,'x',xk);
+    a = ((pk/(2*h))+(1/(h*h)));
+    b = (qk - (2/(h*h)));
+    c = ((1/(h*h))-(pk/(2*h)));
+    Y0 = -1;
+    YN = 0;
     if k == 1
-        'hello'
+        res = a*Y(k+1)+b*Y(k)+c*Y0-fk;
+    elseif k == n
+        res = a*YN+b*Y(k)+c*Y(k-1)-fk;
+    else
+        res = a*Y(k+1)+b*Y(k)+c*Y(k-1)-fk;
+    end
+end
+
+function res = ipr1_kfunc(Y,k,n,xk,h,p,q,f)
+    Y0 = -1;
+    Yn = 0;
+    if k == 1
         res = (Y(k+1)-2*Y(k)+Y0)/(h*h) + subs(p,'x',xk)*((Y(k+1)-Y(k))/(2*h)) - subs(q,'x',xk)*Y(k) - subs(f,'x',xk);
     elseif k == n
-        'hello'
         res = (Yn-2*Y(k)+Y(k-1))/(h*h) + subs(p,'x',xk)*((Yn-Y(k))/(2*h)) - subs(q,'x',xk)*Y(k) - subs(f,'x',xk);
     else 
         res = (Y(k+1)-2*Y(k)+Y(k-1))/(h*h) + subs(p,'x',xk)*((Y(k+1)-Y(k))/(2*h)) - subs(q,'x',xk)*Y(k) - subs(f,'x',xk);
@@ -206,7 +263,7 @@ function ipr1_form_output(Y,n,p,q,f,lb,ub)
     h=((ub-lb)/n);
     for k = 1:(n-1)
         xk(k) = lb+k*h;
-        sys(k) = (ipr1_kfunc(Y,k,n,xk(k),h,p,q,f));
+        sys(k) = (ipr1_kfunc2(Y,k,n,xk(k),h,p,q,f));
     end
     sysRes = solve(sys,Y);
     
@@ -222,7 +279,58 @@ end
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 function ipr2()
-
+    syms x
+    l = 100;
+    xlb = 0;
+    xub = l;
+    
+    syms t
+    T = 100;
+    tlb = 0;
+    tub = T;
+    
+%     a =
+%     UA = 
+%     b = 
+%     UB =
+%     fx = ''
+%     kx = ''
+    
+    step = 0.1
+   
 end
 
+function res = ipr2_nfunc()
+    e = 0.1
+    dt = e*dx*dx;
+%     rh = (un(ti+dt,xj)-un(ti,xj))/dt-((un(ti,xj+dx)-2*(un(ti,xj))+(un(ti,xj-dx)))/(dx*dx))
+    u=prev - tau*f(ti,xj)+tau*(uaprox);
+end
+
+function ipr2_form_output()
+end
+
+function ipr2_from_dxdy(T1,T2,T0,A,L )
+s=figure;
+step=0.1;
+t=0;
+h=1;
+Ti=T0*ones(L,1);
+Tk=T0*ones(L,1);
+colormap(bone);
+
+while ishandle(s)
+    Ti(1)=T1;
+    Ti(L)=T2;
+    Tk(1)=T1;
+    Tk(L)=T2;
+    for x=2:h:(L-1)
+        Tk(x)=(A*step/h^2)*(Ti(x-1)+Ti(x+1)-2*Ti(x)) + Ti(x);
+    end
+    image(Ti);
+    Ti=Tk;
+    t=t+step;
+    pause(step);
+end
+end
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
