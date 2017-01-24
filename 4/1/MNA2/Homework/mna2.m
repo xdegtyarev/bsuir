@@ -1,8 +1,8 @@
 function mna2
-%    ipr1();
-%    kr1();
-%    ipr2();
-     kr2();
+%       ipr1();
+%     ipr2();
+%       kr1();
+%       kr2();
 end
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
@@ -110,7 +110,6 @@ function res = kr1_mnkd_discr(f,x,lb,ub,n)
     end
 end
 
-
 function res = kr1_mnkd_nevfunc(A,baseFunc0,n,p,q,f,j,lb,ub)
     symF = sym(f);
     symB0 = sym(baseFunc0);
@@ -152,68 +151,88 @@ function res = kr1_galerkin_solveSystem(A,baseFunc0,n,p,q,f,lb,ub)
 end
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
-
 function kr2()
  syms x y;
  xlb = 0;
  xub = 1;
  ylb = 0;
  yub = 1;
- 
+ fx = x*x+y*y;%exp(-(y-x)^2);
+ gx = 1+x+y;%1+0.5*cos(x+y);
  n0 = 5;
  
- for k = 1:1
- n = n0*k
- U = sym('u',[1,n*n])
+ for k = n0:10
+     n = k;
+     U = sym('u',[n,n]);
 
- fx = exp(-(y-x)^2);
- gx = 1+0.5*cos(x+y);
- 
- xn = zeros(1,n);
- yn = zeros(1,n);
- sys = sym('f',[n,n]);
- dx=((xub-xlb)/n);
- dy=((yub-ylb)/n);
- u = gx-fx;
- for i = 1:n
-    xn(i) = xlb+dx*i;
-    for j = 1:n
-        yn(j) = ylb+dy*j;
-        lidx = i*n+j-n;
-        sys(i,j) = kr2_iteration(u,U(lidx),xn(i),yn(j),dx,dy);
+     xn = zeros(1,n);
+     yn = zeros(1,n);
+     sys = sym('f',[n,n]);
+     dx=((xub-xlb)/n);
+     dy=((yub-ylb)/n);
+       
+%    Need to set actual border values
+     for i = 1:n
+        sys(i,1)=U(i,1);
+        sys(i,n)=U(i,n);
+     end
+     
+     for j = 1:n
+        sys(1,j)=U(1,j);
+        sys(n,j)=U(n,j);
+     end
+    
+    
+%   Need to check for border nodes to skip calc on them
+     for i = 2:n-1
+        xn(i) = xlb+dx*i;
+        for j = 2:n-1
+            yn(j) = ylb+dy*j;
+            gnx = subs(subs(gx,x,xn(i)),y,yn(j));
+            fnx = subs(subs(fx,x,xn(i)),y,yn(j));        
+            sys(i,j) = (-fnx+gnx*(U(i+1,j)+U(i-1,j)-2*U(i,j))/(dx*dx)+(U(i,j+1)+U(i,j-1)-2*U(i,j))/(dy*dy));
+        end
+     end
+     
+    flatSys = sym('f',[1,n*n]);
+    flatU = sym('u',[1,n*n]);
+    for i = 1:n
+        for j = 1:n
+            flatIDX = i*n+j-n;
+            flatU(flatIDX) = U(i,j);        
+            flatSys(flatIDX)= sys(i,j);
+        end
+    end  
+    
+    flatSysRes = solve(flatSys,flatU);
+    
+    sysRes = zeros(n,n);
+    for i = 1:n
+        for j = 1:n
+            flatIDX = i*n+j-n;
+            idx{1} = char(flatU(flatIDX));
+            sysRes(i,j) = (flatSysRes.(idx{1}))/(n*n);
+        end
     end
- end
- 
-%  sysRes = solve(sys,U)
-%     for i = 1:(n*n)
-%         idx{1} = strcat('u', num2str(i));
-%         sysRes.(idx{1})
-%         U(i)=(sysRes.(idx{1}))
-%     end
-    mesh(xn,yn,sys);hold on
- end
+    nxn = xn(2:(n-1));
+    nyn = yn(2:(n-1));
+    nsysres = sysRes(2:(n-1),2:(n-1));
+    mesh(nxn,nyn,nsysres);hold on
+end
 end
 
 function res = kr2_test_g(x,y)
     %not yet implemented
 end
-
-function res = kr2_iteration(u,nu,xi,yj,dx,dy)
-    u = subs(u,'u',nu);
-    res = subs(subs(u,'x',xi+dx),'y',yj) + subs(subs(u,'x',xi-dx),'y',yj) + subs(subs(u,'x',xi),'y',yj+dy) + subs(subs(u,'x',xi),'y',yj-dy) - 4 * subs(subs(u,'x',xi),'y',yj);   
-end
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 function ipr1()
     syms x
-    lb = -1;
-    ub = 1;
-    e = 0.001;
-    pn = (ub-lb)/e;
-    n = 30;
-    Y = sym('y',[1,n]);
-    p=0;
-     
+    xlb = -1;
+    xub = 1; 
+    n = 10;
+    
+    p=0; 
     b = 1;
     c = 1;
     q=-1;
@@ -223,8 +242,37 @@ function ipr1()
     c = sin(degtorad(26));
     q=-(1+b*x*x)/c;   
     f=-1/c;
-    
-    ipr1_form_output(Y,n,p,q,f,lb,ub);
+
+    for n = 10:10:50
+        Y = sym('y',[1,n]);
+        xn = zeros(1,n);
+
+        sys = sym('f',[1,n]);
+        dx=((xub-xlb)/n);
+
+        sys(1)=Y(1)+1;
+        xn(1) = xlb;
+        sys(n)=Y(n);
+        xn(n) = xub;
+        
+        for i = 2:(n-1)
+            xn(i) = xlb+dx*i;
+            pxn = subs(p,'x',xn(i));
+            qxn = subs(q,'x',xn(i));
+            fxn = subs(f,'x',xn(i));
+            sys(i) = (Y(i+1)-2*Y(i)+Y(i-1))/(dx*dx) + pxn*((Y(i+1)-Y(i))/(2*dx)) - qxn*Y(i) - fxn;
+            sys(i) = sys(i);
+        end
+
+        sysRes = solve(sys,Y);
+
+        for i = 1:n
+            idx{1} = char(Y(i));
+            Y(i)=(sysRes.(idx{1}));
+        end
+
+        plot(xn,Y); hold on 
+    end
 end
 
 function res = ipr1_kfunc2(Y,k,n,xk,h,p,q,f)
@@ -245,92 +293,75 @@ function res = ipr1_kfunc2(Y,k,n,xk,h,p,q,f)
     end
 end
 
-function res = ipr1_kfunc(Y,k,n,xk,h,p,q,f)
-    Y0 = -1;
-    Yn = 0;
-    if k == 1
-        res = (Y(k+1)-2*Y(k)+Y0)/(h*h) + subs(p,'x',xk)*((Y(k+1)-Y(k))/(2*h)) - subs(q,'x',xk)*Y(k) - subs(f,'x',xk);
-    elseif k == n
-        res = (Yn-2*Y(k)+Y(k-1))/(h*h) + subs(p,'x',xk)*((Yn-Y(k))/(2*h)) - subs(q,'x',xk)*Y(k) - subs(f,'x',xk);
-    else 
-        res = (Y(k+1)-2*Y(k)+Y(k-1))/(h*h) + subs(p,'x',xk)*((Y(k+1)-Y(k))/(2*h)) - subs(q,'x',xk)*Y(k) - subs(f,'x',xk);
-    end
-end
-
-function ipr1_form_output(Y,n,p,q,f,lb,ub)
-    xk = zeros(1,n);
-    sys = sym('f',[1,n-1]);
-    h=((ub-lb)/n);
-    for k = 1:(n-1)
-        xk(k) = lb+k*h;
-        sys(k) = (ipr1_kfunc2(Y,k,n,xk(k),h,p,q,f));
-    end
-    sysRes = solve(sys,Y);
-    
-    for i = 1:(n-1)
-        idx{1} = strcat('y', num2str(i));
-        Y(i)=(sysRes.(idx{1}));
-    end
-    xk(n)=1;
-    Y(n)=0;
-    plot(xk,Y); hold on 
-end
-
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
-
 function ipr2()
     syms x
-    l = 100;
+    l = 1;
     xlb = 0;
     xub = l;
     
     syms t
-    T = 100;
+    T = 0.2;
     tlb = 0;
     tub = T;
     
-%     a =
-%     UA = 
-%     b = 
-%     UB =
-%     fx = ''
-%     kx = ''
+    n = 13;
+    U = sym('u',[n,n]);
     
-    step = 0.1
-   
-end
-
-function res = ipr2_nfunc()
-    e = 0.1
-    dt = e*dx*dx;
-%     rh = (un(ti+dt,xj)-un(ti,xj))/dt-((un(ti,xj+dx)-2*(un(ti,xj))+(un(ti,xj-dx)))/(dx*dx))
-    u=prev - tau*f(ti,xj)+tau*(uaprox);
-end
-
-function ipr2_form_output()
-end
-
-function ipr2_from_dxdy(T1,T2,T0,A,L )
-s=figure;
-step=0.1;
-t=0;
-h=1;
-Ti=T0*ones(L,1);
-Tk=T0*ones(L,1);
-colormap(bone);
-
-while ishandle(s)
-    Ti(1)=T1;
-    Ti(L)=T2;
-    Tk(1)=T1;
-    Tk(L)=T2;
-    for x=2:h:(L-1)
-        Tk(x)=(A*step/h^2)*(Ti(x-1)+Ti(x+1)-2*Ti(x)) + Ti(x);
+    xn = zeros(1,n);
+    tn = zeros(1,n);
+      
+    a = 0
+    b = 1
+    UA = 0
+    UB = 1
+    
+    fx = 3*log(x);
+    gx = (1-exp(-t))*fx;
+    kx = 1/x;
+    sys = sym('f',[n,n]);
+    dx=((xub-xlb)/n);
+    dt=((tub-tlb)/n);
+    
+    for j = 1:n
+        sys(1,j)=U(1,j)-UA;
+        sys(n,j)=U(n,j)-UB;
     end
-    image(Ti);
-    Ti=Tk;
-    t=t+step;
-    pause(step);
-end
+    
+    for i = 1:n
+        sys(i,1)=U(i,1)-a;
+        sys(i,n)=U(i,n)-b;
+    end
+    
+    for i = 2:(n-1)
+        xn(i) = xlb+dx*i;
+        for j = 2:(n-1)
+            tn(j) = tlb+dt*j;
+            sys(i,j) = ((U(i,j+1)-U(i,j))/dt) - subs(kx,'x',xn(i)) * ((U(i+1,j)-2*U(i,j)+U(i-1,j))/(dx*dx)) -subs(subs(gx,'x',xn(i)),'t',tn(j));
+        end
+    end
+    
+    flatSys = sym('f',[1,n*n]);
+    flatU = sym('u',[1,n*n]);
+    for i = 1:n
+        for j = 1:n
+            flatIDX = i*n+j-n;
+            flatU(flatIDX) = U(i,j);        
+            flatSys(flatIDX)= sys(i,j); 
+        end
+    end  
+    
+    flatSysRes = solve(flatSys,flatU);
+    
+    sysRes = zeros(n,n);
+    for i = 1:n
+        for j = 1:n
+            flatIDX = i*n+j-n;
+            idx{1} = char(flatU(flatIDX));
+            sysRes(i,j) = (flatSysRes.(idx{1}))/(n*n);
+        end
+    end
+    
+     mesh(tn,xn,sysRes);hold on
 end
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
