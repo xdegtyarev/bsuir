@@ -5,24 +5,42 @@
 //  Created by Alexander Degtyarev on 10/31/16.
 //  Copyright © 2016 Alexander Degtyarev. All rights reserved.
 //
+// gcc-6 -fopenmp -o kr1 kr1openmp.c
 
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
 #include <omp.h>
 #include <stdbool.h>
+#include <unistd.h>
 
 int main(int argc, const char * argv[]) {
     bool debug_info = argc > 1;
     const float TOP_CELL_VAL = 10.0;
     unsigned int rows = 0;
     unsigned int columns = 0;
+    char* readbuf = malloc(1024*sizeof(char));
 
     //synchronized data input
-    printf("Set row count\n");
-    scanf("%u",&rows);
-    printf("Set collumn count\n");
-    scanf("%u",&columns);
+    do{
+        printf("Set row count\n");
+        if(scanf("%4u",&rows) > 0 && rows > 0 && rows < 10000){
+            break;
+        }else{
+            fgets(readbuf,1024,stdin);
+            printf("Set val in range [1,9999]\n");
+        }
+    }while(true);
+
+    do{
+        printf("Set collumn count\n");
+        if(scanf("%4u",&columns) > 0 && columns > 0 && columns < 10000){
+            break;
+        }else{
+            fgets(readbuf,1024,stdin);
+            printf("Set val in range [1,9999]\n");
+        }
+    }while(true);
 
     //allocating resources
     float *vector = malloc (rows * sizeof(float));
@@ -33,23 +51,28 @@ int main(int argc, const char * argv[]) {
         matrix[i]=(float *) malloc(columns * sizeof(float));
     }
 
+    printf("\n -SRAND-\n");
     //parallel randomize matrix
     #pragma omp parallel shared(rows,columns,matrix,vector)
     {
         srand((unsigned int)time(NULL) ^ omp_get_thread_num());
-        #pragma omp for
-        for(int i = 0; i < rows; ++i)
-        {
-            result[i] = 0.0;
-            for (int j = 0; j < columns; ++j)
-            {
-                if(i==0){
-                    vector[j] = ((float)rand()/(float)(RAND_MAX)) * TOP_CELL_VAL;
-                }
-                matrix[i][j] = ((float)rand()/(float)(RAND_MAX)) * TOP_CELL_VAL;
-                if(debug_info) printf(" %d.%d Thread: %d:%d\n",i,j,omp_get_thread_num(), omp_get_num_threads());
-            }
+    }
+
+    printf("\n -RANDOMIZER-\n");
+    #pragma omp parallel for shared(rows,columns,matrix,vector,result)
+    for(int p_idx = 0; p_idx < rows*columns; ++p_idx)
+    {
+        int p_i = p_idx/columns;
+        int p_j = p_idx%columns;
+        if(debug_info) printf("befor pidx:i:j %d:%d:%d thread: %d:%d\n",p_idx,p_i,p_j,omp_get_thread_num(), omp_get_num_threads());
+
+        result[p_i] = 0.0;
+        if(p_i==0){
+            vector[p_j] = ((float)rand()/(float)(RAND_MAX)) * TOP_CELL_VAL;
         }
+        matrix[p_i][p_j] = ((float)rand()/(float)(RAND_MAX)) * TOP_CELL_VAL;
+
+        if(debug_info) printf("after pidx:i:j %d:%d:%d thread: %d:%d\n",p_idx,p_i,p_j,omp_get_thread_num(), omp_get_num_threads());
     }
 
     //synchronized print
@@ -89,6 +112,10 @@ int main(int argc, const char * argv[]) {
     {
         printf(" %2.1f \n",result[i]);
     }
+
+    free(vector);
+    free(result);
+    free(matrix);
 
     return 0;
 }
