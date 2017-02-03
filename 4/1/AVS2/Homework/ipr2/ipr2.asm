@@ -55,10 +55,9 @@ task0:
   mov [utss_eip],eax
   mov [utss_esp],esp
   jmp UTASK_SEG_32:0
-  pusha
-  mov        ecx,02000000h        ; delay
-  loop       $
-  popa
+
+  call delay;
+
   cmp ecx, 0x0080
   jb task0
   jmp $
@@ -70,10 +69,7 @@ task1:
     add eax, 0x00A0
     mov ebx, t1msg
     call print32
-    pusha
-    mov        ecx,02000000h        ; delay
-    loop       $
-    popa
+    call delay
     cmp eax, 0x0780
     jb task1loop
 
@@ -82,6 +78,12 @@ task1:
 
   jmp $
 
+delay:
+  pusha
+    mov        ecx,02000000h        ; delay
+    loop       $
+  popa
+ret
 ;;;;;;;;;;;;;;
 t0msg db "0", 0x0
 t1msg db "1", 0x0
