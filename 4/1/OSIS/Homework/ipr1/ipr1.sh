@@ -21,7 +21,7 @@
 #time of scenario [$[end-start]]
 
 #END
-echo "hello, it is IPR1"
+echo "hello, it is Renamer"
 start=$(date +%s)
 searchwords=${@:2} #skipping first one to search for catalog
 ldir=$1 #setting basedir
@@ -38,8 +38,7 @@ traverse () {
 			for searchword in $searchwords; do
 				if [[ $d =~ $searchword ]]; then
 					echo "Found file: '"$d"' that matched searchword '"$searchword"'"
-					cat -b "$1"/"$d"
-					echo "EOF"
+					mv "$1"/"$d" "$1"/"$(echo $d|tr A-Z a-z)";
 				fi
 			done
 		else
