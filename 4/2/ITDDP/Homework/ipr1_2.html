@@ -25,9 +25,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>ipr1_2</title>
-	<meta name="description" content="">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
+	<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
 </head>
 <body>
 	<table>
@@ -43,8 +41,8 @@
 					<p>
 						<table>
 							<tr>
-								<td><label for="name">Full name</label></td>
-								<td><input type="text" name="name"></td>
+								<td><label>Full name</label></td>
+								<td><input type="text" name="full-name"></td>
 							</tr>
 							<tr>
 								<td><label for="email">Email</label></td>
@@ -58,43 +56,42 @@
 								<td><label for="specialty">Specialty</label></td>
 								<td><input type="text" name="specialty"></td>
 							</tr>
-							<tr><td>Practice:</td></tr>
+							<tr><td>Type:</td></tr>
 							<tr>
 								<td></td>
-								<td><input type="radio" name="practice-type"><label for="name">Production</label></td>
+								<td><input type="radio" name="practice-type"><label>Production</label></td>
 							</tr>
 							<tr>
 								<td></td>
-								<td><input type="radio" name="practice-type"><label for="name">Pre-diploma</label></td>
+								<td><input type="radio" name="practice-type"><label>Pre-diploma</label></td>
 							</tr>
-							<tr><td>Internship dates:</td></tr>
+							<tr><td>Dates:</td></tr>
 							<tr>
-								<td align="right"><label for="name">Start</label></td>
-								<td><input type="date" name="name"></td>
+								<td align="right"><label>Start</label></td>
+								<td><input type="date" name="start-date"></td>
 							</tr>
 
 							<tr>
-								<td align="right"><label for="name">End</label></td>
-								<td><input type="date" name="name"></td>
+								<td align="right"><label>End</label></td>
+								<td><input type="date" name="end-date"></td>
 							</tr>
 
-							<tr><td>Work hours:</td></tr>
+							<tr><td>Working hours:</td></tr>
 							<tr>
-								<td align="right"><label for="name">Start</label></td>
-								<td><input type="time" name="name"></td>
+								<td align="right"><label>Start</label></td>
+								<td><input type="time" name="start-time"></td>
 							</tr>
 
 							<tr>
-								<td align="right"><label for="name">End</label></td>
-								<td><input type="time" name="name"></td>
+								<td align="right"><label>End</label></td>
+								<td><input type="time" name="end-time"></td>
 							</tr>
 
-							<tr><td><label for="name">Skills:</label></td></tr>
+							<tr><td><label>Skills:</label></td></tr>
 							<tr>
 								<td>
-									<select>
+									<select name="skill1set">
 										<option>JavaScript</option>
-										<option>ActionScript</option>
 										<option>HAXE</option>
 										<option>CoffeeScript</option>
 										<option>Dart</option>
@@ -102,17 +99,17 @@
 								</td>
 
 								<td>
-									<label for="name">1</label><input type="radio" name="skill1">
-									<label for="name">2</label><input type="radio" name="skill1">
-									<label for="name">3</label><input type="radio" name="skill1">
-									<label for="name">4</label><input type="radio" name="skill1">
-									<label for="name">5</label><input type="radio" name="skill1">
+									<label>1</label><input type="radio" name="skill1rate">
+									<label>2</label><input type="radio" name="skill1rate">
+									<label>3</label><input type="radio" name="skill1rate">
+									<label>4</label><input type="radio" name="skill1rate">
+									<label>5</label><input type="radio" name="skill1rate">
 								</td>
 							</tr>
 
 							<tr>
 								<td>
-									<select>
+									<select name="skill2set">
 										<option>React</option>
 										<option>Angular</option>
 										<option>Polymer</option>
@@ -120,29 +117,29 @@
 								</td>
 
 								<td>
-									<label for="name">1</label><input type="radio" name="skill1">
-									<label for="name">2</label><input type="radio" name="skill1">
-									<label for="name">3</label><input type="radio" name="skill1">
-									<label for="name">4</label><input type="radio" name="skill1">
-									<label for="name">5</label><input type="radio" name="skill1">
+									<label>1</label><input type="radio" name="skill2rate">
+									<label>2</label><input type="radio" name="skill2rate">
+									<label>3</label><input type="radio" name="skill2rate">
+									<label>4</label><input type="radio" name="skill2rate">
+									<label>5</label><input type="radio" name="skill2rate">
 								</td>
 
 							</tr>
 
 							<tr>
 								<td>
-									<select>
+									<select name="skill3set">
 										<option>D3</option>
 										<option>Three.js</option>
 										<option>Babylon</option>
 									</select>
 								</td>
 								<td>
-									<label for="name">1</label><input type="radio" name="skill1">
-									<label for="name">2</label><input type="radio" name="skill1">
-									<label for="name">3</label><input type="radio" name="skill1">
-									<label for="name">4</label><input type="radio" name="skill1">
-									<label for="name">5</label><input type="radio" name="skill1">
+									<label>1</label><input type="radio" name="skill3rate">
+									<label>2</label><input type="radio" name="skill3rate">
+									<label>3</label><input type="radio" name="skill3rate">
+									<label>4</label><input type="radio" name="skill3rate">
+									<label>5</label><input type="radio" name="skill3rate">
 								</td>
 							</tr>
 
@@ -151,7 +148,7 @@
 									Photo
 								</td>
 								<td>
-									<input type="file" name="image" accept=".jpg">
+									<input type="file" name="id-image" accept=".jpg">
 								</td>
 							</tr>
 							<tr>
@@ -172,6 +169,7 @@
 </body>
 <footer>
 	<p align="center">
+		<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"/></a><br>
 		Licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International</a> license.
 	</p>
 </footer>
