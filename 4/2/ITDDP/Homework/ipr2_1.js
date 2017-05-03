@@ -1,3 +1,4 @@
+//ipr2_1
 //number comparsion
 function ipr2_1_1(){
 	while(true){
