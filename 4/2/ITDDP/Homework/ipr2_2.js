@@ -1,5 +1,7 @@
 //ipr2_2
 
+//2.2.1
+
 function ipr2_2_1(){
 	var rect = new Array(4);
 	for (var i = 0; i < rect.length; i++) {
@@ -78,6 +80,60 @@ function ipr2_2_1_IsInBounds(point, rect){
 }
 
 
+//2.2.2
 
-function ipr2_2_2(){
+//2.2.2.1
+function ipr2_2_2_1_numcheck_args(f){
+	return function(){
+		for (var i = arguments.length - 1; i >= 0; i--) {
+			if(typeof arguments[i] != 'number'){
+				alert("Not a Number!");
+				return;
+			}
+		}
+		return f.apply(this, arguments);
+	}
+}
+
+function ipr2_2_2_1_func(param){
+	return param*param;
+}
+
+function ipr2_2_2_1(){
+	//decorating
+	ipr2_2_2_1_func = ipr2_2_2_1_numcheck_args(ipr2_2_2_1_func);
+
+	n = window.prompt("Input number to test");
+	if(n){
+		alert(ipr2_2_2_1_func(Number.parseFloat(n)));
+	}
+}
+
+//2.2.2.2
+function ipr2_2_2_2_numcheck_args(f){
+	return function(){
+		console.log("decorator:" + arguments.length);
+		for (var i = arguments.length - 1; i >= 0; i--) {
+			if(typeof arguments[i] != 'number'){
+				alert("Not a Number!");
+				return;
+			}
+		}
+		return f.apply(this, arguments);
+	}
+}
+
+function ipr2_2_2_2_sum(){
+	console.log(arguments.length);
+	var sum = 0;
+	for (var i = arguments.length - 1; i >= 0; i--) {
+		sum = sum + arguments[i];
+	}
+	return sum;
+}
+
+function ipr2_2_2_2(){
+	ipr2_2_2_2_sum = ipr2_2_2_2_numcheck_args(ipr2_2_2_2_sum);
+	alert("1,3,12,125,1,5,1 will work: " + ipr2_2_2_2_sum(1,3,12,125,1,5,1));
+	alert("a,3,c,125,1,5,1 will fail: " + ipr2_2_2_2_sum('a',3,'c',125,1,5,1));
 }
