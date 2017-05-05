@@ -34,7 +34,7 @@ ActiveTask.prototype.toString = function(){
 function ipr2_4_2(){
 	var t1 = new Task("t1");
 	var at1 = new ActiveTask("at1");
-	console.log("t1:" + t1 + "is Task:" + (t1 instanceof Task) + "is ActiveTask:" + (t1 instanceof ActiveTask));
-	console.log("at1:" + at1 + "is Task:" + (at1 instanceof Task) + "is ActiveTask:" + (t1 instanceof ActiveTask));
+	alert("t1:" + t1 + "is Task:" + (t1 instanceof Task) + "is ActiveTask:" + (t1 instanceof ActiveTask));
+	alert("at1:" + at1 + "is Task:" + (at1 instanceof Task) + "is ActiveTask:" + (t1 instanceof ActiveTask));
 }
 
