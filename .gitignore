@@ -9,3 +9,5 @@
 *.m~
 4/2/Economics2/СМпИМ Экономика
 4/2/TVIMS/ЭУМКД
+cmake-build-debug
+.idea
