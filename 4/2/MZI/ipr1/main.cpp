@@ -24,10 +24,24 @@ void help(){
 }
 
 void test(){
-    uint64_t initKey = 1383827165325090801;
-    print_bits(initKey);
-    set_bit(&initKey,0,0,35);
-    print_bits(initKey);
+    uint64_t c2_32 = 4294967296;
+    uint32_t data = 0xFFFFFFFF;
+    uint32_t keysG[8] = {0x33206D54,0x326C6568,0x20657369,0x626E7373,0x79676120,0x74746769,0x65686573,0x733D2C20};
+    printf("\ndata\n");
+    print_bits(data);
+    uint64_t data64 = data;
+    printf("\ndata64 %llx\n",data64);
+    print_bits(data64);
+    data64 += keysG[0];
+    printf("\nadded data64 %llx\n",data64);
+    print_bits(data64);
+    data64 %=c2_32;
+    printf("\nmodulo data64 %llx\n",data64);
+    print_bits(data64);
+    uint32_t tempBlock = (uint32_t) data64;
+    printf("\ndata32 %x\n",tempBlock);
+    print_bits(tempBlock);
+
 }
 
 
@@ -81,10 +95,9 @@ IPRConfig parseArgs(char* args[], int argc){
 }
 
 int main(int argc, char* argv[]) {
+
     auto config = parseArgs(argv,argc);
     if(config.isValid){
-        printf("\nMZI part1\n");
-
         FILE *inputFile = fopen(config.inputFilePath, "rb");
         if(!inputFile) {
             printf("\ninputFile opening failed: %s\n",config.inputFilePath);
@@ -97,33 +110,32 @@ int main(int argc, char* argv[]) {
             return EXIT_FAILURE;
         }
 
-        printf("\nGen keys\n");
+        printf("Gen keys\n");
+        //gostKeys;
+
+      uint32_t keysG[8] = {0x33206D54,0x326C6568,0x20657369,0x626E7373,0x79676120,0x74746769,0x65686573,0x733D2C20};
+//        uint32_t keysG[8] = {0,0,0,0,0,0,0,0};
+        //desKeys;
         uint64_t* keys = new uint64_t[16];
         uint64_t initKey = 1383827165325090801;
         des_generate_keys(keys,initKey);
-        printf("\nKeys done\n");
+        printf("Keys done\n");
+
+
+        printf("%s %s\n",config.type==0?"des":"gost28147",config.encrypt?"encrypt":"decrypt");
         uint64_t buf = 0;
         while(fread(&buf,sizeof(buf),1,inputFile) == 1){
             switch(config.type){
                 case 0:
-                    if(config.encrypt){
-                        des_encrypt_block(&buf,keys);
-                    }else{
-                        des_decrypt_block(&buf,keys);
-                    }
-                break;
+                    des_process_block(&buf,keys,config.encrypt);
+                    break;
                 case 1:
-                    if(config.encrypt){
-                        gost_encrypt_block(&buf,keys);
-                    }else{
-                        gost_decrypt_block(&buf,keys);
-                    }
+                    gost28147_process_block(&buf,keysG,config.encrypt);
                 break;
                 default:break;
             }
             fwrite(&buf, sizeof(buf),1,outputFile);
         }
-        printf("\nComplete!\n");
         fclose(inputFile);
         fclose(outputFile);
     }

@@ -2,10 +2,9 @@
 // Created by Alexander Degtyarev on 5/17/17.
 //
 #include <cstdint>
-#include "des_consts.h"
 #include "des.h"
 
-void des_encrypt_block(uint64_t* block, uint64_t* keys) {
+void des_process_block(uint64_t* block, uint64_t* keys,bool encrypt) {
     uint64_t temp_block = 0;
     //initial permutation
     permutation(&temp_block,*block,des_ip,64);
@@ -18,7 +17,11 @@ void des_encrypt_block(uint64_t* block, uint64_t* keys) {
         set_bit(&block_l, temp_block, i, i);
         set_bit(&block_r, temp_block, 32+i, i);
     }
-    encrypt_feistel(&block_l,&block_r,16,keys);
+    if(encrypt) {
+        des_encrypt_feistel(&block_l, &block_r, 16, keys);
+    }else{
+        des_decrypt_feistel(&block_l, &block_r, 16, keys);
+    }
     //join
     for(int i = 0; i < 32; i++)
     {
@@ -52,7 +55,7 @@ void des_expand(uint64_t *target,const uint32_t src){
 
 
 
-void encrypt_feistel(uint32_t * left, uint32_t * right, int rounds, uint64_t * key){
+void des_encrypt_feistel(uint32_t * left, uint32_t * right, int rounds, uint64_t * key){
     uint32_t temp = 0;
     for(int i = 0; i<rounds; i++){
         temp = *right ^ des_f_round(*left,key[i+1]);
@@ -61,7 +64,7 @@ void encrypt_feistel(uint32_t * left, uint32_t * right, int rounds, uint64_t * k
     }
 }
 
-void decrypt_feistel(uint32_t * left, uint32_t * right, int rounds, uint64_t * key){
+void des_decrypt_feistel(uint32_t * left, uint32_t * right, int rounds, uint64_t * key){
     uint32_t temp = 0;
     for(int i = rounds; i>0; i--){
         temp = *left ^ des_f_round(*right,key[i]);
@@ -128,28 +131,4 @@ void des_generate_keys(uint64_t* keys,const uint64_t startKey) {
 //      printf("\n48K%d\n",round);
 //      print_bits(keys[round],48);
     }
-}
-
-void des_decrypt_block(uint64_t *block, uint64_t *keys) {
-    uint64_t temp_block = 0;
-    //initial permutation
-    permutation(&temp_block,*block,des_ip,64);
-
-    //split
-    uint32_t block_l = 0;
-    uint32_t block_r = 0;
-    for(int i = 0; i < 32; i++)
-    {
-        set_bit(&block_l, temp_block, i, i);
-        set_bit(&block_r, temp_block, 32+i, i);
-    }
-    decrypt_feistel(&block_l,&block_r,16,keys);
-    //join
-    for(int i = 0; i < 32; i++)
-    {
-        set_bit(&temp_block, block_l, i, i);
-        set_bit(&temp_block, block_r, i, 32+i);
-    }
-    //final permutation
-    permutation(block,temp_block,des_fp,64);
 }
