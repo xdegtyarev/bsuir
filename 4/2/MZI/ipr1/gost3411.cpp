@@ -26,10 +26,10 @@ uint32_t c4[8] = {0,0,0,0,0,0,0,0};
 //    a(x) = x1 ^ x2 | x4 | x3 | x2
 //}
 
-//uint32_t* gost3411_gen_keys(uint32_t* h,uint32_t* block){
-//
-//}
-//
+uint32_t* gost3411_gen_keys(uint32_t* h,uint32_t* block){
+
+}
+
 //uint32_t* gost3411(uint32_t* prev_hash,uint32_t* block){
 //    block is 256 bit size/
     //gen key
