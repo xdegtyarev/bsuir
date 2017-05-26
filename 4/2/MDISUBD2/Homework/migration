@@ -1,0 +1,103 @@
+CREATE TABLE aircompany (
+	aircompanyId NUMBER(38),
+	name CLOB,
+	city CLOB,
+	PRIMARY KEY (aircompanyId)
+);
+CREATE TABLE airplane (
+	airplaneId NUMBER(38),
+	aircompany NUMBER(38),
+	airplaneCode CLOB,
+	expDate NUMBER(38),
+	maxSpeed NUMBER(38),
+	maxPassengers NUMBER(38),
+	height NUMBER(38),
+	model CLOB,
+	PRIMARY KEY (airplaneId)
+);
+CREATE TABLE airport (
+	airportId NUMBER(38),
+	city CLOB,
+	country CLOB,
+	name CLOB,
+	pr NUMBER(38),
+	PRIMARY KEY (airportId)
+);
+CREATE TABLE chief (
+	airport NUMBER(38),
+	name CLOB,
+	experience NUMBER(38),
+	age NUMBER(38),
+	ssn NUMBER(38),
+	PRIMARY KEY (airport)
+);
+CREATE TABLE employee (
+	employeeId NUMBER(38),
+	name CLOB,
+	age NUMBER(38),
+	sex CLOB,
+	pr NUMBER(38),
+	hireDate CLOB,
+	job CLOB,
+	salary NUMBER(38),
+	phone NUMBER(38),
+	ssn NUMBER(38),
+	address CLOB
+);
+CREATE TABLE flight (
+	flightId NUMBER(38),
+	origin NUMBER(38),
+	destination NUMBER(38),
+	time NUMBER(38),
+	airplane NUMBER(38),
+	PRIMARY KEY (flightId)
+);
+CREATE TABLE new_chief (
+	airportId NUMBER(38),
+	name CLOB,
+	experience NUMBER(38),
+	age NUMBER(38),
+	ssn NUMBER(38)
+);
+CREATE TABLE new_employee (
+	ssn NUMBER(38),
+	id NUMBER(38),
+	name CLOB NOT NULL,
+	age NUMBER(38),
+	sex CLOB NOT NULL,
+	pr NUMBER(38),
+	PRIMARY KEY (id)
+);
+CREATE TABLE pr (
+	airport NUMBER(38),
+	aircompany NUMBER(38),
+	name CLOB,
+	prId NUMBER(38),
+	city CLOB,
+	PRIMARY KEY (prId)
+);
+INSERT INTO aircompany(aircompanyId, name, city) VALUES (1, 'belavia', 'minsk');
+INSERT INTO aircompany(aircompanyId, name, city) VALUES (2, 'lufthansa', 'frankfurt');
+INSERT INTO aircompany(aircompanyId, name, city) VALUES (3, 'ukravia', 'kiev');
+INSERT INTO aircompany(aircompanyId, name, city) VALUES (4, 'pobeda', 'moscow');
+INSERT INTO aircompany(aircompanyId, name, city) VALUES (5, 'delta', 'new york');
+INSERT INTO aircompany(aircompanyId, name, city) VALUES (6, 'spirit', 'new york');
+INSERT INTO aircompany(aircompanyId, name, city) VALUES (7, 'next', 'kiev');
+INSERT INTO airport(airportId, city, country, name, pr) VALUES (1, 'minsk', 'belarus', 'minsk1', 1);
+INSERT INTO airport(airportId, city, country, name, pr) VALUES (2, 'kiev', 'ukraine', 'borispol', 2);
+INSERT INTO airport(airportId, city, country, name, pr) VALUES (3, 'frankfurt', 'germany', 'frk', 1);
+INSERT INTO airport(airportId, city, country, name, pr) VALUES (4, 'berlin', 'germany', 'brl', 2);
+INSERT INTO employee(employeeId, name, age, sex, pr, hireDate, job, salary, phone, ssn, address) VALUES ('1', 'Ivanov', '22', 'm', '', '01.07', 'mechanic', '3000', '6363442', '93901882', 'Umanskaya');
+INSERT INTO employee(employeeId, name, age, sex, pr, hireDate, job, salary, phone, ssn, address) VALUES ('2', 'Petrov', '45', 'm', '', '02.12', 'pilot', '5000', '3712665', '93901882', 'Sadovaya');
+INSERT INTO employee(employeeId, name, age, sex, pr, hireDate, job, salary, phone, ssn, address) VALUES ('3', 'Ivanov', '50', 'm', '', '04.05', 'engineer', '3000', '3538891', '16381299', 'Golubeva');
+INSERT INTO employee(employeeId, name, age, sex, pr, hireDate, job, salary, phone, ssn, address) VALUES ('5', 'Marina', '20', 'f', '2', '02.12', 'engineer', '1000', null, '120', 'Gikalo');
+INSERT INTO employee(employeeId, name, age, sex, pr, hireDate, job, salary, phone, ssn, address) VALUES ('6', 'Alex', '43', 'm', '1', '', 'mechanic', '2500', null, '13', 'Brovki');
+INSERT INTO employee(employeeId, name, age, sex, pr, hireDate, job, salary, phone, ssn, address) VALUES ('7', 'Evgen', '22', 'm', '1', null, 'pilot', '5000', null, '1', 'Gikalo');
+INSERT INTO employee(employeeId, name, age, sex, pr, hireDate, job, salary, phone, ssn, address) VALUES ('7', 'Evgen', '45', 'm', '3', null, 'support', '1000', null, null, 'Gikalo');
+INSERT INTO employee(employeeId, name, age, sex, pr, hireDate, job, salary, phone, ssn, address) VALUES ('2', 'Petrov', '45', 'm', '', '02.12', 'manager', '1000', '3712665', '93901882', 'Sadovaya');
+INSERT INTO employee(employeeId, name, age, sex, pr, hireDate, job, salary, phone, ssn, address) VALUES ('9', 'Marks', '24', 'm', '', '05.13', 'ideologist', '1000', '', '93901823', 'Lenina');
+INSERT INTO flight(flightId, origin, destination, time, airplane) VALUES (1, 2, 1, 12:30, null);
+INSERT INTO pr(airport, aircompany, name, prId, city) VALUES (1, 1, 'belavia', 1, 'minsk');
+INSERT INTO pr(airport, aircompany, name, prId, city) VALUES (2, 2, 'okko', 2, 'wilmington');
+INSERT INTO pr(airport, aircompany, name, prId, city) VALUES (3, 3, 'oxis', 3, 'kiev');
+INSERT INTO pr(airport, aircompany, name, prId, city) VALUES (4, 4, 'superFlights', 4, 'brest');
