@@ -1,0 +1,11 @@
+{
+	"name": "mt",
+	"authors": [
+		"Alexander Degtyarev"
+	],
+	"homepage": "http://xdegtyarev.com",
+	"description": "mt homework",
+	"copyright": "Copyright © 2017, Alexander Degtyarev",
+	"license": "MIT",
+	"targetType": "executable"
+}
