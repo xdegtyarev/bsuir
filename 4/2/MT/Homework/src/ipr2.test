@@ -1,0 +1,7 @@
+int m,f:=100;
+begin
+for j:=2 to 9 do
+	begin
+		m:= 7 ;
+		f :=f +1 ;
+end
