@@ -5,6 +5,7 @@ import std.traits;
 string inputFilePath = "test.c";
 string outputFilePath = "out";
 bool transliterate = false;
+bool codegen = false;
 bool verbose = false;
 bool lex = false;
 
@@ -18,7 +19,8 @@ void main(string[] args)
 			"file|f","File to be compiled, test.c is checked by default",&inputFilePath,
 			"verbose|v","This will print logs during execution",&verbose,
 			"transliterate|t","This will read file and transliterate", &transliterate,
-			"lexer|l","This will read file and make lexical analysis", &lex);
+			"lexer|l","This will read file and make lexical analysis", &lex,
+			"codegen|c","This will launch codegen demo and write bytecode to output file", &codegen);
 
 	}catch(GetOptException exc){
 		writeln(exc.msg);
@@ -33,6 +35,8 @@ void main(string[] args)
 			Transliterator();
 		}else if(lex){
 			LexicalAnalysis();
+		}else if(codegen){
+			IntermediateCodeGen();
 		}
 	}
 }
@@ -148,23 +152,119 @@ public Token[] LexicalAnalysis(){
 }
 
 public void SyntaxAnalyzer(){
- //syntax tree
-
+ 	//syntax tree
 }
 
 public void SemanticAnalyzer(){
-//data compatability
-//annotated syntax tree
-
+	//data compatability
+	//annotated syntax tree
 }
 
+//ipr1 TODO:
+//int float struct
+//type id;
+//type id = literal;
+//lop = rop
+//+ - / * == != < >
+
+//AST-TREE has such order [OP|OPERAND1|OPERAND2|RES]
 ////COMPILER BACK-END
+public void IntermediateCodeGen(){
 
-public void CodeGen(){
-//generarte intermediate lang
+	auto outputFile = File(outputFilePath,"w");
+	ActivationNode[] codeDAG;
+	//generarte intermediate lang
+	auto testnode = new ActivationNode(new ActivationNode("op","-"),new ActivationNode("id","x","int"),new ActivationNode("literal","12"));
+	codeDAG ~= testnode;
+	auto memOffset = 0;
+	//DAG
+	foreach(node;codeDAG){
+		writeln(node.toByteCode(false));
+		//outputFile.write(node.toByteCode(false));
+	}
 }
 
-//codeopt
 
+
+public class ActivationNode{
+	public string type;
+	public string content;
+	public string argument;
+	public ActivationNode op;
+	public ActivationNode loperand;
+	public ActivationNode roperand;
+	this(ActivationNode op, ActivationNode lop, ActivationNode rop){
+		this.op = op;
+		loperand = lop;
+		roperand = rop;
+	}
+
+	this(string t, string cont, string arg = ""){
+		type = t;
+		content = cont;
+		argument = arg;
+	}
+	//hosts in AST MANNER TREE INSIDE
+	//MNEMONICS MODE
+	string toByteCode(bool lop){
+		//end node
+		if(!op && !loperand && !roperand){
+			switch(type){
+				case "op":
+					return getOpCode(content);
+				case "id":
+					if(lop){
+						//get address to move
+						return "store_0" ~ " " ~ content;
+					}else{
+						//TODO: we need to fetch runtime table to get proper reg
+						return "load_1" ~ " " ~ content;
+					}
+				case "literal":
+					if(lop){
+						//no assignment to const
+						return "ERROR!";
+					}else{
+						return "const_2" ~ " " ~ content;
+					}
+				default:
+					assert(0);
+			}
+		}else{
+			//traverse tree
+			auto typecode = loperand.argument=="int"?"i_":"f_";
+			return roperand.toByteCode(false) ~ "\n" ~
+			((op.type == "assign") ?
+			(typecode ~ op.toByteCode(false) ~ "\n" ~ loperand.toByteCode(true)) :
+			(loperand.toByteCode(false) ~ "\n" ~ typecode ~ op.toByteCode(false)));
+		}
+
+		//here we can make some code opts but we need runtime data
+	}
+
+	static string getOpCode(string cont){
+		switch(cont){
+			case "+":
+			return "add";
+			case "-":
+			return "neg \n add";
+			case "*":
+			return "mul";
+			case "/":
+			return "div";
+			case "==":
+			return "cmp";
+			case "!=":
+			return "cmp";
+			case "<":
+			return "cmp";
+			case ">":
+			return "cmp";
+			default:
+				assert(0);
+		}
+	}
+}
+//codeopt
 //final codegen
 
