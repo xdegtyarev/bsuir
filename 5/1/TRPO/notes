@@ -27,8 +27,24 @@
 проектирование IDEF
 	ALLFusion Process Modeler
 	IDEF0 - functional modelling
+		структура и функции системы, а также потоки информации и мат объектов, связ эти функции
+		фунцкия - блок (прямоугольник)
+		интерфейсы взаимодействия - стрелки
+		ICOM (Left Top Right Bottom) => Input Control Output Call Mechanism
+
 	IDEF1 - information modelling
+		структура и содержание инфопотоков
+
+	IDEF2 - dynamic model
+		построение динамической модели
+
 	IDEF1X - information models and db design
+		project init
+		entity def
+		relationships
+		key def
+		attribute def
+
 	IDEF3 - process description
 	IDEF4 - object-oriented design
 	DFD - data-flow diagram
@@ -42,11 +58,30 @@
 	ERwin Data Modeler
 
 UML
+	usecase
+		user's interaction with the system
+	sequence
+		how objects operate with one another and in which order
+		message-sequence chart
+			solid - sync
+			open - async
+			dash - reply
+	activity
+		rounded rectangles represent actions;
+		diamonds represent decisions;
+		bars represent the start (split) or end (join) of concurrent activities;
+		a black circle represents the start (initial node) of the workflow;
+		an encircled black circle represents the end (final node).
+	statechart
+		states - graph();
+
 
 Графические языки описания бизнес процессов
  BPEL/BPMN
 
 
+
+========
 
 ИПР № 1 Моделирование технологических процессов работы предприятия (отдела предприятия)
 Определение ролей, процессов выполняемых на предприятии, моделирование их на графических языках проектирования: IDEF0, IDEF3, DFD. Моделирование выполняемых функций, процессов и потоков данных.
@@ -62,3 +97,5 @@ UML
 Контрольная работа № 2
 Проектирование и разработка ПО на языке UML
 Разработка ПО взаимодействующего с проектированной БД в п.1
+
+========
