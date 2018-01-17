@@ -159,18 +159,6 @@ static void gf2field_inv(gf2elem_t z, const gf2elem_t x)
     }
 }
 
-/*************************************************************************************************/
-/*
-   The following code takes care of Galois-Field arithmetic.
-   Elliptic curve points are represented  by pairs (x,y) of bitvec_t.
-   It is assumed that curve coefficient 'a' is {0,1}
-   This is the case for all NIST binary curves.
-   Coefficient 'b' is given in 'coeff_b'.
-   '(base_x, base_y)' is a point that generates a large prime order group.
-*/
-/*************************************************************************************************/
-
-
 static void gf2point_copy(gf2elem_t x1, gf2elem_t y1, const gf2elem_t x2, const gf2elem_t y2)
 {
     bitvec_copy(x1, x2);
