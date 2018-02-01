@@ -1,0 +1,58 @@
+﻿<%@ Master Language="C#" Inherits="IPR.BankMaster" %>
+<!DOCTYPE html>
+<html>
+<head runat="server">
+	<title>TOFIBank</title>
+    <asp:ContentPlaceHolder id="headPlaceholder" runat="server"/>
+    <link rel="Stylesheet" href="~/Resources/DefaultStyle.css?v=1" type="text/css"/>
+</head>
+<body>
+<div id="container">
+<form runat="server">
+    <div id="MasterTopNavigationBar">
+        <asp:ImageButton id="Logo" ImageUrl="/Resources/Logo.png" runat="server" ImageAlign="Left" Width="100px" PostBackUrl="Default.aspx"/>
+        <div id="MasterAccountInfoTopBar">
+<!--            <asp:Label id="ExchangeRates" runat="server">Exchange Rates:</asp:Label>-->
+            <asp:Button id="ContactButton" runat="server" Text="Contact" PostBackUrl="tel: +375336363442"/>                    
+            <asp:Button id="CurrentUserButton" runat="server" Text="AccountInfo"/>                    
+            <asp:Button id="LogOutButton" runat="server" Text="Log Out"/>
+        </div>
+
+        <div>
+        <asp:Label id="BankLabel" runat="server" Style="font-size: 20px;">TOFIBank</asp:Label>
+        </div>
+
+         <div id="NavigationPannel">
+            <asp:MultiView ID="NavigationBarView" runat="server" ActiveViewIndex="0">
+                <asp:View ID="AnonView" runat="server">
+                    <asp:TextBox id="MainSearchbox" runat="server"/>
+                    <asp:Button ID="SearchButton" runat="server" Text="Search" CssClass="NavigationButtons"/>
+                    <asp:Button ID="ThemeToggle" runat="server" Text="ThemeToggle" CssClass="NavigationButtons"/>
+                </asp:View>
+                        
+                <asp:View ID="AdminView" runat="server">
+                    <asp:Button ID="Accounts" runat="server" Text="Accounts" CssClass="NavigationButtons"/>
+                </asp:View>
+            </asp:MultiView>
+        </div>
+    </div>
+
+    <asp:Panel ID="MasterContent" runat="server" ScrollBars="Auto" Height="100%" Width="90%" CssClass="MasterContent">
+        <asp:ContentPlaceHolder id="bodyPlaceholder" runat="server"/>
+    </asp:Panel>
+    <div id="MasterFooter">
+            <p>
+                <asp:LinkButton ID="AboutButton" runat="server" >About</asp:LinkButton>
+                <asp:LinkButton ID="ContactUsButton" runat="server" >Contact</asp:LinkButton>
+                <asp:LinkButton ID="FollowUsButton" runat="server" >Follow</asp:LinkButton>
+
+            </p>
+            <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+                        <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"/>
+            </a></p>
+            <p>Licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Atribution 4.0 International</a> license.</p>
+    </div>
+</form>
+</div>
+</body>
+</html>
