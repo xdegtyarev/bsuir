@@ -1,0 +1,74 @@
+﻿<%@ Master Language="C#" Inherits="pr1.MusicdropMaster" %>
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+	<title>MusicdropMaster</title>
+    <asp:ContentPlaceHolder id="headPlaceholder" runat="server"/>
+    <link rel="Stylesheet" href="Content/Default.css?v=8" type="text/css" />
+</head>
+
+<body>
+    <form runat="server">
+        <div id="MasterTopNavigationBar">
+            <asp:ImageButton id="Logo" ImageUrl="/Content/Logo.png" OnClick="Logo_Clicked" runat="server" ImageAlign="Left" Width="100px"/>
+            <div id="MasterAccountInfoTopBar">
+                <asp:MultiView ID="TopBarMultiView" runat="server">
+                    <asp:View id="MasterUnloggedView" runat="server">
+                        <asp:TextBox id="MasterLoginEmail" ValidationGroup="MasterLogin"  placeholder="Enter email" runat="server"/>
+                        <asp:TextBox id="MasterLoginPassword" ValidationGroup="MasterLogin"  placeholder="Password" runat="server"/>
+                        <asp:Button id="MasterLoginButton" ValidationGroup="MasterLogin" runat="server" Text="Login" OnClick="LoginButton_Click"/>
+                    </asp:View>
+
+                    <asp:View id="MasterLoggedView" runat="server">
+                        <asp:Button id="MasterLoggedViewCurrentUser" CausesValidation="false" runat="server" Text="AccountInfo"/>
+                        <asp:Button id="MasterLoggedViewLogOutButton" CausesValidation="false" runat="server" Text="Log Out" OnClick="MasterLoggedViewLogOutButton_Click"/>
+                    </asp:View>
+                </asp:MultiView>
+            </div>
+
+            <div>
+                <asp:Label id="MusicdropLabel" runat="server" Style="font-size: 20px;">Musicdrop</asp:Label>
+            </div>
+
+            <div id="NavigationPannel">
+                <asp:TextBox id="MainSearchbox" runat="server"/>
+                <asp:Button id="MasterSearchButton" runat="server" CausesValidation="false" Text="Search" SkinID="NavigationButtons" OnClick="Search_Clicked"/>
+                <asp:DropDownList id="MasterSearchDropdown" runat="server"/>
+                <asp:Button id="ThemeToggle" runat="server" CausesValidation="false" Text="Theme" SkinID="NavigationButtons" OnClick="ThemeToggle_Click"/>
+                <span>&nbsp&nbsp&nbsp</span>
+                <asp:Button id="MainButon" runat="server" CausesValidation="false" Text="Main" href="/Default.aspx" SkinID="NavigationButtons" OnClick="Main_Clicked"/>
+
+                <asp:MultiView id="NavigationBarView" runat="server" ActiveViewIndex="0">
+                    <asp:View ID="AnonView" runat="server">
+                    </asp:View>
+
+                    <asp:View ID="MemeberView" runat="server">
+                        <asp:Button ID="Dashboard" runat="server" CausesValidation="false" Text="Dashboard" SkinID="NavigationButtons" OnClick="Dashboard_Clicked"/>
+                        <asp:Button ID="AddRecord" runat="server" CausesValidation="false" Text="AddRecord" SkinID="NavigationButtons" OnClick="AddRecord_Clicked"/>
+                    </asp:View>
+
+                </asp:MultiView>
+            </div>
+        </div>
+
+        <asp:Panel ID="MasterContent" runat="server" ScrollBars="Auto" Height="100%" Width="90%" CssClass="MasterContent">
+            <asp:ContentPlaceHolder id="ContentPlaceHolder" runat="server"/>
+        </asp:Panel>
+
+        <div id="MasterFooter">
+            <p>
+                <asp:LinkButton ID="AboutButton" runat="server" >About</asp:LinkButton>
+                <asp:LinkButton ID="API" runat="server" >API</asp:LinkButton>
+                <asp:LinkButton ID="BlogButton" runat="server" >Blog</asp:LinkButton>
+                <asp:LinkButton ID="ContactUsButton" runat="server" >Contact Us</asp:LinkButton>
+                <asp:LinkButton ID="FollowUsButton" runat="server" >Follow Us</asp:LinkButton>
+            </p>
+            <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+                <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"/>
+            </a></p>
+            <p>Licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Atribution 4.0 International</a> license.</p>
+        </div>
+    </form>
+</body>
+</html>

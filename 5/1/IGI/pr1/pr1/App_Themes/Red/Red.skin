@@ -1,0 +1,2 @@
+﻿<asp:button SkinID="NavigationButtons" runat="server" BackColor="#864279" ForeColor="black" / >
+<asp:TextBox SkinID="RegisterTextBox" runat="server"  Height="30" Width="200"/>
