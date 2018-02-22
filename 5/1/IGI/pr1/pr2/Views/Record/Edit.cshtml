@@ -8,8 +8,10 @@
     <div class="form-horizontal">
         <h4>Record: @Model.id</h4>
         <hr/>
+        <table>
+            <tr>
+            <td>
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <img src="@Model.coverURL"/>
         <input type="hidden" asp-for="id" />
         <div class="form-group">
             <label asp-for="title" class="col-md-2 control-label"></label>
@@ -72,6 +74,14 @@
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
+
+
+        </td>
+         <td class="d-flex align-items-start">
+            <img src="/images/@Model.coverURL" width="150px" height="150px" />
+        </td>
+        </tr>
+        </table>
     </div>
 </form>
 

@@ -27,15 +27,12 @@ namespace pr2.Controllers
         public IActionResult Edit(string id)
         {
             Record record = (id == null ? Program.recordRepository.Create() : Program.recordRepository.Read(id)) ?? Program.recordRepository.Create();
-            record.coverURL = string.IsNullOrEmpty(record.coverURL) ? "~/images/default_release.png" : record.coverURL;
+            record.coverURL = string.IsNullOrEmpty(record.coverURL) ? "images/default_release.png" : record.coverURL;
             return View(record);
         }
 
         [HttpPost]
         public IActionResult Edit(string id,[Bind("title,artist,label,releaseDate,genre,style,format,country")] Record record){
-            if(id!=record.id){
-                return NotFound();
-            }
             if(record.IsValid()){
                 if(Program.recordRepository.Update(id,record)){
                     ViewData["Status"] = "Success updating redirecting";
@@ -44,8 +41,8 @@ namespace pr2.Controllers
                     ViewData["Status"] = "Failed updating redirecting";
                     return View(record);
                 }
-
             }else{
+                ViewData["Status"] = "Record is not valid";
                 return View(record);
             }
         }
