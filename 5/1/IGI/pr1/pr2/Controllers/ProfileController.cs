@@ -66,30 +66,45 @@ namespace pr2.Controllers
         {
             User user = null;
             if(string.IsNullOrEmpty(id)){
-                //create new
+                user = Program.userRepository.Create();
             }else{
                 user = Program.userRepository.Read(id);
                 if(user==null){
-                    //create new
+                    return NotFound();
                 }
             }
-
             return View(user);
         }
 
         [HttpPost]
-        public IActionResult Edit(string id, [Bind("id,name,email,password")] User user, string create)
+        public IActionResult Edit([Bind("id,name,email,password")] User user)
         {
-            if(id!=user.id){
-                return NotFound();
-            }
             if(user.IsValid()){
-                if(Program.userRepository.Update(id,user)){
-                    return Redirect("Index");
+                if (Program.userRepository.FindUserByMail(user.email) != null)
+                {
+                    if (Program.userRepository.Update(user.id, user))
+                    {
+                        ViewData["Status"] = "Success updating redirecting";
+                        loggedId = user.id;
+                        return Redirect("/Profile/Index/" + user.id);
+                    }
+                    else
+                    {
+                        ViewData["Status"] = "Failed updating redirecting";
+                        return View(user);
+                    }
                 }else{
-                    return View(user);
+                    if(Program.userRepository.Create(user)!=null){
+                        ViewData["Status"] = "Success creating redirecting";
+                        loggedId = user.id;
+                        return Redirect("/Profile/Index/" + user.id);
+                    }else{
+                        ViewData["Status"] = "Failed creating redirecting";
+                        return View(user);
+                    }
                 }
             }else{
+                ViewData["Status"] = "Success updating redirecting";
                 return View(user);
             }
         }

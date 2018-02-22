@@ -1,9 +1,9 @@
 ﻿@model pr2.Models.User
 @{
-    ViewData["Title"] = "Moditying user";
+    ViewData["Title"] = "Modifying user";
 }
 <h2>Create</h2>
-
+<h2>@ViewData["Status"]</h2>
 <form asp-action="Edit">
     <div class="form-horizontal">
         <h4>User: @Model.id</h4>
@@ -11,7 +11,7 @@
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <input type="hidden" asp-for="id" />
         <div class="form-group">
-            <label asp-for="title" class="col-md-2 control-label"></label>
+            <label asp-for="name" class="col-md-2 control-label"></label>
             <div class="col-md-10">
                 <input asp-for="name" class="form-control" />
                 <span asp-validation-for="name" class="text-danger"></span>
@@ -39,6 +39,11 @@
    </div>
 </form>
 
+
 <div>
     <a href="/Record/Index/@Model.id/">Back</a>
 </div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

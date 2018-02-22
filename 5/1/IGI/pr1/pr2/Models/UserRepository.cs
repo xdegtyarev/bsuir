@@ -34,9 +34,21 @@ namespace pr2.Models
             return result.ToList();
         }
 
+
+        public User Create()
+        {
+            User item = new User();
+            item.id = ObjectId.GenerateNewId().ToString();
+            item.modification = DateTime.UtcNow;
+            return item;
+        }
+
+
         public User Create(User item)
         {
-            item.id = ObjectId.GenerateNewId().ToString();
+            if(String.IsNullOrEmpty(item.id)){
+                item.id = ObjectId.GenerateNewId().ToString();
+            }
             item.modification = DateTime.UtcNow;
             users.InsertOne(item);
             return item;

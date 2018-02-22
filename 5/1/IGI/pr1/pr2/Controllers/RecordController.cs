@@ -32,14 +32,16 @@ namespace pr2.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(string id,[Bind("Title,Artist,Label")] Record record){
+        public IActionResult Edit(string id,[Bind("title,artist,label,releaseDate,genre,style,format,country")] Record record){
             if(id!=record.id){
                 return NotFound();
             }
             if(record.IsValid()){
                 if(Program.recordRepository.Update(id,record)){
-                    return Redirect("Index");
+                    ViewData["Status"] = "Success updating redirecting";
+                    return Redirect("/Record/Index/"+record.id);
                 }else{
+                    ViewData["Status"] = "Failed updating redirecting";
                     return View(record);
                 }
 
