@@ -1,11 +1,52 @@
-﻿@{
+﻿@model pr2.Models.User
+@{
     ViewData["Title"] = "Showing Profile";
 }
 
-<h2>Profile</h2>
-<ul>
-    <li>ID: @ViewData["UserId"]</li>
-    <li>Name: @ViewData["UserName"]</li>
-    <li>Email: @ViewData["UserEmail"]</li>
-</ul>
-<p>Editing props</p>
+@if(Model!=null){
+    <h2>Profile</h2>
+    <ul>
+        <li>ID: @Model.id</li>
+        <li>Name: @Model.name</li>
+        <li>Email: @Model.email</li>
+    </ul>
+
+    <form asp-action="Logout">
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Logout" class="btn btn-danger" />
+            </div>
+        </div>
+    </form>
+}else{
+    <form asp-action="Index">
+        <div class="form-horizontal">
+            <h4>Login</h4>
+            <hr/>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="email" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="email" class="form-control" />
+                    <span asp-validation-for="email" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="password" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="password" type="password" class="form-control" />
+                    <span asp-validation-for="password" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Login" class="btn btn-default" />
+                </div>
+            </div>
+       </div>
+    </form>
+
+    <div>
+        <a href="/Profile">Back</a>
+    </div>
+}

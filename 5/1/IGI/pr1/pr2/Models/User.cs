@@ -37,7 +37,11 @@ namespace pr2.Models
 
         public User()
         {
-            
+
+        }
+
+        public bool IsValid(){
+            return true;
         }
     }
 }
