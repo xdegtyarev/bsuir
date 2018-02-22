@@ -120,7 +120,7 @@ namespace pr1
         }
 
         public string GetCoverArt(object url){
-            return string.IsNullOrEmpty(url as string) ? "/Content/default-release.png" : (string)url ;
+            return "/Content/" + (string.IsNullOrEmpty(url as string) ? "default-release.png" : (string)url);
         }
     }
 }

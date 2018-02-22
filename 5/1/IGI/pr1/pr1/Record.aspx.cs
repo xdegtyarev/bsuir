@@ -61,7 +61,7 @@ namespace pr1 {
             ViewRecordFormat.Text = record.format;
             ViewRecordGenre.Text = record.genre;
             ViewRecordStyle.Text = record.style;
-            ViewRecordCover.ImageUrl = string.IsNullOrEmpty(record.coverURL) ? "/Content/default-release.png" : record.coverURL;
+            ViewRecordCover.ImageUrl = "/Content/" + (string.IsNullOrEmpty(record.coverURL) ? "default-release.png" : record.coverURL);
             ViewRecordRating.Text = record.ratings.ToString();
         }
 
@@ -88,7 +88,7 @@ namespace pr1 {
             EditRecordGenre.SelectedIndex = string.IsNullOrEmpty(record.genre) ? 0 : genres.IndexOf(record.genre);
             EditRecordCountry.SelectedIndex = string.IsNullOrEmpty(record.country) ? 0 : countries.IndexOf(record.country);
 
-            EditRecordCover.ImageUrl = string.IsNullOrEmpty(record.coverURL) ? "/Content/default-release.png" : record.coverURL;
+            EditRecordCover.ImageUrl = "/Content/" + (string.IsNullOrEmpty(record.coverURL) ? "default-release.png" : record.coverURL);
 
             EditRecordId.Text = "Editing record: " + record.id;
             EditRecordTitle.Text = record.title;
@@ -209,8 +209,8 @@ namespace pr1 {
             Console.WriteLine("[Record]Upload button clicked");
             if (EditRecordFileUpload.HasFile) {
                 try {
-                    var filename = ObjectId.GenerateNewId();
-                    var finalUrl = "/Content/" + filename;
+                    var filename = ObjectId.GenerateNewId() + Path.GetExtension(EditRecordFileUpload.PostedFile.FileName);
+                    var finalUrl = filename;
                     EditRecordFileUpload.SaveAs(Server.MapPath("~/Content/") + filename);
                     EditRecordFileUploadStatus.Text = "Upload status: File uploaded!";
                     record.coverURL = finalUrl;
