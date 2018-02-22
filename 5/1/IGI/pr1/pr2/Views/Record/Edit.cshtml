@@ -1,0 +1,84 @@
+﻿@model pr2.Models.Record
+@{
+    ViewData["Title"] = "Editing Record";
+}
+<h2>Edit</h2>
+
+<form asp-action="Edit">
+    <div class="form-horizontal">
+        <h4>Record: @Model.id</h4>
+        <hr/>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <img src="@Model.coverURL"/>
+        <input type="hidden" asp-for="id" />
+        <div class="form-group">
+            <label asp-for="title" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="title" class="form-control" />
+                <span asp-validation-for="title" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="artist" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="artist" class="form-control" />
+                <span asp-validation-for="artist" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="label" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="label" class="form-control" />
+                <span asp-validation-for="label" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="releaseDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="releaseDate" class="form-control" />
+                <span asp-validation-for="releaseDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="genre" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="genre" class="form-control" />
+                <span asp-validation-for="genre" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="style" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="style" class="form-control" />
+                <span asp-validation-for="style" class="text-danger"></span>
+            </div>
+        </div>
+         <div class="form-group">
+            <label asp-for="format" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="format" class="form-control" />
+                <span asp-validation-for="format" class="text-danger"></span>
+            </div>
+        </div>
+         <div class="form-group">
+            <label asp-for="country" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="country" class="form-control" />
+                <span asp-validation-for="country" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a href="/Record/Index/@Model.id/">Back</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,33 @@
+﻿@model pr2.Models.Record
+@{
+    ViewData["Title"] = "Viewing Record";
+}
+
+<h2>Viewing record: @Model.id</h2>
+<table>
+	<tr>
+		<td>
+			<img src="/images/default-release.png" height="200px" width="200px" />
+		</td>
+		<td>
+		<ul>
+			<li><b>Title: @Model.title</b></li>
+			<li>Artist: @Model.artist</li>
+			<li>Label: @Model.label</li>
+			<li>Released: @Model.releaseDate</li>
+			<li>Genre: @Model.genre</li>
+			<li>Style: @Model.style</li>
+			<li>Format: @Model.format</li>
+			<li>Country: @Model.country</li>
+			<li>Rating: @Model.ratings</li>
+		</ul>
+		</td>
+		<td>
+			<ul>
+			<li><a href="/Record/Edit/@Model.id/"><button type="button" class="btn btn-primary">Edit</button></a></li>
+			<br/>
+			<li><button type="button" class="btn btn-danger">Delete</button></li>
+			</ul>
+		</td>
+	</tr>
+</table>

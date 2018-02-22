@@ -1,0 +1,66 @@
+﻿body {
+    margin: 0;
+    font-family: system, -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+li {
+    list-style: none;
+}
+
+#MasterTopNavigationBar {
+    background-color: #eeeeee;
+    height: 100px;
+    width: 90%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+#MasterAccountInfoTopBar {
+    text-align: right;
+    float: none;
+    margin-bottom: 10px;
+}
+
+#MasterFooter {
+    background-color: #eeeeee;
+    font-size: 10px;
+    text-align: center; 
+    border-style: solid none none none; 
+    border-width: thin; 
+    border-color: #333333; 
+    width: 90%; 
+    height: 100px;
+    padding-left: 5%; 
+    padding-right: 5%; 
+    padding-bottom: 1px; 
+    bottom: 0px; 
+    position: absolute;
+}
+
+.MasterContent {
+    margin: auto;
+    overflow:scroll;
+    border-width: thin;
+    border-style: solid;
+    border-color: #333333
+}
+
+#RegisterFormDescription {
+    float: left;
+    width: 100%;
+    height: 200px;
+    margin-right: -502px;
+    background-image: url("http://s.discogs.com/images/get_started/album-covers.jpg");
+    background-blend-mode: screen;
+    background-color: #0fefff;
+    text-align: left;
+    padding-left: 100px;
+}
+
+#RegisterForm {
+    text-align: center;
+    border: thin solid #ffffff;
+    float: left;
+    width: 400px;
+    background-color: #eeeeee
+}
