@@ -7,19 +7,29 @@
 <table>
 	<tr>
 		<td>
-			<img src="/images/default-release.png" height="200px" width="200px" />
+			<img src="/images/@Model.coverURL" height="200px" width="200px" />
 		</td>
 		<td>
 		<ul>
-			<li><b>Title: @Model.title</b></li>
-			<li>Artist: @Model.artist</li>
-			<li>Label: @Model.label</li>
-			<li>Released: @Model.releaseDate</li>
-			<li>Genre: @Model.genre</li>
-			<li>Style: @Model.style</li>
-			<li>Format: @Model.format</li>
-			<li>Country: @Model.country</li>
-			<li>Rating: @Model.ratings</li>
+			<li><b>Title:</b> @Model.title</li>
+			<li><b>Artist:</b> @Model.artist</li>
+			<li><b>Label:</b> @Model.label</li>
+			<li><b>Released:</b> @Model.releaseDate</li>
+			<li><b>Genre:</b> @Model.genre</li>
+			<li><b>Style:</b> @Model.style</li>
+			<li><b>Format:</b> @Model.format</li>
+			<li><b>Country:</b> @Model.country</li>
+			<li><b>Rating:</b> @Model.ratings</li>
+			<li><b>TrackList:</b>
+				<br/>
+				<ul>
+            @foreach (var item in Model.tracklist)
+            {
+            	<li>@item</li>
+            }
+		        </ul>
+		    </li>
+
 		</ul>
 		</td>
 		<td>
