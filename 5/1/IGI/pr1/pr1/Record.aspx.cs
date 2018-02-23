@@ -214,7 +214,7 @@ namespace pr1 {
                     EditRecordFileUpload.SaveAs(Server.MapPath("~/Content/") + filename);
                     EditRecordFileUploadStatus.Text = "Upload status: File uploaded!";
                     record.coverURL = finalUrl;
-                    EditRecordCover.ImageUrl = record.coverURL;
+                    EditRecordCover.ImageUrl = "/Content/" + (string.IsNullOrEmpty(record.coverURL) ? "default-release.png" : record.coverURL);
                 } catch (Exception ex) {
                     EditRecordFileUploadStatus.Text = "Upload filed: The file could not be uploaded. The following error occured: " + ex.Message;
                 }
