@@ -1,0 +1,8 @@
+Testing web applications with Selenium Webdriver.
+Requirements:
+- Use any site or web app you want
+- At least 5 test cases with min 3-4 steps
+- Test HTML forms (for example, login form)
+- Work with different types of selectors
+- Test AJAX calls or file upload
+- Report generation (for example, with http://extentreports.relevantcodes.com/)

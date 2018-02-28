@@ -1,0 +1,5 @@
+Realize test cases from lab 3 with automated testing solutions (for example, TestComplete). 
+- You can create tests manually or with record feature.
+- At least 10 test cases required.
+- At least 5 test cases should have more than 3-4 steps.
+- You can use any desktop app you want to create tests.
