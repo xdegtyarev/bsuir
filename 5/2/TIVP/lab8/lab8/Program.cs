@@ -94,7 +94,7 @@ namespace lab8
                 if (iframeElement.Displayed)
                 {
                     Thread.Sleep(10000);
-                    Console.WriteLine("found iframe:" + iframeElement.Enabled);
+                    Console.WriteLine("found iframe:" + iframeElement.FindElements(By.ClassName("gameViewRoot")).Count);
                     bool allImagesLoaded = false;
                     foreach (var imageElement in ffdriver.FindElements(By.TagName("img")))
                     {
@@ -156,9 +156,12 @@ namespace lab8
             try
             {
                 ffdriver.Navigate().GoToUrl("https://imgur.com/upload");
-                ffdriver.FindElement(By.Id("global-files-button"));
-
-
+                var fileInput = ffdriver.FindElement(By.Id("global-files-button"));
+                fileInput.SendKeys("/Users/xdegtyarev/Dropbox/Pictures/avatar.png");
+                Console.WriteLine("Uploading");
+                Thread.Sleep(200000);
+                Thread.Sleep(200000);
+                Console.WriteLine("Waited");
                 status = "pass";
                 return true;
             }
@@ -209,6 +212,7 @@ namespace lab8
             
             IWebDriver ffdriver = new FirefoxDriver();
             try{
+                ffdriver.Navigate().GoToUrl("https://www.w3schools.com/js/tryit.asp?filename=tryjs_ajax_first");
                 status = "pass";
                 return true;
             }
