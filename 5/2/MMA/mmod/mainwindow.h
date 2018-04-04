@@ -16,6 +16,8 @@
 #include "limits.h"
 #include <cmath>
 #include <float.h>
+#include <smo.h>
+#include <smonode.h>
 
 QT_CHARTS_USE_NAMESPACE
 
@@ -41,15 +43,32 @@ private slots:
 
     void on_CRVGenerateButton_clicked();
 
+    void on_ModelLaunchButton_clicked();
+
 private:
     void BRVFrequencyTest(uint barCount, uint64_t max, QVector<uint64_t>* set, QVector<float>* frequencyChartData,float* MSum, float* DSum);
     Ui::MainWindow *ui;
     QChart* BRVMSChart;
     QChart* BRVMCGChart;
-    QChart* CRVChart;
-
+    QChart* CRVChartPDF;
+    QChart* CRVChartCDF;
+    QChart* ModelChart;
+    QChart* ModelChartTime;
+    QLineSeries* ModelQ1rej;
+    QLineSeries* ModelQ1midTime;
+    QLineSeries* ModelQ2rej;
+    QLineSeries* ModelQ2midTime;
+    QLineSeries* ModelQ3rej;
+    QLineSeries* ModelQ3midTime;
+    QLineSeries* Modelrej;
+    QLineSeries* ModelmidTime;
+    int modelRun = 0;
+    double maxTime = 0.0;
     QChartView* BRVMSChartView;
     QChartView* BRVMCGChartView;
-    QChartView* CRVChartView;
+    QChartView* CRVChartPDFView;
+    QChartView* CRVChartCDFView;
+    QChartView* ModelChartView;
+    QChartView* ModelChartTimeView;
 };
 #endif // MAINWINDOW_H

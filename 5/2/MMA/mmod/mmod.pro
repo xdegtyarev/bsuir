@@ -28,13 +28,17 @@ SOURCES += \
         mainwindow.cpp \
     middlesquarerng.cpp \
     linearcongruentialrng.cpp \
-    paretodistribution.cpp
+    paretodistribution.cpp \
+    smo.cpp \
+    smonode.cpp
 
 HEADERS += \
         mainwindow.h \
     middlesquarerng.h \
     linearcongruentialrng.h \
-    paretodistribution.h
+    paretodistribution.h \
+    smo.h \
+    smonode.h
 
 FORMS += \
         mainwindow.ui

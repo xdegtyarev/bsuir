@@ -5,15 +5,15 @@
 class ParetoDistribution
 {
 public:
-    ParetoDistribution(float _a, float _b);
+    ParetoDistribution(double _a, double _b);
     ~ParetoDistribution();
-    float ProbabilityDensity(float x);
-    float Distribution(float x);
-    float InverseParetoDistribution(float y);
+    double ProbabilityDensity(double x);
+    double Distribution(double x);
+    double InverseParetoDistribution(double y);
 
 private:
-    float a;
-    float b;
+    double a;
+    double b;
 };
 
 #endif // PARETODISTRIBUTION_H
