@@ -6,15 +6,24 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1024</width>
+    <height>768</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="contextMenuPolicy">
    <enum>Qt::NoContextMenu</enum>
   </property>
   <property name="windowTitle">
    <string>MMOD Degtyarev</string>
+  </property>
+  <property name="unifiedTitleAndToolBarOnMac">
+   <bool>false</bool>
   </property>
   <widget class="QWidget" name="centralWidget">
    <property name="contextMenuPolicy">
@@ -25,15 +34,21 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>800</width>
-      <height>600</height>
+      <width>1024</width>
+      <height>768</height>
      </rect>
     </property>
     <property name="sizePolicy">
-     <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
       <horstretch>0</horstretch>
       <verstretch>0</verstretch>
      </sizepolicy>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>1024</width>
+      <height>768</height>
+     </size>
     </property>
     <property name="tabPosition">
      <enum>QTabWidget::North</enum>
@@ -49,352 +64,452 @@
     </property>
     <widget class="QWidget" name="brvTab">
      <attribute name="title">
-      <string>BRV</string>
-     </attribute>
-     <widget class="Line" name="BRVLine">
-      <property name="geometry">
-       <rect>
-        <x>396</x>
-        <y>0</y>
-        <width>8</width>
-        <height>572</height>
-       </rect>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-     </widget>
-     <widget class="QWidget" name="layoutWidget">
-      <property name="geometry">
-       <rect>
-        <x>410</x>
-        <y>0</y>
-        <width>371</width>
-        <height>600</height>
-       </rect>
-      </property>
-      <layout class="QVBoxLayout" name="BRVMCGVBox">
-       <item>
-        <layout class="QHBoxLayout" name="BRVMCGSeedHBox">
-         <item>
-          <widget class="QLabel" name="BRVMCGSeedLabel">
-           <property name="text">
-            <string>Seed</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="BRVMCGSeedEdit">
-           <property name="inputMethodHints">
-            <set>Qt::ImhDigitsOnly|Qt::ImhFormattedNumbersOnly|Qt::ImhPreferNumbers</set>
-           </property>
-           <property name="text">
-            <string>1</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="BRVMCGMultiplierHBox">
-         <item>
-          <widget class="QLabel" name="BRVMCGMultiplierLabel">
-           <property name="text">
-            <string>Multiplier</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="BRVMCGMultiplierEdit">
-           <property name="inputMethodHints">
-            <set>Qt::ImhDigitsOnly|Qt::ImhFormattedNumbersOnly|Qt::ImhPreferNumbers</set>
-           </property>
-           <property name="text">
-            <string>1664525</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="BRVMCGModulusHBox">
-         <item>
-          <widget class="QLabel" name="BRVMCGModulusLabel">
-           <property name="text">
-            <string>Modulus</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="BRVMCGModulusEdit">
-           <property name="inputMethodHints">
-            <set>Qt::ImhDigitsOnly|Qt::ImhFormattedNumbersOnly|Qt::ImhPreferNumbers</set>
-           </property>
-           <property name="text">
-            <string>4294967296</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="BRVMCGIncrementHBox">
-         <item>
-          <widget class="QLabel" name="BRVMCGIncrementLabel">
-           <property name="text">
-            <string>Increment</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="BRVMCGIncrementEdit">
-           <property name="inputMethodHints">
-            <set>Qt::ImhDigitsOnly|Qt::ImhFormattedNumbersOnly|Qt::ImhPreferNumbers</set>
-           </property>
-           <property name="text">
-            <string>1013904223</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="BRVMCGCountHBox">
-         <item>
-          <widget class="QLabel" name="BRVMCGCountLabel">
-           <property name="text">
-            <string>Count</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="BRVMCGCountEdit">
-           <property name="inputMethodHints">
-            <set>Qt::ImhDigitsOnly|Qt::ImhFormattedNumbersOnly|Qt::ImhPreferNumbers</set>
-           </property>
-           <property name="text">
-            <string>100</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="BRVMCGBarsHBox">
-         <item>
-          <widget class="QLabel" name="BRVMCGBarsLabel">
-           <property name="text">
-            <string>Bars</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="BRVMCGBarsEdit">
-           <property name="inputMethodHints">
-            <set>Qt::ImhDigitsOnly|Qt::ImhFormattedNumbersOnly|Qt::ImhPreferNumbers</set>
-           </property>
-           <property name="text">
-            <string>10</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <widget class="QLabel" name="BRVMCGStatusLabel">
-         <property name="text">
-          <string>Status</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="BRVMCGActionHBox">
-         <item>
-          <widget class="QPushButton" name="BRVMCGClearButton">
-           <property name="text">
-            <string>Clear</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="BRVMCGGenerateButton">
-           <property name="text">
-            <string>Generate</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="BRVMCGGroupBox">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>350</height>
-          </size>
-         </property>
-         <property name="title">
-          <string>Congruential Generator</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-         <property name="flat">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="layoutWidget">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>0</y>
-        <width>381</width>
-        <height>571</height>
-       </rect>
-      </property>
-      <layout class="QVBoxLayout" name="BRVMSVBox">
-       <item>
-        <layout class="QHBoxLayout" name="BRVMSSeedHBox">
-         <item>
-          <widget class="QLabel" name="BRVMSSeedLabel">
-           <property name="text">
-            <string>Seed number</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="BRVMSSeedEdit">
-           <property name="inputMethodHints">
-            <set>Qt::ImhDigitsOnly|Qt::ImhFormattedNumbersOnly|Qt::ImhPreferNumbers</set>
-           </property>
-           <property name="text">
-            <string>1</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="BRVMSCountHBox">
-         <item>
-          <widget class="QLabel" name="BRVMSCountLabel">
-           <property name="text">
-            <string>Count</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="BRVMSCountEdit">
-           <property name="inputMethodHints">
-            <set>Qt::ImhDigitsOnly|Qt::ImhFormattedNumbersOnly|Qt::ImhPreferNumbers</set>
-           </property>
-           <property name="text">
-            <string>100</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="BRVMSBarsHBox">
-         <item>
-          <widget class="QLabel" name="BRVMSBarsLabel">
-           <property name="text">
-            <string>Bars</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="BRVMSBarsEdit">
-           <property name="inputMethodHints">
-            <set>Qt::ImhDigitsOnly|Qt::ImhFormattedNumbersOnly|Qt::ImhPreferNumbers</set>
-           </property>
-           <property name="text">
-            <string>10</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <widget class="QLabel" name="BRVMSStatus">
-         <property name="text">
-          <string>Status</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="BRVMSActionHBox">
-         <item>
-          <widget class="QPushButton" name="BRVMSClearButton">
-           <property name="text">
-            <string>Clear</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="BRVMSGenerateButton">
-           <property name="text">
-            <string>Generate</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="BRVMSGroupBox">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>350</height>
-          </size>
-         </property>
-         <property name="title">
-          <string>Middle-Square</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-         <property name="flat">
-          <bool>true</bool>
-         </property>
-         <property name="checkable">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <zorder>layoutWidget</zorder>
-     <zorder>layoutWidget</zorder>
-     <zorder>BRVLine</zorder>
-    </widget>
-    <widget class="QWidget" name="crvTab">
-     <attribute name="title">
-      <string>CRV</string>
+      <string>Датчик БСВ</string>
      </attribute>
      <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>402</width>
-        <height>593</height>
+        <width>1011</width>
+        <height>754</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="BRVHBox">
+       <item>
+        <layout class="QVBoxLayout" name="BRVMSVBox">
+         <item>
+          <layout class="QHBoxLayout" name="BRVMSSeedHBox">
+           <item>
+            <widget class="QLabel" name="BRVMSSeedLabel">
+             <property name="text">
+              <string>Стартовое значение, z0</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="BRVMSSeedEdit">
+             <property name="inputMethodHints">
+              <set>Qt::ImhDigitsOnly|Qt::ImhFormattedNumbersOnly|Qt::ImhPreferNumbers</set>
+             </property>
+             <property name="text">
+              <string>1</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="BRVMSCountHBox">
+           <item>
+            <widget class="QLabel" name="BRVMSCountLabel">
+             <property name="text">
+              <string>Количество случайных чисел, N</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="BRVMSCountEdit">
+             <property name="inputMethodHints">
+              <set>Qt::ImhDigitsOnly|Qt::ImhFormattedNumbersOnly|Qt::ImhPreferNumbers</set>
+             </property>
+             <property name="text">
+              <string>100</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="BRVMSBarsHBox">
+           <item>
+            <widget class="QLabel" name="BRVMSBarsLabel">
+             <property name="text">
+              <string>Количество отрезков гистограммы</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="BRVMSBarsEdit">
+             <property name="inputMethodHints">
+              <set>Qt::ImhDigitsOnly|Qt::ImhFormattedNumbersOnly|Qt::ImhPreferNumbers</set>
+             </property>
+             <property name="text">
+              <string>10</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="BRVMSCountHBox_2">
+           <item>
+            <widget class="QLabel" name="BRVMSCountLabel_2">
+             <property name="text">
+              <string>Смещение для вычисления корреляции</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="BRVMSCorrShift">
+             <property name="inputMethodHints">
+              <set>Qt::ImhDigitsOnly|Qt::ImhFormattedNumbersOnly|Qt::ImhPreferNumbers</set>
+             </property>
+             <property name="text">
+              <string>1</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="BRVMSStats">
+           <item>
+            <widget class="QLabel" name="BRVMSDXLabel">
+             <property name="text">
+              <string>D[X]</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="BRVMSDXValue">
+             <property name="text">
+              <string>0</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="BRVMSMXLabel">
+             <property name="text">
+              <string>M[X]</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="BRVMSMXValue">
+             <property name="text">
+              <string>0</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="BRVMSRXLabel">
+             <property name="text">
+              <string>Коэффициент корреляции </string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="BRVMSRXValue">
+             <property name="text">
+              <string>0</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="BRVMSActionHBox">
+           <item>
+            <widget class="QPushButton" name="BRVMSClearButton">
+             <property name="text">
+              <string>Очистить</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="BRVMSGenerateButton">
+             <property name="text">
+              <string>Запустить генератор</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="BRVMSGroupBox">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>450</width>
+             <height>450</height>
+            </size>
+           </property>
+           <property name="title">
+            <string/>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <property name="flat">
+            <bool>true</bool>
+           </property>
+           <property name="checkable">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="BRVMCGVBox">
+         <item>
+          <layout class="QHBoxLayout" name="BRVMCGSeedHBox">
+           <item>
+            <widget class="QLabel" name="BRVMCGSeedLabel">
+             <property name="text">
+              <string>Стартовое значение, z0</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="BRVMCGSeedEdit">
+             <property name="inputMethodHints">
+              <set>Qt::ImhDigitsOnly|Qt::ImhFormattedNumbersOnly|Qt::ImhPreferNumbers</set>
+             </property>
+             <property name="text">
+              <string>1</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="BRVMCGMultiplierHBox">
+           <item>
+            <widget class="QLabel" name="BRVMCGMultiplierLabel">
+             <property name="text">
+              <string>Множитель, k</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="BRVMCGMultiplierEdit">
+             <property name="inputMethodHints">
+              <set>Qt::ImhDigitsOnly|Qt::ImhFormattedNumbersOnly|Qt::ImhPreferNumbers</set>
+             </property>
+             <property name="text">
+              <string>1664525</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="BRVMCGModulusHBox">
+           <item>
+            <widget class="QLabel" name="BRVMCGModulusLabel">
+             <property name="text">
+              <string>Модуль, M</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="BRVMCGModulusEdit">
+             <property name="inputMethodHints">
+              <set>Qt::ImhDigitsOnly|Qt::ImhFormattedNumbersOnly|Qt::ImhPreferNumbers</set>
+             </property>
+             <property name="text">
+              <string>4294967296</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="BRVMCGIncrementHBox">
+           <item>
+            <widget class="QLabel" name="BRVMCGIncrementLabel">
+             <property name="text">
+              <string>Инкремент, I</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="BRVMCGIncrementEdit">
+             <property name="inputMethodHints">
+              <set>Qt::ImhDigitsOnly|Qt::ImhFormattedNumbersOnly|Qt::ImhPreferNumbers</set>
+             </property>
+             <property name="text">
+              <string>1013904223</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="BRVMCGCountHBox">
+           <item>
+            <widget class="QLabel" name="BRVMCGCountLabel">
+             <property name="text">
+              <string>Количество случайных чисел, N</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="BRVMCGCountEdit">
+             <property name="inputMethodHints">
+              <set>Qt::ImhDigitsOnly|Qt::ImhFormattedNumbersOnly|Qt::ImhPreferNumbers</set>
+             </property>
+             <property name="text">
+              <string>100</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="BRVMCGBarsHBox">
+           <item>
+            <widget class="QLabel" name="BRVMCGBarsLabel">
+             <property name="text">
+              <string>Количество отрезков гистограммы</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="BRVMCGBarsEdit">
+             <property name="inputMethodHints">
+              <set>Qt::ImhDigitsOnly|Qt::ImhFormattedNumbersOnly|Qt::ImhPreferNumbers</set>
+             </property>
+             <property name="text">
+              <string>10</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="BRVMSCountHBox_3">
+           <item>
+            <widget class="QLabel" name="BRVMSCountLabel_3">
+             <property name="text">
+              <string>Смещение для вычисления корреляции</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="BRVMCGCorrShift">
+             <property name="inputMethodHints">
+              <set>Qt::ImhDigitsOnly|Qt::ImhFormattedNumbersOnly|Qt::ImhPreferNumbers</set>
+             </property>
+             <property name="text">
+              <string>1</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="BRVMCGStats">
+           <item>
+            <widget class="QLabel" name="BRVMCGDXLabel">
+             <property name="text">
+              <string>D[X]</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="BRVMCGDXValue">
+             <property name="text">
+              <string>0</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="BRVMCGMXLabel">
+             <property name="text">
+              <string>M[X]</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="BRVMCGMXValue">
+             <property name="text">
+              <string>0</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="BRVMCGRXLabel">
+             <property name="text">
+              <string>Коэффициент корреляции</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="BRVMCGRXValue">
+             <property name="text">
+              <string>0</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="BRVMCGActionHBox">
+           <item>
+            <widget class="QPushButton" name="BRVMCGClearButton">
+             <property name="text">
+              <string>Очистить</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="BRVMCGGenerateButton">
+             <property name="text">
+              <string>Запустить генератор</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="BRVMCGGroupBox">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>450</width>
+             <height>450</height>
+            </size>
+           </property>
+           <property name="title">
+            <string/>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <property name="flat">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="crvTab">
+     <attribute name="title">
+      <string>Непрерывная СВ</string>
+     </attribute>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>344</width>
+        <height>281</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="CRVVBox">
@@ -403,7 +518,7 @@
          <item>
           <widget class="QLabel" name="CRVBoundsLabel">
            <property name="text">
-            <string>Bounds</string>
+            <string>Пределы</string>
            </property>
           </widget>
          </item>
@@ -428,7 +543,7 @@
          <item>
           <widget class="QLabel" name="CRVALabel">
            <property name="text">
-            <string>Param (a)</string>
+            <string>Параметр (a)(k) [масштаб]</string>
            </property>
           </widget>
          </item>
@@ -439,14 +554,10 @@
            </property>
           </widget>
          </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="CRVBHBox">
          <item>
           <widget class="QLabel" name="CRVBLabel">
            <property name="text">
-            <string>Param (b)</string>
+            <string>Параметр (b)(xm)</string>
            </property>
           </widget>
          </item>
@@ -464,7 +575,7 @@
          <item>
           <widget class="QLabel" name="CRVCountLabel">
            <property name="text">
-            <string>Count</string>
+            <string>Количество случайных величин</string>
            </property>
           </widget>
          </item>
@@ -482,7 +593,7 @@
          <item>
           <widget class="QLabel" name="CRVBarsLabel">
            <property name="text">
-            <string>Bars</string>
+            <string>Количество отрезков гистограммы</string>
            </property>
           </widget>
          </item>
@@ -496,90 +607,21 @@
         </layout>
        </item>
        <item>
-        <layout class="QHBoxLayout" name="CRVActionHBox">
-         <item>
-          <widget class="QPushButton" name="CRVClearButton">
-           <property name="text">
-            <string>Clear</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="CRVGenerateButton">
-           <property name="text">
-            <string>Generate</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="CRVGroupPDF">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>400</width>
-           <height>400</height>
-          </size>
-         </property>
-         <property name="title">
-          <string>PDF</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="layoutWidget">
-      <property name="geometry">
-       <rect>
-        <x>401</x>
-        <y>0</y>
-        <width>461</width>
-        <height>571</height>
-       </rect>
-      </property>
-      <layout class="QVBoxLayout" name="CRVStatusVBox">
-       <item>
-        <widget class="QLabel" name="CRVStatusLabel">
-         <property name="text">
-          <string>Status</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="CRVStatusText">
-         <property name="text">
-          <string>StatusText</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="CRVMXHBox">
-         <item>
-          <widget class="QLabel" name="CRVMXLabel">
-           <property name="text">
-            <string>M[X]</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="CRVMXText">
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout">
+        <layout class="QHBoxLayout" name="CRVStatusHBox">
          <item>
           <widget class="QLabel" name="CRVDXLabel">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>36</height>
+            </size>
+           </property>
            <property name="text">
             <string>D[X]</string>
            </property>
@@ -587,6 +629,56 @@
          </item>
          <item>
           <widget class="QLabel" name="CRVDXText">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>36</height>
+            </size>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="CRVMXLabel">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>36</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>M[X]</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="CRVMXText">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>36</height>
+            </size>
+           </property>
            <property name="text">
             <string/>
            </property>
@@ -595,426 +687,902 @@
         </layout>
        </item>
        <item>
+        <layout class="QHBoxLayout" name="CRVActionHBox">
+         <item>
+          <widget class="QPushButton" name="CRVClearButton">
+           <property name="text">
+            <string>Очистить</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="CRVGenerateButton">
+           <property name="text">
+            <string>Запустить генератор</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>290</y>
+        <width>1021</width>
+        <height>465</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="CRVGraphHBox">
+       <item>
         <widget class="QGroupBox" name="CRVGroupCDF">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
          <property name="minimumSize">
           <size>
-           <width>400</width>
-           <height>400</height>
+           <width>450</width>
+           <height>450</height>
           </size>
          </property>
          <property name="title">
-          <string>CDF</string>
+          <string/>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
          </property>
         </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="CRVGroupPDF">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>450</width>
+           <height>450</height>
+          </size>
+         </property>
+         <property name="title">
+          <string/>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>0</y>
+        <width>261</width>
+        <height>166</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="CRVDescriptionVBox">
+       <item>
+        <widget class="QLabel" name="CRVDesctiptionTitle">
+         <property name="text">
+          <string>Распределение Парето</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="CRVXHBox">
+         <item>
+          <widget class="QLabel" name="CRVXLabel">
+           <property name="text">
+            <string>Носитель:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="CRVXImage">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="pixmap">
+            <pixmap resource="res/images.qrc">:/range.png</pixmap>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="CRVCDFHBox">
+         <item>
+          <widget class="QLabel" name="CRVCDFLabel">
+           <property name="text">
+            <string>Функция распределения:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="CRVCDFImage">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="pixmap">
+            <pixmap resource="res/images.qrc">:/cdf.png</pixmap>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="CRVPDFHBox">
+         <item>
+          <widget class="QLabel" name="CRVPDFLabel">
+           <property name="text">
+            <string>Плотность вероятностей:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="CRVPDFImage">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="pixmap">
+            <pixmap resource="res/images.qrc">:/pdf.png</pixmap>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
       </layout>
      </widget>
     </widget>
     <widget class="QWidget" name="modelTab">
      <attribute name="title">
-      <string>Model</string>
+      <string>СМО</string>
      </attribute>
      <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>211</width>
-        <height>190</height>
+        <x>0</x>
+        <y>0</y>
+        <width>1021</width>
+        <height>741</height>
        </rect>
       </property>
-      <layout class="QVBoxLayout" name="ModelSetupVBox">
+      <layout class="QVBoxLayout" name="ModelVBox">
        <item>
-        <layout class="QHBoxLayout" name="ModelRequestCountHBox">
+        <layout class="QHBoxLayout" name="QHBox">
          <item>
-          <widget class="QLabel" name="ModelRequestCountLabel">
-           <property name="text">
-            <string>RequestCount</string>
-           </property>
-          </widget>
+          <layout class="QVBoxLayout" name="ModelSetupVBox">
+           <item>
+            <widget class="QLabel" name="ModelSetupLabel">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Поступление заявок</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="ModelDistDropdown">
+             <item>
+              <property name="text">
+               <string>Пуассоновское</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Нормальное</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Тест</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Экспоненциальное</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Равномерное</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="ModelRequestIntencityHBox">
+             <item>
+              <widget class="QLabel" name="ModelRequestIntencityLabel">
+               <property name="text">
+                <string>Интенсивность потока заявок λ</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="ModelRequestIntencityEdit">
+               <property name="text">
+                <string>3</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="ModelParamHBox">
+             <item>
+              <widget class="QLabel" name="ModelParamLabel">
+               <property name="text">
+                <string>Параметр σ</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="ModelParamEdit">
+               <property name="text">
+                <string>3</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="ModelMinHBox">
+             <item>
+              <widget class="QLabel" name="ModelMinLabel">
+               <property name="text">
+                <string>Минимум, A</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="ModelMinEdit">
+               <property name="text">
+                <string>3</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="ModelMaxHBox">
+             <item>
+              <widget class="QLabel" name="ModelMaxLabel">
+               <property name="text">
+                <string>Максимум, B</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="ModelMaxEdit">
+               <property name="text">
+                <string>3</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="ModelTime">
+             <item>
+              <widget class="QLabel" name="ModelTimeLabel">
+               <property name="text">
+                <string>Время обслуживания</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="ModelTimeEdit">
+               <property name="text">
+                <string>1000</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QPushButton" name="ModelClearButton">
+             <property name="text">
+              <string>Очистить</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="ModelLaunchButton">
+             <property name="text">
+              <string>Запустить</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </item>
          <item>
-          <widget class="QLineEdit" name="ModelRequestCountEdit">
-           <property name="text">
-            <string>1000</string>
-           </property>
-          </widget>
+          <layout class="QVBoxLayout" name="Q1VBox">
+           <item>
+            <widget class="QLabel" name="ModelQ1Label">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Фаза 1</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="ModelQ1DistDropdown">
+             <item>
+              <property name="text">
+               <string>Пуассоновское</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Нормальное</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Тест</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Экспоненциальное</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Равномерное</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="ModelQ1MHBox">
+             <item>
+              <widget class="QLabel" name="ModelQ1MLabel">
+               <property name="text">
+                <string>µ</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="ModelQ1MEdit">
+               <property name="text">
+                <string>4.0</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="ModelQ1ParamHBox">
+             <item>
+              <widget class="QLabel" name="ModelQ1ParamLabel">
+               <property name="text">
+                <string>Параметр σ</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="ModelQ1ParamEdit">
+               <property name="text">
+                <string>3</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="ModelQ1MinHBox">
+             <item>
+              <widget class="QLabel" name="ModelQ1MinLabel">
+               <property name="text">
+                <string>Минимум, A</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="ModelQ1MinEdit">
+               <property name="text">
+                <string>3</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="ModelQ1MaxHBox">
+             <item>
+              <widget class="QLabel" name="ModelQ1MaxLabel">
+               <property name="text">
+                <string>Максимум, B</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="ModelQ1MaxEdit">
+               <property name="text">
+                <string>3</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="ModelQ1InHBox">
+             <item>
+              <widget class="QLabel" name="ModelQ1InLabel">
+               <property name="text">
+                <string>Емкость накопителя</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="ModelQ1InEdit">
+               <property name="text">
+                <string>1000</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="ModelQ1ChanelCountHBox">
+             <item>
+              <widget class="QLabel" name="ModelQ1ChanelCountLabel">
+               <property name="text">
+                <string>Число параллельных каналов N</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="ModelQ1ChanelCountEdit">
+               <property name="text">
+                <string>1</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="Q2VBox">
+           <item>
+            <widget class="QLabel" name="ModelQ2Label">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Фаза 2</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="ModelQ2DistDropdown">
+             <item>
+              <property name="text">
+               <string>Пуассоновское</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Нормальное</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Тест</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Экспоненциальное</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Равномерное</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="ModelQ2MHBox">
+             <item>
+              <widget class="QLabel" name="ModelQ2MLabel">
+               <property name="text">
+                <string>µ</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="ModelQ2MEdit">
+               <property name="text">
+                <string>3.1</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="ModelQ2ParamHBox">
+             <item>
+              <widget class="QLabel" name="ModelQ2ParamLabel">
+               <property name="text">
+                <string>Параметр σ</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="ModelQ2ParamEdit">
+               <property name="text">
+                <string>3</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="ModelQ2MinHBox">
+             <item>
+              <widget class="QLabel" name="ModelQ2MinLabel">
+               <property name="text">
+                <string>Минимум, A</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="ModelQ2MinEdit">
+               <property name="text">
+                <string>3</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="ModelQ2MaxHBox">
+             <item>
+              <widget class="QLabel" name="ModelQ2MaxLabel">
+               <property name="text">
+                <string>Максимум, B</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="ModelQ2MaxEdit">
+               <property name="text">
+                <string>3</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="ModelQ2InHBox">
+             <item>
+              <widget class="QLabel" name="ModelQ2InLabel">
+               <property name="text">
+                <string>Емкость накопителя</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="ModelQ2InEdit">
+               <property name="text">
+                <string>1000</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="ModelQ2ChanelCountHBox">
+             <item>
+              <widget class="QLabel" name="ModelQ2ChanelCountLabel">
+               <property name="text">
+                <string>Число параллельных каналов N</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="ModelQ2ChanelCountEdit">
+               <property name="text">
+                <string>1</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="Q3VBox">
+           <item>
+            <widget class="QLabel" name="ModelQ3Label">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Фаза 3</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="ModelQ3DistDropdown">
+             <item>
+              <property name="text">
+               <string>Пуассоновское</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Нормальное</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Тест</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Экспоненциальное</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Равномерное</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="ModelQ3MHBox">
+             <item>
+              <widget class="QLabel" name="ModelQ3MLabel">
+               <property name="text">
+                <string>µ</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="ModelQ3MEdit">
+               <property name="text">
+                <string>1.6</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="ModelQ3ParamHBox">
+             <item>
+              <widget class="QLabel" name="ModelQ3ParamLabel">
+               <property name="text">
+                <string>Параметр σ</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="ModelQ3ParamEdit">
+               <property name="text">
+                <string>3</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="ModelQ3MinHBox">
+             <item>
+              <widget class="QLabel" name="ModelQ3MinLabel">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="text">
+                <string>Минимум, A</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="ModelQ3MinEdit">
+               <property name="text">
+                <string>3</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="ModelQ3MaxHBox">
+             <item>
+              <widget class="QLabel" name="ModelQ3MaxLabel">
+               <property name="text">
+                <string>Максимум, B</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="ModelQ3MaxEdit">
+               <property name="text">
+                <string>3</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="ModelQ3InHBox">
+             <item>
+              <widget class="QLabel" name="ModelQ3InLabel">
+               <property name="text">
+                <string>Емкость накопителя</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="ModelQ3InEdit">
+               <property name="text">
+                <string>1000</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="ModelQ3ChanelCountHBox">
+             <item>
+              <widget class="QLabel" name="ModelQ3ChanelCountLabel">
+               <property name="text">
+                <string>Число параллельных каналов N</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="ModelQ3ChanelCountEdit">
+               <property name="text">
+                <string>1</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
          </item>
         </layout>
        </item>
        <item>
-        <layout class="QHBoxLayout" name="ModelRequestDeltaTime">
+        <layout class="QHBoxLayout" name="ModelOutHBox">
          <item>
-          <widget class="QLabel" name="ModelRequestDeltaTimeLabel">
-           <property name="text">
-            <string>RequestDeltaTime</string>
+          <widget class="QTabWidget" name="ModelGraph">
+           <property name="enabled">
+            <bool>true</bool>
            </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="ModelRequestDeltaTimeEdit">
-           <property name="text">
-            <string>1</string>
+           <property name="tabPosition">
+            <enum>QTabWidget::North</enum>
            </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="ModelDeltaTime">
-         <item>
-          <widget class="QLabel" name="ModelDeltaTimeLabel">
-           <property name="text">
-            <string>DeltaTime</string>
+           <property name="currentIndex">
+            <number>1</number>
            </property>
+           <widget class="QWidget" name="ModelRejView">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <attribute name="title">
+             <string>Вероятность отказа</string>
+            </attribute>
+           </widget>
+           <widget class="QWidget" name="ModelStatsView">
+            <attribute name="title">
+             <string>Статистика</string>
+            </attribute>
+            <widget class="QTextBrowser" name="ModelOut">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>0</y>
+               <width>1011</width>
+               <height>441</height>
+              </rect>
+             </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>600</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Monaco</family>
+               <pointsize>11</pointsize>
+              </font>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QWidget" name="ModelTimeView">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <attribute name="title">
+             <string>Среднее время обработки</string>
+            </attribute>
+           </widget>
           </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="ModelDeltaTimeEdit">
-           <property name="text">
-            <string>1</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <widget class="QPushButton" name="ModelLaunchButton">
-         <property name="text">
-          <string>Launch</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QTextBrowser" name="ModelOut">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>210</y>
-        <width>401</width>
-        <height>351</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QTabWidget" name="ModelGraph">
-      <property name="geometry">
-       <rect>
-        <x>419</x>
-        <y>209</y>
-        <width>371</width>
-        <height>351</height>
-       </rect>
-      </property>
-      <property name="currentIndex">
-       <number>0</number>
-      </property>
-      <widget class="QWidget" name="ModelRejView">
-       <attribute name="title">
-        <string>Rejection</string>
-       </attribute>
-      </widget>
-      <widget class="QWidget" name="ModelTimeView">
-       <attribute name="title">
-        <string>Time</string>
-       </attribute>
-      </widget>
-     </widget>
-     <widget class="QWidget" name="">
-      <property name="geometry">
-       <rect>
-        <x>230</x>
-        <y>10</y>
-        <width>561</width>
-        <height>191</height>
-       </rect>
-      </property>
-      <layout class="QHBoxLayout" name="QHBox">
-       <item>
-        <layout class="QVBoxLayout" name="Q1VBox">
-         <item>
-          <layout class="QHBoxLayout" name="ModelQ1MHBox">
-           <item>
-            <widget class="QLabel" name="ModelQ1MLabel">
-             <property name="text">
-              <string>M1</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="ModelQ1MEdit">
-             <property name="text">
-              <string>4.0</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="ModelQ1MinHBox">
-           <item>
-            <widget class="QLabel" name="ModelQ1MinLabel">
-             <property name="text">
-              <string>Min</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="ModelQ1MinEdit">
-             <property name="text">
-              <string>1</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="ModelQ1MaxHBox">
-           <item>
-            <widget class="QLabel" name="ModelQ1MaxLabel">
-             <property name="text">
-              <string>Max</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="ModelQ1MaxEdit">
-             <property name="text">
-              <string>5</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="ModelQ1InHBox">
-           <item>
-            <widget class="QLabel" name="ModelQ1InLabel">
-             <property name="text">
-              <string>InputQueue</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="ModelQ1InEdit">
-             <property name="text">
-              <string>0</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="ModelQ1OutHBox">
-           <item>
-            <widget class="QLabel" name="ModelQ1OutLabel">
-             <property name="text">
-              <string>OutputQueue</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="ModelQ1OutEdit">
-             <property name="text">
-              <string>0</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QVBoxLayout" name="Q2VBox">
-         <item>
-          <layout class="QHBoxLayout" name="ModelQ2MHBox">
-           <item>
-            <widget class="QLabel" name="ModelQ2MLabel">
-             <property name="text">
-              <string>M2</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="ModelQ2MEdit">
-             <property name="text">
-              <string>3.1</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="ModelQ2MinHBox">
-           <item>
-            <widget class="QLabel" name="ModelQ2MinLabel">
-             <property name="text">
-              <string>Min</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="ModelQ2MinEdit">
-             <property name="text">
-              <string>1</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="ModelQ2MaxHBox">
-           <item>
-            <widget class="QLabel" name="ModelQ2MaxLabel">
-             <property name="text">
-              <string>Max</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="ModelQ2MaxEdit">
-             <property name="text">
-              <string>10</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="ModelQ2InHBox">
-           <item>
-            <widget class="QLabel" name="ModelQ2InLabel">
-             <property name="text">
-              <string>InputQueue</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="ModelQ2InEdit">
-             <property name="text">
-              <string>0</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="ModelQ2OutHBox">
-           <item>
-            <widget class="QLabel" name="ModelQ2OutLabel">
-             <property name="text">
-              <string>OutputQueue</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="ModelQ2OutEdit">
-             <property name="text">
-              <string>0</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QVBoxLayout" name="Q3VBox">
-         <item>
-          <layout class="QHBoxLayout" name="ModelQ3MHBox">
-           <item>
-            <widget class="QLabel" name="ModelQ3MLabel">
-             <property name="text">
-              <string>M3</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="ModelQ3MEdit">
-             <property name="text">
-              <string>1.6</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="ModelQ3MinHBox">
-           <item>
-            <widget class="QLabel" name="ModelQ3MinLabel">
-             <property name="text">
-              <string>Min</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="ModelQ3MinEdit">
-             <property name="text">
-              <string>2</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="ModelQ3MaxHBox">
-           <item>
-            <widget class="QLabel" name="ModelQ3MaxLabel">
-             <property name="text">
-              <string>Max</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="ModelQ3MaxEdit">
-             <property name="text">
-              <string>5</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="ModelQ3InHBox">
-           <item>
-            <widget class="QLabel" name="ModelQ3InLabel">
-             <property name="text">
-              <string>InputQueue</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="ModelQ3InEdit">
-             <property name="text">
-              <string>0</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="ModelQ3OutHBox">
-           <item>
-            <widget class="QLabel" name="ModelQ3OutLabel">
-             <property name="text">
-              <string>OutputQueue</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="ModelQ3OutEdit">
-             <property name="text">
-              <string>0</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
          </item>
         </layout>
        </item>
@@ -1025,6 +1593,8 @@
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="res/images.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -8,8 +8,8 @@ class smonode
 {
 public:
     smonode();
-    smonode(QVector<smonode*>* input, uint min, uint max, double _mean, uint i, uint o, uint inputMax, uint outMax);
-    void update(uint deltaTime); //update in reverse order//true if node ended working with request
+    smonode(QVector<smonode*>* _input, double _mean, double _stdev, double _min, double _max, uint _queueLength, uint _chanelCount, uint _distType);
+    void update(double deltaTime); //update in reverse order
     bool takeRequest();//reset timer and start over //if false = rejected
     bool giveRequest();//
 
@@ -19,29 +19,31 @@ public:
     uint GetRejectedRequestsCount();
     uint GetProcessedRequestsCount();
 
-    uint totalRequestTime;
+    double averageRDP;
+    double totalBusyTime;
     uint rejectedRequestCount;
-    uint lostRequestCount;
     uint processedRequestsCount;
-    uint totalWaitTime;
-    uint takenReuqestCount;
-private:
-    QVector<smonode*>* input;
+    double totalWaitTime;
+    uint takenRequestCount;
 
-    double mean;
+private:
+    void rollTimeDice(uint chanelId);
+    QVector<smonode*>* input;
+    QVector<double>* requestTimeLeft;
+
     uint inputQueue;
     uint outputQueue;
+    uint chanelCount;
+    uint distributionType;
+    uint maxInputQueueLength;
 
-    uint max;
-    uint min;
-
-    uint maxInputQueueLength; //0-no limit
-    uint maxOutputQueueLength; //0-no limit
-
-    int requestTimeLeft;
-
-    std::poisson_distribution<uint>* distribution;
-    std::default_random_engine generator;
+    double linearDistribution;
+    std::poisson_distribution<uint>* poissonDistribution;
+    std::normal_distribution<double>* normalDistribution;
+    std::gamma_distribution<double>* gammaDistribution;
+    std::exponential_distribution<double>* exponentialDistribution;
+    std::uniform_real_distribution<double>* uniformDistribution;
+    std::default_random_engine* generator;
 };
 
 #endif // SMONODE_H

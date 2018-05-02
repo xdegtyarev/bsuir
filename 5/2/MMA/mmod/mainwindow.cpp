@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     QValidator *intValidator1MAX = new QIntValidator(1,INT_MAX);
     QValidator *doubleValidatorMINMAX = new QDoubleValidator(DBL_MIN,DBL_MAX,100);
     QValidator *doubleValidator0MAX = new QDoubleValidator(0.0,DBL_MAX,100);
-
+    maxTime = new QVector<double>();
     //setup BRV window
     ui->BRVMCGCountEdit->setValidator(intValidator1MAX);
     ui->BRVMCGIncrementEdit->setValidator(intValidator0MAX);
@@ -22,15 +22,29 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     BRVMSChart = new QChart();
         BRVMSChart->legend()->hide();
-        BRVMSChart->setTitle("BRVMC");
+        BRVMSChart->setTitle("Метод середины квадрата");
         BRVMSChart->legend()->setVisible(true);
         BRVMSChart->legend()->setAlignment(Qt::AlignBottom);
 
+
     BRVMCGChart = new QChart();
         BRVMCGChart->legend()->hide();
-        BRVMCGChart->setTitle("BRVMCG");
+        BRVMCGChart->setTitle("Мультипликативный конгруэнтный метод");
         BRVMCGChart->legend()->setVisible(true);
         BRVMCGChart->legend()->setAlignment(Qt::AlignBottom);
+
+     BRVMSChartView = new QChartView(BRVMSChart,ui->BRVMSGroupBox);
+     BRVMSChartView->resize(400,400);
+     BRVMSChartView->move(32,32);
+     BRVMSChartView->setRenderHint(QPainter::Antialiasing);
+     BRVMSChartView->show();
+
+     BRVMCGChartView = new QChartView(BRVMCGChart,ui->BRVMCGGroupBox);
+     BRVMCGChartView->resize(400,400);
+     BRVMCGChartView->move(32,32);
+     BRVMCGChartView->setRenderHint(QPainter::Antialiasing);
+     BRVMCGChartView->show();
+
     //setup CRV window
     ui->CRVAEdit->setValidator(doubleValidator0MAX);
     ui->CRVBEdit->setValidator(doubleValidator0MAX);
@@ -41,13 +55,13 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     CRVChartPDF = new QChart();
         CRVChartPDF->legend()->hide();
-        CRVChartPDF->setTitle("CRV Pareto PDF");
+        CRVChartPDF->setTitle("Парето: плотность распределения вероятностей");
         CRVChartPDF->legend()->setVisible(true);
         CRVChartPDF->legend()->setAlignment(Qt::AlignBottom);
 
     CRVChartCDF = new QChart();
         CRVChartCDF->legend()->hide();
-        CRVChartCDF->setTitle("CRV Pareto CDF");
+        CRVChartCDF->setTitle("Парето: функция распределения вероятностей");
         CRVChartCDF->legend()->setVisible(true);
         CRVChartCDF->legend()->setAlignment(Qt::AlignBottom);
 
@@ -80,12 +94,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     ModelmidTime = new QLineSeries();
     ModelmidTime->setName("T");
 
-//    ModelChart->addSeries(ModelQ1rej);
-//    ModelChart->addSeries(ModelQ2rej);
-//    ModelChart->addSeries(ModelQ3rej);
-//    ModelChart->addSeries(ModelQ1midTime);
-//    ModelChart->addSeries(ModelQ2midTime);
-//    ModelChart->addSeries(ModelQ3midTime);
     ModelChart->addSeries(Modelrej);
     ModelChartTime->addSeries(ModelmidTime);
 
@@ -98,33 +106,62 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     ModelChartTimeView ->resize(400,400);
     ModelChartTimeView ->setRenderHint(QPainter::Antialiasing);
     ModelChartTimeView ->show();
+
+    errorMessageWindow = new QErrorMessage(this);
+    on_ModelDistDropdown_activated(0);
+    on_ModelQ1DistDropdown_activated(0);
+    on_ModelQ2DistDropdown_activated(0);
+    on_ModelQ3DistDropdown_activated(0);
 }
 
 MainWindow::~MainWindow()
 {
+    delete errorMessageWindow;
+    delete ModelChartView;
     delete ui;
 }
 
-void MainWindow::BRVFrequencyTest(uint barCount, uint64_t max, QVector<uint64_t>* set, QVector<float>* frequencyChartData, float* MSum, float* DSum ){
+void MainWindow::BRVFrequencyTest(uint corrShift, uint barCount, uint64_t max, QVector<uint64_t>* set, QVector<double>* frequencyChartData,double* MSum, double* DSum, double* RX){
     uint64_t fraction = max/barCount;
-    float frequencyChartAdd = 1.0f/(float)set->count();
-    float _MSum = 0.0f;
-    float _DSum = 0.0f;
-    float normalizedVal;
+    double _MSum = 0.0;
+    double _DSum = 0.0;
+    double normalizedVal = 0.0;
+    double normalizedValS = 0.0;
+    int s = corrShift;
+    int subsetCount = set->count()-s;
+    double _MXY = 0.0;
+
+    double _RX = 0.0;
+    double _RMSum = 0.0;
+    double _RDsum = 0.0;
+
     frequencyChartData->clear();
     frequencyChartData->resize(barCount);
     int val = 0 ;
     for(int i = 0; i<set->count();i++){
-        normalizedVal = (float)set->at(i)/(float)max;
+        normalizedVal = (double)set->at(i)/(double)max;
+        if(i>=s){
+            normalizedValS = (double)set->at(i-s)/(double)max;
+            _RMSum += normalizedValS;
+            _RDsum += normalizedValS*normalizedValS;
+            _MXY += normalizedVal*normalizedValS;
+        }
         val = set->at(i)/fraction;
         _MSum += normalizedVal;
         _DSum += normalizedVal*normalizedVal;
-        frequencyChartData->data()[val]+=frequencyChartAdd;
+        frequencyChartData->data()[val]+=1.0;
+    }
+    for(uint i=0;i<barCount;i++){
+        frequencyChartData->data()[i]/=(double)set->count();
     }
     _MSum /= set->count();
+    _RMSum /= subsetCount;
+    _MXY /= subsetCount;
     _DSum = _DSum/set->count() - (_MSum*_MSum);
+    _RDsum = _RDsum/subsetCount - (_RMSum*_RMSum);
     *MSum = _MSum;
     *DSum = _DSum;
+    *RX = (_MXY-_MSum*_RMSum)/(std::sqrtf(_DSum*_RDsum));
 }
 
 
@@ -138,41 +175,40 @@ void MainWindow::on_BRVMSGenerateButton_clicked()
     fullOk &= ok;
     ulong bars = ui->BRVMSBarsEdit->text().toULong(&ok);
     fullOk &= ok;
+    ulong corrShift = ui->BRVMSCorrShift->text().toUInt(&ok);
+    fullOk &= ok;
     if(fullOk){
         MiddleSquareRNG* msrng = new MiddleSquareRNG(seed);
         QVector<uint64_t>* set = new QVector<uint64_t>(count);
+        QVector<double>* histogramDataSet = new QVector<double>();
+        double MSum, DSum, RX = 0.0f;
+        double barWidthDelta = 1.0/(double)bars;
+
         msrng->RandomSet(count,set);
+        BRVFrequencyTest(corrShift,bars,UINT64_MAX,set,histogramDataSet,&MSum,&DSum,&RX);
 
-        QVector<float>* frequencyChartData = new QVector<float>();
-
-        float MSum, DSum = 0.0f;
-        BRVFrequencyTest(bars,UINT64_MAX,set,frequencyChartData,&MSum,&DSum);
-        ui->BRVMSStatus->setText(
-            "Num generated:" + QString::number(set->count()) +
-            " M(X):" + QString::number(MSum) +
-            " D(X):" + QString::number(DSum)
-            );
+        ui->BRVMSMXValue->setText(QString::number(MSum));
+        ui->BRVMSDXValue->setText(QString::number(DSum));
+        ui->BRVMSRXValue->setText(QString::number(RX));
 
 //      display chart
         QLineSeries *lineseries = new QLineSeries();
-        lineseries->setName("#"+QString::number(set->count()));
-        for(int i = 0; i<bars;i++){
-            lineseries->append(QPointF(i,frequencyChartData->data()[i]*bars));
-            lineseries->append(QPointF(i+1,frequencyChartData->data()[i]*bars));
+        lineseries->setName("N:"+QString::number(set->count()));
+        for(ulong i = 0; i<bars;i++){
+            lineseries->append(QPointF(i*barWidthDelta,histogramDataSet->data()[i]*(double)bars));
+            lineseries->append(QPointF((i+1)*barWidthDelta,histogramDataSet->data()[i]*(double)bars));
         }
         BRVMSChart->addSeries(lineseries);
         BRVMSChart->createDefaultAxes();
-        BRVMSChartView = new QChartView(BRVMSChart,ui->BRVMSGroupBox);
-        BRVMSChartView->resize(369,350);
 
-        BRVMSChartView->setRenderHint(QPainter::Antialiasing);
-        BRVMSChartView->show();
+        BRVMSChart->axisX()->setRange(0.0,1.0);
+        BRVMSChart->axisY()->setRange(0.0,2.0);
 
-        delete(frequencyChartData);
+        delete(histogramDataSet);
         delete(set);
         delete(msrng);
     }else{
-        ui->BRVMSStatus->setText("ALERT!: Wrong Input");
+        errorMessageWindow->showMessage("Wrong Input");
     }
 }
 
@@ -192,41 +228,44 @@ void MainWindow::on_BRVMCGGenerateButton_clicked()
     fullOk &= ok;
     ulong bars = ui->BRVMCGBarsEdit->text().toULong(&ok);
     fullOk &= ok;
+    ulong corrShift = ui->BRVMCGCorrShift->text().toUInt(&ok);
+    fullOk &= ok;
     if(fullOk){
         LinearCongruentialRNG* lcrng = new LinearCongruentialRNG(seed,increment,modulus,multiplier);
         QVector<uint64_t>* set = new QVector<uint64_t>(count);
+        QVector<double>* histogramDataSet = new QVector<double>();
+        double MSum, DSum, RX = 0.0f;
+        double barWidthDelta = 1.0/(double)bars;
+
+
         lcrng->RandomSet(count,set);
+        BRVFrequencyTest(corrShift,bars,modulus,set,histogramDataSet,&MSum,&DSum,&RX);
 
-        QVector<float>* frequencyChartData = new QVector<float>();
-        float MSum, DSum = 0.0f;
-        BRVFrequencyTest(bars,modulus,set,frequencyChartData,&MSum,&DSum);
-        ui->BRVMCGStatusLabel->setText(
-                    "Num generated:" + QString::number(set->count()) +
-                    " M(X):" + QString::number(MSum) +
-                    " D(X):" + QString::number(DSum)
-                    );
-        //      display chart
+        ui->BRVMCGMXValue->setText(QString::number(MSum));
+        ui->BRVMCGDXValue->setText(QString::number(DSum));
+        ui->BRVMCGRXValue->setText(QString::number(RX));
+
+        //display chart
         QLineSeries *lineseries = new QLineSeries();
-        lineseries->setName("#"+QString::number(set->count()));
+        lineseries->setName("N"+QString::number(set->count()));
 
-        for(int i = 0; i<bars;i++){
-            lineseries->append(QPointF(i,frequencyChartData->data()[i]));
-            lineseries->append(QPointF(i+1,frequencyChartData->data()[i]));
+        for(ulong i = 0; i<bars;i++){
+            lineseries->append(QPointF((i)*barWidthDelta,histogramDataSet->data()[i]*(double)bars));
+            lineseries->append(QPointF((i+1)*barWidthDelta,histogramDataSet->data()[i]*(double)bars));
         }
 
         BRVMCGChart->addSeries(lineseries);
         BRVMCGChart->createDefaultAxes();
-        BRVMCGChartView = new QChartView(BRVMCGChart,ui->BRVMCGGroupBox);
-        BRVMCGChartView->resize(369,350);
-        BRVMCGChartView->setRenderHint(QPainter::Antialiasing);
-        BRVMCGChartView->show();
 
-        delete(frequencyChartData);
+        BRVMCGChart->axisX()->setRange(0.0,1.0);
+        BRVMCGChart->axisY()->setRange(0.0,2.0);
+
+        delete(histogramDataSet);
         delete(set);
         delete(lcrng);
 
     }else{
-        ui->BRVMCGStatusLabel->setText("Alert!: Wrong Input");
+        errorMessageWindow->showMessage("Wrong Input");
     }
 }
 
@@ -264,15 +303,15 @@ void MainWindow::on_CRVGenerateButton_clicked()
     double right = ui->CRVBoundsRight->text().toDouble(&ok);
     ok &= right>left;
     fullOk &= ok;
+
     if(ok){
-        ui->CRVStatusText->setText("Input is valid [" + QString::number(left) + " : " + QString::number(right) + "]");
         ParetoDistribution* crv = new ParetoDistribution(crvA,crvB);
         QRandomGenerator* rng = new QRandomGenerator();
         QMap<double,double>* set = new QMap<double,double>();
-        double xi, yi = 0.0;
-        double MX, MY = 0.0;
-        double MX2, MY2 = 0.0;
-        double DX, DY = 0.0;
+        double xi = 0.0, yi = 0.0;
+        double MX = 0.0, MY = 0.0;
+        double MX2 = 0.0, MY2 = 0.0;
+        double DX = 0.0, DY = 0.0;
         double leftyi = crv->Distribution(left);
         double rightyi = crv->Distribution(right);
 
@@ -366,74 +405,94 @@ void MainWindow::on_CRVGenerateButton_clicked()
         delete(histogramSetPDF);
         delete(histogramSetCDF);
     }else{
-        ui->CRVStatusText->setText("Check your input a,b > 0");
+        errorMessageWindow->showMessage("Alert! Wrong Input");
     }
-
-
 }
 
 void MainWindow::on_ModelLaunchButton_clicked()
 {
+    double dt = 0.1;
     bool ok = false;
     bool fullOk = true;
-    uint requestCount = ui->ModelRequestCountEdit->text().toUInt(&ok);
+    uint modelTime = ui->ModelTimeEdit->text().toUInt(&ok);
     fullOk &= ok;
-    uint requestDeltaTime = ui->ModelRequestDeltaTimeEdit->text().toUInt(&ok);
-    fullOk &= ok;
-    uint deltaTime = ui->ModelDeltaTimeEdit->text().toUInt(&ok);
-    fullOk &= ok;
+    uint modelDistType = ui->ModelDistDropdown->currentIndex();
+    double modelLambda = ui->ModelRequestIntencityEdit->isVisible() ? ui->ModelRequestIntencityEdit->text().toDouble(&ok) : 0.0;
+    fullOk &= (ui->ModelRequestIntencityEdit->isVisible() ? ok : true);
+    double modelParam = ui->ModelParamEdit->isVisible() ? ui->ModelParamEdit->text().toDouble(&ok) : 0.0;
+    fullOk &= (ui->ModelParamEdit->isVisible() ? ok : true);
+    double modelMin = ui->ModelMinEdit->isVisible() ? ui->ModelMinEdit->text().toDouble(&ok) : 0.0;
+    fullOk &= (ui->ModelMinEdit->isVisible() ? ok : true);
+    double modelMax = ui->ModelMaxEdit->isVisible() ? ui->ModelMaxEdit->text().toDouble(&ok) : 0.0;
+    fullOk &= (ui->ModelMaxEdit->isVisible() ? (ok && modelMax >= modelMin) : true);
+
     //q1parse
-    double q1mean = ui->ModelQ1MEdit->text().toDouble(&ok);
-    fullOk &= ok;
-    uint q1min = ui->ModelQ1MinEdit->text().toUInt(&ok);
-    fullOk &= ok;
-    uint q1max = ui->ModelQ1MaxEdit->text().toUInt(&ok);
-    fullOk &= ok;
     uint q1inmax = ui->ModelQ1InEdit->text().toUInt(&ok);
     fullOk &= ok;
-    uint q1outmax = ui->ModelQ1OutEdit->text().toUInt(&ok);
+    uint q1ChanelCount = ui->ModelQ1ChanelCountEdit->text().toUInt(&ok);
     fullOk &= ok;
+    uint q1DistType = ui->ModelQ1DistDropdown->currentIndex();
+
+    double q1mean = ui->ModelQ1MEdit->isVisible() ? ui->ModelQ1MEdit->text().toDouble(&ok) : 0.0;
+    fullOk &= ui->ModelQ1MEdit->isVisible() ? ok : true;
+    double q1param = ui->ModelQ1ParamEdit->isVisible() ? ui->ModelQ1ParamEdit->text().toDouble(&ok) : 0.0;
+    fullOk &= ui->ModelQ1ParamEdit->isVisible() ? ok : true;
+    double q1min = ui->ModelQ1MinEdit->isVisible() ? ui->ModelQ1MinEdit->text().toDouble(&ok) : 0.0;
+    fullOk &= ui->ModelQ1MinEdit->isVisible() ? ok : true;
+    double q1max = ui->ModelQ1MaxEdit->isVisible() ? ui->ModelQ1MaxEdit->text().toDouble(&ok) : 0.0;
+    fullOk &= ui->ModelQ1MaxEdit->isVisible() ? (ok && q1max>=q1min)  : true;
+
     //q2parse
-    double q2mean = ui->ModelQ2MEdit->text().toDouble(&ok);
-    fullOk &= ok;
-    uint q2min = ui->ModelQ2MinEdit->text().toUInt(&ok);
-    fullOk &= ok;
-    uint q2max = ui->ModelQ2MaxEdit->text().toUInt(&ok);
-    fullOk &= ok;
+
     uint q2inmax = ui->ModelQ2InEdit->text().toUInt(&ok);
     fullOk &= ok;
-    uint q2outmax = ui->ModelQ2OutEdit->text().toUInt(&ok);
+    uint q2ChanelCount = ui->ModelQ2ChanelCountEdit->text().toUInt(&ok);
     fullOk &= ok;
+    uint q2DistType = ui->ModelQ2DistDropdown->currentIndex();
+
+    double q2mean = ui->ModelQ2MEdit->isVisible() ? ui->ModelQ2MEdit->text().toDouble(&ok) : 0.0;
+    fullOk &= ui->ModelQ2MEdit->isVisible() ? ok : true;
+    double q2param = ui->ModelQ2ParamEdit->isVisible() ? ui->ModelQ2ParamEdit->text().toDouble(&ok) : 0.0;
+    fullOk &= ui->ModelQ2ParamEdit->isVisible() ? ok : true;
+    double q2min = ui->ModelQ2MinEdit->isVisible() ? ui->ModelQ2MinEdit->text().toDouble(&ok) : 0.0;
+    fullOk &= ui->ModelQ2MinEdit->isVisible() ? ok : true;
+    double q2max = ui->ModelQ2MaxEdit->isVisible() ? ui->ModelQ2MaxEdit->text().toDouble(&ok) : 0.0;
+    fullOk &= ui->ModelQ2MaxEdit->isVisible() ? (ok && q2max>=q2min) : true;
     //q3parse
-    double q3mean = ui->ModelQ3MEdit->text().toDouble(&ok);
-    fullOk &= ok;
-    uint q3min = ui->ModelQ3MinEdit->text().toUInt(&ok);
-    fullOk &= ok;
-    uint q3max = ui->ModelQ3MaxEdit->text().toUInt(&ok);
-    fullOk &= ok;
+
     uint q3inmax = ui->ModelQ3InEdit->text().toUInt(&ok);
     fullOk &= ok;
-    uint q3outmax = ui->ModelQ3OutEdit->text().toUInt(&ok);
+    uint q3ChanelCount = ui->ModelQ3ChanelCountEdit->text().toUInt(&ok);
     fullOk &= ok;
+    uint q3DistType = ui->ModelQ3DistDropdown->currentIndex();
+
+    double q3mean = ui->ModelQ3MEdit->isVisible() ? ui->ModelQ3MEdit->text().toDouble(&ok) : 0.0;
+    fullOk &= ui->ModelQ3MEdit->isVisible() ? ok : true;
+    double q3param = ui->ModelQ3ParamEdit->isVisible() ? ui->ModelQ3ParamEdit->text().toDouble(&ok) : 0.0;
+    fullOk &= ui->ModelQ3ParamEdit->isVisible() ? ok : true;
+    double q3min = ui->ModelQ3MinEdit->isVisible() ? ui->ModelQ3MinEdit->text().toDouble(&ok) : 0.0;
+    fullOk &= ui->ModelQ3MinEdit->isVisible() ? ok : true;
+    double q3max = ui->ModelQ3MaxEdit->isVisible() ? ui->ModelQ3MaxEdit->text().toDouble(&ok) : 0.0;
+    fullOk &= ui->ModelQ3MaxEdit->isVisible() ? (ok && q3max>=q3min) : true;
 
     if(fullOk){
         QVector<smonode*>* linearNodes = new QVector<smonode*>();
         //Q1
-        smonode* q1 = new smonode(NULL,q1min,q1max,q1mean,0,0,q1inmax,q1outmax);
+        smonode* q1 = new smonode(NULL,q1mean,q1param,q1min,q1max,q1inmax,q1ChanelCount,q1DistType);
         linearNodes->push_back(q1);
         //Q2
         QVector<smonode*>* q2input = new QVector<smonode*>();
         q2input->push_back(q1);
-        smonode* q2 = new smonode(q2input,q2min,q2max,q2mean,0,0,q2inmax,q2outmax);
+        smonode* q2 = new smonode(q2input,q2mean,q2param,q2min,q2max,q2inmax,q2ChanelCount,q2DistType);
         linearNodes->push_back(q2);
         //Q3
         QVector<smonode*>* q3input = new QVector<smonode*>();
         q3input->push_back(q2);
-        smonode* q3 = new smonode(q3input,q3min,q3max,q3mean,0,0,q3inmax,q3outmax);
+        smonode* q3 = new smonode(q3input,q3mean,q3param,q3min,q3max,q3inmax,q3ChanelCount,q3DistType);
         linearNodes->push_back(q3);
 
-        smo* model = new smo(requestCount,requestDeltaTime,deltaTime,linearNodes);
-        ui->ModelOut->append(model->launch());
+        smo* model = new smo(modelLambda,modelParam,modelMin,modelMax,modelTime,dt,modelDistType,linearNodes);
+        ui->ModelOut->append(model->launch(modelRun+1));
 
         ModelQ1midTime->append(QPointF((double)modelRun,model->qtime(0)));
         ModelQ1midTime->append(QPointF((double)modelRun+1,model->qtime(0)));
@@ -454,16 +513,21 @@ void MainWindow::on_ModelLaunchButton_clicked()
 
         ModelChart->createDefaultAxes();
 
-        ModelChart->axisX()->setRange(0.0,modelRun+2);
-        ModelChart->axisY()->setRange(0.0,2.0);
+        ModelChart->axisX()->setRange(modelRun-2,modelRun+2);
+        ModelChart->axisY()->setRange(0.0,110.0);
 
-        if(model->midtime()>=maxTime){
-            maxTime = model->midtime();
+        maxTime->push_back(model->midtime());
+        double localMaxTime=0.0;
+        for(int i = (maxTime->count()-5) > 0 ? maxTime->count()-5 : 0 ; i<maxTime->count(); i++){
+            if(maxTime->data()[i]>=localMaxTime){
+                localMaxTime = maxTime->data()[i];
+            }
         }
 
+
         ModelChartTime->createDefaultAxes();
-        ModelChartTime->axisY()->setRange(0.0,maxTime);
-        ModelChartTime->axisX()->setRange(0.0,modelRun+2);
+        ModelChartTime->axisY()->setRange(0.0,localMaxTime+1);
+        ModelChartTime->axisX()->setRange(modelRun-2,modelRun+2);
         modelRun++;
 
         delete(q3);
@@ -478,4 +542,257 @@ void MainWindow::on_ModelLaunchButton_clicked()
         ui->ModelOut->append("\nWrongInput");
     }
 
+}
+
+void MainWindow::on_ModelDistDropdown_activated(int index)
+{
+    switch(index){
+        case 0:
+        ui->ModelMinEdit->hide();
+        ui->ModelMinLabel->hide();
+        ui->ModelMaxEdit->hide();
+        ui->ModelMaxLabel->hide();
+        ui->ModelParamEdit->hide();
+        ui->ModelParamLabel->hide();
+        ui->ModelRequestIntencityEdit->show();
+        ui->ModelRequestIntencityLabel->show();
+        ui->ModelRequestIntencityLabel->setText("Интенсивность λ");
+        break;
+    case 1:
+        ui->ModelMinEdit->hide();
+        ui->ModelMinLabel->hide();
+        ui->ModelMaxEdit->hide();
+        ui->ModelMaxLabel->hide();
+        ui->ModelParamEdit->show();
+        ui->ModelParamLabel->show();
+        ui->ModelRequestIntencityEdit->show();
+        ui->ModelRequestIntencityLabel->show();
+        ui->ModelRequestIntencityLabel->setText("Медиана(Сдвиг) µ");
+        ui->ModelParamLabel->setText("Масштаб σ");
+        break;
+    case 2:
+        ui->ModelMinEdit->hide();
+        ui->ModelMinLabel->hide();
+        ui->ModelMaxEdit->hide();
+        ui->ModelMaxLabel->hide();
+        ui->ModelParamEdit->hide();
+        ui->ModelParamLabel->hide();
+        ui->ModelRequestIntencityEdit->show();
+        ui->ModelRequestIntencityLabel->show();
+        ui->ModelRequestIntencityLabel->setText("Интенсивность");
+//        ui->ModelParamLabel->setText("Коэффициент масштаба k");
+        break;
+    case 3:
+        ui->ModelMinEdit->hide();
+        ui->ModelMinLabel->hide();
+        ui->ModelMaxEdit->hide();
+        ui->ModelMaxLabel->hide();
+        ui->ModelParamEdit->hide();
+        ui->ModelParamLabel->hide();
+        ui->ModelRequestIntencityEdit->show();
+        ui->ModelRequestIntencityLabel->show();
+        ui->ModelRequestIntencityLabel->setText("Интенсивность λ");
+        break;
+    case 4:
+        ui->ModelMinEdit->show();
+        ui->ModelMinLabel->show();
+        ui->ModelMaxEdit->show();
+        ui->ModelMaxLabel->show();
+        ui->ModelParamEdit->hide();
+        ui->ModelParamLabel->hide();
+        ui->ModelRequestIntencityEdit->hide();
+        ui->ModelRequestIntencityLabel->hide();
+        break;
+    }
+}
+
+void MainWindow::on_ModelQ1DistDropdown_activated(int index)
+{
+    switch(index){
+        case 0:
+        ui->ModelQ1MinEdit->hide();
+        ui->ModelQ1MinLabel->hide();
+        ui->ModelQ1MaxEdit->hide();
+        ui->ModelQ1MaxLabel->hide();
+        ui->ModelQ1ParamEdit->hide();
+        ui->ModelQ1ParamLabel->hide();
+        ui->ModelQ1MEdit->show();
+        ui->ModelQ1MLabel->show();
+        ui->ModelQ1MLabel->setText("Интенсивность λ");
+        break;
+    case 1:
+        ui->ModelQ1MinEdit->hide();
+        ui->ModelQ1MinLabel->hide();
+        ui->ModelQ1MaxEdit->hide();
+        ui->ModelQ1MaxLabel->hide();
+        ui->ModelQ1ParamEdit->show();
+        ui->ModelQ1ParamLabel->show();
+        ui->ModelQ1MEdit->show();
+        ui->ModelQ1MLabel->show();
+        ui->ModelQ1MLabel->setText("Медиана(Сдвиг) µ");
+        ui->ModelQ1ParamLabel->setText("Масштаб σ");
+        break;
+    case 2:
+        ui->ModelQ1MinEdit->hide();
+        ui->ModelQ1MinLabel->hide();
+        ui->ModelQ1MaxEdit->hide();
+        ui->ModelQ1MaxLabel->hide();
+        ui->ModelQ1ParamEdit->hide();
+        ui->ModelQ1ParamLabel->hide();
+        ui->ModelQ1MEdit->show();
+        ui->ModelQ1MLabel->show();
+        ui->ModelQ1MLabel->setText("Интенсивность");
+//        ui->ModelQ1ParamLabel->setText("Коэффициент масштаба k");
+        break;
+    case 3:
+        ui->ModelQ1MinEdit->hide();
+        ui->ModelQ1MinLabel->hide();
+        ui->ModelQ1MaxEdit->hide();
+        ui->ModelQ1MaxLabel->hide();
+        ui->ModelQ1ParamEdit->hide();
+        ui->ModelQ1ParamLabel->hide();
+        ui->ModelQ1MEdit->show();
+        ui->ModelQ1MLabel->show();
+        ui->ModelQ1MLabel->setText("Интенсивность λ");
+        break;
+    case 4:
+        ui->ModelQ1MinEdit->show();
+        ui->ModelQ1MinLabel->show();
+        ui->ModelQ1MaxEdit->show();
+        ui->ModelQ1MaxLabel->show();
+        ui->ModelQ1ParamEdit->hide();
+        ui->ModelQ1ParamLabel->hide();
+        ui->ModelQ1MEdit->hide();
+        ui->ModelQ1MLabel->hide();
+        break;
+    }
+}
+
+void MainWindow::on_ModelQ2DistDropdown_activated(int index)
+{
+    switch(index){
+        case 0:
+        ui->ModelQ2MinEdit->hide();
+        ui->ModelQ2MinLabel->hide();
+        ui->ModelQ2MaxEdit->hide();
+        ui->ModelQ2MaxLabel->hide();
+        ui->ModelQ2ParamEdit->hide();
+        ui->ModelQ2ParamLabel->hide();
+        ui->ModelQ2MEdit->show();
+        ui->ModelQ2MLabel->show();
+        ui->ModelQ2MLabel->setText("Интенсивность λ");
+        break;
+    case 1:
+        ui->ModelQ2MinEdit->hide();
+        ui->ModelQ2MinLabel->hide();
+        ui->ModelQ2MaxEdit->hide();
+        ui->ModelQ2MaxLabel->hide();
+        ui->ModelQ2ParamEdit->show();
+        ui->ModelQ2ParamLabel->show();
+        ui->ModelQ2MEdit->show();
+        ui->ModelQ2MLabel->show();
+        ui->ModelQ2MLabel->setText("Медиана(Сдвиг) µ");
+        ui->ModelQ2ParamLabel->setText("Масштаб σ");
+        break;
+    case 2:
+        ui->ModelQ2MinEdit->hide();
+        ui->ModelQ2MinLabel->hide();
+        ui->ModelQ2MaxEdit->hide();
+        ui->ModelQ2MaxLabel->hide();
+        ui->ModelQ2ParamEdit->hide();
+        ui->ModelQ2ParamLabel->hide();
+        ui->ModelQ2MEdit->show();
+        ui->ModelQ2MLabel->show();
+        ui->ModelQ2MLabel->setText("Интенсивность");
+//        ui->ModelQ2ParamLabel->setText("Коэффициент масштаба k");
+        break;
+    case 3:
+        ui->ModelQ2MinEdit->hide();
+        ui->ModelQ2MinLabel->hide();
+        ui->ModelQ2MaxEdit->hide();
+        ui->ModelQ2MaxLabel->hide();
+        ui->ModelQ2ParamEdit->hide();
+        ui->ModelQ2ParamLabel->hide();
+        ui->ModelQ2MEdit->show();
+        ui->ModelQ2MLabel->show();
+        ui->ModelQ2MLabel->setText("Интенсивность λ");
+        break;
+    case 4:
+        ui->ModelQ2MinEdit->show();
+        ui->ModelQ2MinLabel->show();
+        ui->ModelQ2MaxEdit->show();
+        ui->ModelQ2MaxLabel->show();
+        ui->ModelQ2ParamEdit->hide();
+        ui->ModelQ2ParamLabel->hide();
+        ui->ModelQ2MEdit->hide();
+        ui->ModelQ2MLabel->hide();
+        break;
+    }
+}
+
+void MainWindow::on_ModelQ3DistDropdown_activated(int index)
+{
+    switch(index){
+        case 0:
+        ui->ModelQ3MinEdit->hide();
+        ui->ModelQ3MinLabel->hide();
+        ui->ModelQ3MaxEdit->hide();
+        ui->ModelQ3MaxLabel->hide();
+        ui->ModelQ3ParamEdit->hide();
+        ui->ModelQ3ParamLabel->hide();
+        ui->ModelQ3MEdit->show();
+        ui->ModelQ3MLabel->show();
+        ui->ModelQ3MLabel->setText("Интенсивность λ");
+        break;
+    case 1:
+        ui->ModelQ3MinEdit->hide();
+        ui->ModelQ3MinLabel->hide();
+        ui->ModelQ3MaxEdit->hide();
+        ui->ModelQ3MaxLabel->hide();
+        ui->ModelQ3ParamEdit->show();
+        ui->ModelQ3ParamLabel->show();
+        ui->ModelQ3MEdit->show();
+        ui->ModelQ3MLabel->show();
+        ui->ModelQ3MLabel->setText("Медиана(Сдвиг) µ");
+        ui->ModelQ3ParamLabel->setText("Масштаб σ");
+        break;
+    case 2:
+        ui->ModelQ3MinEdit->hide();
+        ui->ModelQ3MinLabel->hide();
+        ui->ModelQ3MaxEdit->hide();
+        ui->ModelQ3MaxLabel->hide();
+        ui->ModelQ3ParamEdit->hide();
+        ui->ModelQ3ParamLabel->hide();
+        ui->ModelQ3MEdit->show();
+        ui->ModelQ3MLabel->show();
+        ui->ModelQ3MLabel->setText("Интенсивность");
+//        ui->ModelQ3ParamLabel->setText("Коэффициент масштаба k");
+        break;
+    case 3:
+        ui->ModelQ3MinEdit->hide();
+        ui->ModelQ3MinLabel->hide();
+        ui->ModelQ3MaxEdit->hide();
+        ui->ModelQ3MaxLabel->hide();
+        ui->ModelQ3ParamEdit->hide();
+        ui->ModelQ3ParamLabel->hide();
+        ui->ModelQ3MEdit->show();
+        ui->ModelQ3MLabel->show();
+        ui->ModelQ3MLabel->setText("Интенсивность λ");
+        break;
+    case 4:
+        ui->ModelQ3MinEdit->show();
+        ui->ModelQ3MinLabel->show();
+        ui->ModelQ3MaxEdit->show();
+        ui->ModelQ3MaxLabel->show();
+        ui->ModelQ3ParamEdit->hide();
+        ui->ModelQ3ParamLabel->hide();
+        ui->ModelQ3MEdit->hide();
+        ui->ModelQ3MLabel->hide();
+        break;
+    }
+}
+
+void MainWindow::on_ModelClearButton_clicked()
+{
+    ui->ModelOut->clear();
 }

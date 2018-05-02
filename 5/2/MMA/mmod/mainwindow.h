@@ -13,6 +13,7 @@
 #include <QtCharts/QBarCategoryAxis>
 #include <QtCharts/QBarSeries>
 #include <QtCharts/QLegend>
+#include <QErrorMessage>
 #include "limits.h"
 #include <cmath>
 #include <float.h>
@@ -40,16 +41,28 @@ private slots:
     void on_BRVMSClearButton_clicked();
 
     void on_CRVClearButton_clicked();
-
     void on_CRVGenerateButton_clicked();
 
     void on_ModelLaunchButton_clicked();
+    void on_ModelQ1DistDropdown_activated(int index);
+    void on_ModelDistDropdown_activated(int index);
+
+    void on_ModelQ2DistDropdown_activated(int index);
+
+    void on_ModelQ3DistDropdown_activated(int index);
+
+    void on_ModelClearButton_clicked();
 
 private:
-    void BRVFrequencyTest(uint barCount, uint64_t max, QVector<uint64_t>* set, QVector<float>* frequencyChartData,float* MSum, float* DSum);
+    void BRVFrequencyTest(uint corrShift, uint barCount, uint64_t max, QVector<uint64_t>* set, QVector<double>* frequencyChartData,double* MSum, double* DSum, double* RX);
     Ui::MainWindow *ui;
+    //BRV
+    //MS
     QChart* BRVMSChart;
+    //MCG
     QChart* BRVMCGChart;
+
+    //CRV
     QChart* CRVChartPDF;
     QChart* CRVChartCDF;
     QChart* ModelChart;
@@ -63,12 +76,13 @@ private:
     QLineSeries* Modelrej;
     QLineSeries* ModelmidTime;
     int modelRun = 0;
-    double maxTime = 0.0;
+    QVector<double>* maxTime;
     QChartView* BRVMSChartView;
     QChartView* BRVMCGChartView;
     QChartView* CRVChartPDFView;
     QChartView* CRVChartCDFView;
     QChartView* ModelChartView;
     QChartView* ModelChartTimeView;
+    QErrorMessage* errorMessageWindow;
 };
 #endif // MAINWINDOW_H

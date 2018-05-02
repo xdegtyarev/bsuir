@@ -7,31 +7,38 @@ class smo
 {
 
 public:
-    smo(uint _requestCount,uint _serverDeltaTime, uint _deltaTime,QVector<smonode*>* _nodes);
-    QString launch();
+    smo(double _requestIntensity, double _optparam, double _min, double _max, double _modelTime, double _deltaTime,uint _distType,QVector<smonode*>* _nodes);
+    QString launch(int num);
+    double qcount(int i);
     double qrej(int i);
-    double qloss(int i);
+    double qrejcount(int i);
     double qtime(int i);
     double rej();
+    double rejcount();
     double time();
     double midtime();
 private:
     void update();
+    void rollTimeDice();
     QVector<smonode*>* nodes;
-    uint deltaTime;
-    uint timeSinceBeginning;
+    double deltaTime;
+    double timeSinceBeginning;
+    double averageRDP = 0.0;
+    uint distributionType;
 
-    int requestDeltaProgress;
+    double requestDeltaProgress;
+
+    double requestIntensity;
+    double modelTime;
 
     uint requestCount;
-    uint requestDeltaTime; //in ticks
 
-    //stats
-    int initialRequestCounter;
-    double servingIntencity;
-    int rejectedCounter;
-    int completeCounter;
-
+    double linearDistribution;
+    std::poisson_distribution<uint>* poissonDistribution;
+    std::normal_distribution<double>* normalDistribution;
+    std::gamma_distribution<double>* gammaDistribution;
+    std::exponential_distribution<double>* exponentialDistribution;
+    std::uniform_real_distribution<double>* uniformDistribution;
 };
 
 #endif // SMO_H
